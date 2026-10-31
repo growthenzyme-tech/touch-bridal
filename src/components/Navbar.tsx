@@ -47,13 +47,13 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={() => setMenuOpen(false)}
-            className="group flex min-w-0 shrink items-center py-0.5 ml-4 sm:ml-7 md:ml-10 lg:ml-12 xl:ml-14"
+            className="group flex min-w-0 shrink items-center py-0.5 ml-3 sm:ml-5 md:ml-7 lg:ml-8 xl:ml-10"
             aria-label="S Touch Bridal Makeover Studio & Unisex Salon"
           >
             <img
               src="/images/logo.png"
               alt="S Touch Bridal Makeover Studio & Unisex Salon"
-              className="h-16 sm:h-20 md:h-24 lg:h-[104px] xl:h-[116px] w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_2px_6px_rgba(0,0,0,0.18)]"
+              className="h-9 sm:h-10 md:h-12 lg:h-[52px] xl:h-[56px] w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_2px_4px_rgba(0,0,0,0.12)]"
             />
           </Link>
 
