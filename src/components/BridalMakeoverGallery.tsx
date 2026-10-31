@@ -15,7 +15,7 @@ const bridalLooks = [
     id: 1,
     title: "Traditional Bridal",
     category: "Bridal Makeup",
-    image: "/images/bridal-01.jpg",
+    image: "/bridal/bridem01.webp",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const bridalLooks = [
     id: 3,
     title: "Soft Glam",
     category: "Party Makeup",
-    image: "/images/bridal-03.jpg",
+    image: "/partylook/party1.jpg",
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const bridalLooks = [
     id: 5,
     title: "Classic Bridal",
     category: "Bridal Makeup",
-    image: "/images/bridal-05.jpg",
+    image: "/bridal/bridem02.webp",
   },
   {
     id: 6,
@@ -51,25 +51,25 @@ const bridalLooks = [
     id: 7,
     title: "Evening Glam",
     category: "Party Makeup",
-    image: "/images/bridal-07.jpg",
+    image: "/partylook/party02.jpg",
   },
   {
     id: 8,
     title: "Elegant Bridal Look",
     category: "Bridal Makeup",
-    image: "/images/bridal-08.jpg",
+    image: "/bridal/bridem03.webp",
   },
   {
     id: 9,
     title: "Wedding Reception Glam",
     category: "Reception",
-    image: "/images/bridal-09.jpg",
+    image: "/reception/Recep01.webp",
   },
   {
     id: 10,
     title: "Soft Party Makeup",
     category: "Party Makeup",
-    image: "/images/bridal-10.jpg",
+    image: "/partylook/party03.jpg",
   },
   {
     id: 11,
@@ -81,19 +81,19 @@ const bridalLooks = [
     id: 12,
     title: "Classic Bridal Beauty",
     category: "Bridal Makeup",
-    image: "/images/bridal-12.jpg",
+    image: "/bridal/bridem04.webp",
   },
   {
     id: 13,
     title: "Reception Elegance",
     category: "Reception",
-    image: "/images/bridal-13.jpg",
+    image: "/reception/Recep02.webp",
   },
   {
     id: 14,
     title: "Evening Party Glam",
     category: "Party Makeup",
-    image: "/images/bridal-14.jpg",
+    image: "/partylook/party04.jpg",
   },
   {
     id: 15,
@@ -126,26 +126,26 @@ const transformations = [
   {
     id: 1,
     title: "Natural to Bridal Glam",
-    before: "/images/bridal-04.jpg",
-    after: "/images/bridal-11.jpg",
+    before: "/before/bf1.jpg",
+    after: "/after/af1.jpg",
   },
   {
     id: 2,
     title: "Day Look to Wedding Look",
-    before: "/images/bridal-15.jpg",
-    after: "/images/bridal-01.jpg",
+    before:  "/before/bf2.jpg",
+    after: "/after/af2.jpg",
   },
   {
     id: 3,
     title: "Bare Skin to Soft Glow",
-    before: "/images/bridal-05.jpg",
-    after: "/images/bridal-08.jpg",
+    before:  "/before/bf3.jpg",
+    after: "/after/af3.jpg",
   },
   {
     id: 4,
     title: "Simple to Statement Bride",
-    before: "/images/bridal-12.jpg",
-    after: "/images/bridal-13.jpg",
+    before:  "/before/bf4.jpg",
+    after: "/after/af4.jpg",
   },
 ];
 
@@ -176,7 +176,7 @@ function TransformationCard({
 
       <div className="relative flex h-[190px] items-center justify-center sm:h-[200px] lg:h-[215px]">
         {/* BEFORE */}
-        <div className="relative -mr-3 -mt-10 h-[150px] w-[88px] sm:h-[160px] sm:w-[96px] lg:h-[175px] lg:w-[104px]">
+        <div className="relative -mr-3 -mt-10 h-[150px] w-[88px] sm:h-[160px] sm:w-[96px] lg:h-[195px] lg:w-[124px]">
           <div className="relative h-full w-full overflow-hidden rounded-t-full border-[3px] border-white bg-[#E4D9ED] shadow-[0_8px_20px_-10px_rgba(37,35,42,0.4)]">
             <Image
               src={item.before}
@@ -192,7 +192,7 @@ function TransformationCard({
         </div>
 
         {/* AFTER */}
-        <div className="relative z-10 mt-12 h-[150px] w-[88px] sm:h-[160px] sm:w-[96px] lg:h-[175px] lg:w-[104px]">
+        <div className="relative z-10 mt-12 h-[150px] w-[88px] sm:h-[160px] sm:w-[96px] lg:h-[195px] lg:w-[124px]">
           <div className="relative h-full w-full overflow-hidden rounded-b-full border-[3px] border-white bg-[#E4D9ED] shadow-[0_8px_20px_-10px_rgba(37,35,42,0.4)]">
             <Image
               src={item.after}
@@ -298,7 +298,7 @@ export default function BridalMakeoverGallery() {
                           : "bg-white text-[#25232A] group-hover:bg-[#8D6CA3] group-hover:text-white"
                       }`}
                     >
-                      ↗
+                      
                     </span>
                   </button>
                 );
