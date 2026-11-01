@@ -63,7 +63,7 @@ const bridalLooks = [
     id: 9,
     title: "Wedding Reception Glam",
     category: "Reception",
-    image: "/reception/Recep01.jpg",
+    image: "/reception/recep01.jpg",
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ const bridalLooks = [
     id: 13,
     title: "Reception Elegance",
     category: "Reception",
-    image: "/reception/Recep02.jpg",
+    image: "/reception/recep02.jpg",
   },
   {
     id: 14,
