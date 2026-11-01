@@ -377,19 +377,19 @@ export default function BridalMakeoverGallery() {
 
         {/* GALLERY CTA */}
         <div className="mt-8 flex flex-col items-center text-center">
-          <p className="max-w-[420px] text-xs leading-6 text-[#817887] sm:text-sm">
+          {/* <p className="max-w-[420px] text-xs leading-6 text-[#817887] sm:text-sm">
             Every bride deserves a look that feels uniquely hers. Let&apos;s
             create your perfect bridal moment.
-          </p>
+          </p> */}
 
-          <a
-            href="https://wa.me/919789376174"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex min-h-10 items-center justify-center rounded-full bg-[#25232A] px-6 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
-          >
-            Enquire for Your Bridal Look
-          </a>
+         <a
+  href="https://wa.me/919789376174"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="-mt-5 inline-flex min-h-10 items-center justify-center bg-[#25232A] px-6 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
+>
+  Enquire for Your Bridal Look
+</a>
         </div>
       </div>
     </section>

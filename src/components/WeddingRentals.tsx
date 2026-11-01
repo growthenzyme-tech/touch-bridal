@@ -42,7 +42,7 @@ export default function WeddingRentals() {
   return (
     <section
       id="wedding-rentals"
-      className="bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+      className="bg-white px-4 py-14 -mt-25 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
     >
       <div className="mx-auto max-w-[1320px]">
 
@@ -72,7 +72,7 @@ export default function WeddingRentals() {
             </p>
 
             <div className="mt-5 flex items-center gap-3">
-              <span className="h-px w-10 bg-[#8D6CA3]" />
+
 
               <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#8D6CA3]">
                 Available for Rental
