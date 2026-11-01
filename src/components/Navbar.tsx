@@ -53,7 +53,7 @@ export default function Navbar() {
             <img
               src="/images/logo.png"
               alt="S Touch Bridal Makeover Studio & Unisex Salon"
-              className="h-16 sm:h-20 md:h-24 lg:h-[52px] xl:h-[58px] w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_2px_6px_rgba(0,0,0,0.18)]"
+              className="h-16 sm:h-20 md:h-24 lg:h-[104px] xl:h-[11px] w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_2px_6px_rgba(0,0,0,0.18)]"
             />
           </Link>
 
