@@ -359,7 +359,7 @@ export default function BridalMakeoverGallery() {
                 </div>
 
                 {/* CORNER ICON */}
-                <div className="absolute right-4 top-4 z-[70] flex h-10 w-10 items-center justify-center rounded-full bg-white/85 text-[#25232A] backdrop-blur-md sm:right-5 sm:top-5 sm:h-12 sm:w-12">
+                {/* <div className="absolute right-4 top-4 z-[70] flex h-10 w-10 items-center justify-center rounded-full bg-white/85 text-[#25232A] backdrop-blur-md sm:right-5 sm:top-5 sm:h-12 sm:w-12">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -369,7 +369,7 @@ export default function BridalMakeoverGallery() {
                   >
                     <path d="M7 3H3v4M3 3l7 7M17 21h4v-4m0 4-7-7" />
                   </svg>
-                </div>
+                </div> */}
               </>
             )}
           </div>

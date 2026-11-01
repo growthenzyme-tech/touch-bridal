@@ -7,6 +7,7 @@ import CustomerTestimonials from "@/components/CustomerTestimonials";
 import LocationContact from "@/components/LocationContact";
 import ContactCTA from "@/components/ContactCTA";
 
+
 export default function HomePage() {
   return (
    <main className="min-h-screen bg-white text-[#302832]">
