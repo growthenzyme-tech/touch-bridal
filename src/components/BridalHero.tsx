@@ -297,7 +297,7 @@ useGSAP(
 return (
   <section
     ref={heroRef}
-    className="relative overflow-hidden px-2 pb-2 pt-20 sm:px-3 sm:pb-3 sm:pt-24 lg:px-4 lg:pb-4 lg:pt-32 xl:pt-36"
+    className="relative overflow-hidden px-2 pb-2 pt-14 sm:px-3 sm:pb-3 sm:pt-16 lg:px-4 lg:pb-4 lg:pt-22 xl:pt-24"
   >
     {/* Hero main container */}
     <div
