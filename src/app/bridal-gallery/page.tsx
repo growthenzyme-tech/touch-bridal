@@ -71,7 +71,7 @@ export default function BridalGalleryPage() {
                 <div className="mt-2 h-px bg-[#F1EDF7]" />
 
                 <p className="mt-2 text-[8px] font-medium text-[#8D6CA3]">
-                  Explore the look ↗
+                  Explore the look 
                 </p>
 
               </div>

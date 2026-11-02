@@ -61,23 +61,7 @@ export default function AboutUs() {
       {/* LEFT — EDITORIAL IMAGE COLLAGE */}
       <div className="relative order-1 mx-auto h-[420px] w-full max-w-[570px] sm:h-[520px] lg:h-[570px]">
 
-          {/* Soft decorative background shape */}
-          {/* <div
-            aria-hidden="true"
-            className="absolute left-[13%] top-[15%] h-[65%] w-[65%] rounded-full bg-[#eee8f8]"
-          /> */}
-
-          {/* Small top-left image */}
-          {/* <div className="absolute left-[2%] top-[9%] z-[1] h-[20%] w-[23%] overflow-hidden rounded-[5px] bg-[#eee8f8] shadow-sm">
-            <Image
-              src={aboutImages[3].src}
-              alt={aboutImages[3].alt}
-              fill
-              sizes="140px"
-              className="object-cover"
-            />
-          </div> */}
-
+          
           {/* Main animated bridal image */}
           <div className="absolute left-[8%] top-[25%] z-[2] h-[59%] w-[43%] overflow-hidden rounded-[5px] bg-[#eee8f8] shadow-[0_12px_35px_rgba(30,20,45,0.10)]">
 
@@ -129,7 +113,7 @@ export default function AboutUs() {
               <span className="text-[8px] uppercase tracking-[0.12em] text-[#8f8999]">
                 Bridal · Beauty · Styling
               </span>
-              <span className="text-sm text-[#9b7bc4]">↗</span>
+              
             </div>
           </div>
 
@@ -184,15 +168,17 @@ export default function AboutUs() {
 
           {/* Eyebrow */}
           <div className="mb-5 flex items-center gap-3">
-            <span className="h-[2px] w-7 bg-[#9b7bc4]" />
+        
 
-            <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-[#9677bb]">
+            <p className="text-[10px] ml-2 font-bold uppercase tracking-[0.32em] text-[#9677bb]">
               A BIT ABOUT US
             </p>
           </div>
 
           {/* Main heading */}
-        <h2 className="text-[42px] font-extrabold uppercase leading-[0.98] tracking-[-0.055em] text-[#25232A] sm:text-6xl lg:text-[65px] xl:text-[76px]">
+      <h2
+  className={`${interTight.className} text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+>
   ABOUT{" "}
   <span className="text-[#8D6CA3]">US</span>
 </h2>
@@ -232,13 +218,10 @@ export default function AboutUs() {
           {/* CTA */}
           <Link
             href="#booking"
-            className="group relative mt-9 inline-flex items-center gap-3 overflow-hidden rounded-[5px] bg-[#9675ba] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_8px_20px_rgba(150,117,186,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#795a9d] hover:shadow-[0_12px_25px_rgba(150,117,186,0.30)]"
+            className="group relative mt-9 inline-flex items-center gap-3 overflow-hidden  bg-[#9675ba] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_8px_20px_rgba(150,117,186,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#795a9d] hover:shadow-[0_12px_25px_rgba(150,117,186,0.30)]"
           >
             <span>EXPLORE MORE</span>
 
-            <span className="text-sm transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-              ↗
-            </span>
           </Link>
 
         </div>

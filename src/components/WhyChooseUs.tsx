@@ -362,20 +362,16 @@ export default function WhyChooseUs() {
         <div className="overflow-hidden border border-[#DDD5DF] bg-[#F1EDF7] p-4 sm:p-6 lg:p-8">
           {/* SECTION INTRO */}
           <div className="why-section-heading mx-auto mb-12 w-full max-w-[1000px] text-center md:mb-16">
-            <span className="inline-flex items-center justify-center gap-3 text-[11px] font-semibold tracking-[0.24em] text-[#8D6CA3]">
-              <span className="inline-block h-px w-7 bg-[#8D6CA3]" />
-              WHY CHOOSE TOUCH
-              <span className="inline-block h-px w-7 bg-[#8D6CA3]" />
-            </span>
+<span className="mx-auto mb-4 flex w-fit items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs">
+  WHY CHOOSE TOUCH
+</span>
 
-            <h2
-              className={`${interTight.className} mt-4 text-center text-[clamp(2.3rem,5.5vw,4rem)] font-bold uppercase leading-[1.05] tracking-[-0.02em] text-[#25232A]`}
-            >
-              <span className="block">Beauty deserves a</span>
-
-              <span className="block text-[#8D6CA3]">Personal Touch</span>
-            </h2>
-
+           <h2
+  className={`${interTight.className} mt-4 text-center text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+>
+  <span className="block">Beauty deserves a</span>
+  <span className="block text-[#8D6CA3]">Personal Touch</span>
+</h2>
             <p className="mt-4 text-sm font-normal leading-7 text-[#77717B]">
               Every detail matters when it comes to feeling your best.
             </p>

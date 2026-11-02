@@ -174,16 +174,16 @@ export default function CustomerTestimonials() {
 
               {/* TOP: HEADING */}
               <div className="relative">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80 sm:text-xs">
-                  Testimonials
-                </p>
+               <p className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white/80 sm:text-xs">
+  Testimonials
+</p>
 
                 <h2
-                  className={`${cormorant.className} mt-4 text-[clamp(2.4rem,4.2vw,3.6rem)] font-semibold leading-[1.05]`}
-                >
-                  What our clients say{" "}
-                  <span className="italic text-[#E6DAF2]">about us</span>
-                </h2>
+  className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold leading-[1] tracking-[-0.02em]`}
+>
+  What our clients say{" "}
+  <span className="text-[#E6DAF2]">about us</span>
+</h2>
 
                 <p className="mt-5 max-w-[340px] text-sm leading-7 text-white/85">
                   Heartfelt words from our brides and clients, shared in their

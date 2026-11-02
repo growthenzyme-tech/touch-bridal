@@ -50,16 +50,16 @@ export default function LocationContact() {
         <div className="grid grid-cols-1 gap-8 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_0.8fr] lg:gap-16 lg:px-14 lg:py-14">
           {/* LEFT: SALON INFORMATION */}
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#8D6CA3] sm:text-xs">
-              WE WOULD LOVE TO WELCOME YOU
-            </p>
+          <p className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs">
+  WE WOULD LOVE TO WELCOME YOU
+</p>
 
-            <h2
-              className={`${interTight.className} mt-4 text-4xl font-semibold leading-[1.02] tracking-tight text-[#25232A] sm:text-5xl lg:text-6xl`}
-            >
-              Location &amp;{" "}
-              <span className="text-[#8D6CA3]">Contact</span>
-            </h2>
+        <h2
+  className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold leading-[1] tracking-[-0.02em] text-[#25232A]`}
+>
+  Location &amp;{" "}
+  <span className="text-[#8D6CA3]">Contact</span>
+</h2>
 
             <p
               className={`${interTight.className} mt-5 max-w-lg text-sm font-normal leading-7 text-[#25232A] sm:text-base`}
@@ -193,13 +193,13 @@ export default function LocationContact() {
           {/* RIGHT: LOCATION & GOOGLE MAP */}
           <div className="flex min-h-[440px] flex-col rounded-[24px] border border-[#25232A]/10 bg-white p-5 shadow-[0_8px_30px_rgba(37,35,42,0.04)] sm:p-7 lg:min-h-[520px]">
             {/* SECTION LABEL */}
-            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8D6CA3]">
-              FIND US HERE
-            </span>
+            <span className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs">
+  FIND US HERE
+</span>
 
             {/* HEADING */}
             <h3
-              className={`${interTight.className} mt-3 text-4xl font-semibold leading-tight text-[#25232A] sm:text-4xl`}
+              className={`${interTight.className}  text-4xl font-semibold leading-tight text-[#25232A] sm:text-4xl`}
             >
               Visit Our Studio
             </h3>
