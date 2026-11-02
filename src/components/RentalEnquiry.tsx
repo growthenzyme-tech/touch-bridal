@@ -46,52 +46,36 @@ export default function RentalEnquiry() {
     });
   };
 
-  const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
 
-    if (selectedItems.length === 0) {
-      setStatus("Please select at least one rental item.");
-      return;
-    }
+  if (selectedItems.length === 0) {
+    setStatus("Please select at least one rental item.");
+    return;
+  }
 
-    setStatus("Submitting your enquiry...");
+  const whatsappNumber = "919789376174";
 
-    try {
-      const response = await fetch("/api/rental-enquiry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          rentalItems: selectedItems,
-        }),
-      });
+  const enquiry = `
+*Wedding Rental Enquiry*
 
-      if (!response.ok) {
-        throw new Error("Enquiry submission failed.");
-      }
+*Name:* ${formData.name}
+*Contact Number:* ${formData.phone}
+*Event Date:* ${formData.eventDate}
 
-      setStatus(
-        "Your rental enquiry has been submitted successfully!"
-      );
+*Selected Rental Items:*
+${selectedItems.map((item) => `• ${item}`).join("\n")}
 
-      setSelectedItems([]);
+*Additional Details:*
+${formData.message || "No additional details provided."}
+  `;
 
-      setFormData({
-        name: "",
-        phone: "",
-        eventDate: "",
-        message: "",
-      });
-    } catch {
-      setStatus(
-        "Unable to submit your enquiry right now. Please try again."
-      );
-    }
-  };
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    enquiry
+  )}`;
+
+  window.open(whatsappUrl, "_blank");
+};
 
   return (
    <section
