@@ -184,10 +184,15 @@ export default function ServicesShowcase() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
+  // Physics-based Smooth Scroll & Momentum Refs
+  const currentXRef = useRef(0);
   const targetXRef = useRef(0);
-  const isHoveredRef = useRef(false);
   const directionRef = useRef<1 | -1>(1); // 1 = 01 -> 09, -1 = 09 -> 01
-  const isSwipingRef = useRef(false);
+  const isHoveredRef = useRef(false);
+  const isInteractingRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const hasDraggedRef = useRef(false);
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Calculate maximum horizontal travel distance (gap = 0 between cards)
   const getMaxScroll = useCallback(() => {
@@ -197,36 +202,23 @@ export default function ServicesShowcase() {
     return Math.max(0, track.scrollWidth - viewport.clientWidth);
   }, []);
 
-  // Smooth manual scrub update (Wheel / Touch)
-  const updateTrackPosition = useCallback((newTargetX: number, duration = 0.42) => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const maxScroll = getMaxScroll();
-    const clampedX = Math.max(0, Math.min(newTargetX, maxScroll));
-    targetXRef.current = clampedX;
-
-    gsap.to(track, {
-      x: -clampedX,
-      duration: duration,
-      ease: "power2.out",
-      overwrite: "auto",
-      onUpdate: () => {
-        const progress = maxScroll > 0 ? clampedX / maxScroll : 0;
-        const activeIdx = Math.min(
-          SHOWCASE_SERVICES.length - 1,
-          Math.max(0, Math.round(progress * (SHOWCASE_SERVICES.length - 1)))
-        );
-        setActiveIndex(activeIdx);
-      },
-    });
-  }, [getMaxScroll]);
+  // Helper to mark active interaction and gracefully resume auto-scroll after idle
+  const markInteraction = useCallback((duration = 1400) => {
+    isInteractingRef.current = true;
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+    interactionTimeoutRef.current = setTimeout(() => {
+      isInteractingRef.current = false;
+    }, duration);
+  }, []);
 
   // =========================================================================
-  // AUTO SCROLL ANIMATION
-  // - Smooth auto-progression through services 01 → 09, then 09 → 01
-  // - STOPS IMMEDIATELY whenever the mouse points to / touches any card
-  // - Slightly faster speed in mobile view (~1.25px/frame) for fluid motion
+  // UNIFIED PHYSICS RAF LOOP: AUTO-SCROLL + DAMPED LERP + INERTIA MOMENTUM
+  // - Delivers continuous, buttery 60/120fps smooth gliding across all cards
+  // - Hardware-accelerated translate3d on the compositor thread
+  // - Seamlessly ping-pongs 01 → 09 then 09 → 01 when idle
+  // - Decelerates smoothly with natural exponential ease when wheel/drag stops
   // =========================================================================
   useEffect(() => {
     let animId: number;
@@ -236,37 +228,51 @@ export default function ServicesShowcase() {
       const dt = Math.min(now - lastTime, 40);
       lastTime = now;
 
-      // Only auto-scroll when user is NOT hovering/touching and NOT dragging
-      if (!isHoveredRef.current && !isSwipingRef.current) {
-        const maxScroll = getMaxScroll();
-        const track = trackRef.current;
+      const track = trackRef.current;
+      const maxScroll = getMaxScroll();
 
-        // Increased auto moving speed on mobile per user request
+      if (track && maxScroll > 0) {
+        // Auto-scroll when user is NOT hovering, NOT interacting, and no sub-service is open
         const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-        const autoScrollSpeed = isMobile ? 1.25 : 0.72;
+        const autoScrollSpeed = isMobile ? 1.05 : 0.65;
 
-        if (maxScroll > 10 && track) {
-          let nextX = targetXRef.current + (autoScrollSpeed * (dt / 16)) * directionRef.current;
+        if (!isHoveredRef.current && !isInteractingRef.current && !isAnyOpenRef.current) {
+          targetXRef.current += autoScrollSpeed * (dt / 16) * directionRef.current;
 
           // Reversible smooth ping-pong: 01 → 09 then 09 → 01
-          if (nextX >= maxScroll) {
-            nextX = maxScroll;
+          if (targetXRef.current >= maxScroll) {
+            targetXRef.current = maxScroll;
             directionRef.current = -1;
-          } else if (nextX <= 0) {
-            nextX = 0;
+          } else if (targetXRef.current <= 0) {
+            targetXRef.current = 0;
             directionRef.current = 1;
           }
-
-          targetXRef.current = nextX;
-          gsap.set(track, { x: -nextX });
-
-          const progress = nextX / maxScroll;
-          const activeIdx = Math.min(
-            SHOWCASE_SERVICES.length - 1,
-            Math.max(0, Math.round(progress * (SHOWCASE_SERVICES.length - 1)))
-          );
-          setActiveIndex(activeIdx);
         }
+
+        // Clamp target position within bounds
+        targetXRef.current = Math.max(0, Math.min(targetXRef.current, maxScroll));
+
+        // Physics-based exponential damping:
+        // Snappy zero-latency response during active drag; ultra-silky glide during wheel / throw
+        const lerpFactor = isDraggingRef.current ? 0.32 : 0.088;
+        const diff = targetXRef.current - currentXRef.current;
+
+        if (Math.abs(diff) < 0.04 && (isHoveredRef.current || isInteractingRef.current)) {
+          currentXRef.current = targetXRef.current;
+        } else {
+          currentXRef.current += diff * lerpFactor;
+        }
+
+        // Direct hardware-accelerated 3D transform (zero layout reflow)
+        track.style.transform = `translate3d(${-currentXRef.current.toFixed(2)}px, 0, 0)`;
+
+        // Calculate and update active card indicator
+        const progress = currentXRef.current / maxScroll;
+        const activeIdx = Math.min(
+          SHOWCASE_SERVICES.length - 1,
+          Math.max(0, Math.round(progress * (SHOWCASE_SERVICES.length - 1)))
+        );
+        setActiveIndex((prev) => (prev !== activeIdx ? activeIdx : prev));
       }
 
       animId = requestAnimationFrame(tick);
@@ -277,10 +283,10 @@ export default function ServicesShowcase() {
   }, [getMaxScroll]);
 
   // =========================================================================
-  // PAGE LOCK & SCROLL TRIGGER (Locked frame, no blank white space)
-  // - When in standalone showcase mode (!isAnyOpen), page scroll is locked
-  // - Mouse wheel ANYWHERE triggers horizontal card movement
-  // - Auto-movement resumes 1.4s after user stops wheel scrolling
+  // PAGE LOCK & SCROLL TRIGGER (Locked frame in showcase mode)
+  // - When in standalone showcase mode (!isAnyOpen), page vertical scroll is locked
+  // - Mouse wheel ANYWHERE triggers horizontal card movement with inertia
+  // - Auto-movement resumes after user stops wheel scrolling
   // =========================================================================
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -302,8 +308,7 @@ export default function ServicesShowcase() {
     }
   }, [isAnyOpen]);
 
-  const wheelTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
+  // Silky Window Wheel Scrolling (Standalone mode)
   useEffect(() => {
     const onWindowWheel = (e: WheelEvent) => {
       // If a sub-service is open, allow natural vertical scrolling down the page
@@ -311,32 +316,28 @@ export default function ServicesShowcase() {
 
       // Standalone showcase: Prevent default window scroll to LOCK frame in place
       e.preventDefault();
-      isHoveredRef.current = true;
+      markInteraction(1500);
 
-      if (wheelTimeoutRef.current) {
-        clearTimeout(wheelTimeoutRef.current);
-      }
-      wheelTimeoutRef.current = setTimeout(() => {
-        isHoveredRef.current = false;
-      }, 1400);
-
-      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      if (Math.abs(delta) < 2) return;
+      let delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (e.deltaMode === 1) delta *= 24; // Line mode on Firefox / Linux
+      if (e.deltaMode === 2) delta *= 400; // Page mode
+      if (Math.abs(delta) < 1) return;
 
       directionRef.current = delta > 0 ? 1 : -1;
-      updateTrackPosition(targetXRef.current + delta * 1.35, 0.35);
+      const maxScroll = getMaxScroll();
+      targetXRef.current = Math.max(0, Math.min(targetXRef.current + delta * 1.05, maxScroll));
     };
 
     window.addEventListener("wheel", onWindowWheel, { passive: false });
     return () => {
       window.removeEventListener("wheel", onWindowWheel);
-      if (wheelTimeoutRef.current) {
-        clearTimeout(wheelTimeoutRef.current);
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
       }
     };
-  }, [updateTrackPosition]);
+  }, [getMaxScroll, markInteraction]);
 
-  // Local wheel for showcase track when a sub-service is open
+  // Silky Local Wheel for Showcase Track when a sub-service is open
   useEffect(() => {
     const viewport = scrollContainerRef.current;
     if (!viewport) return;
@@ -344,18 +345,20 @@ export default function ServicesShowcase() {
     const onViewportWheel = (e: WheelEvent) => {
       if (!isAnyOpenRef.current) return;
 
-      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      if (Math.abs(delta) < 2) return;
+      let delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (e.deltaMode === 1) delta *= 24;
+      if (Math.abs(delta) < 1) return;
 
       const maxScroll = getMaxScroll();
-      const isMovingForward = delta > 0 && targetXRef.current < maxScroll - 1;
-      const isMovingBackward = delta < 0 && targetXRef.current > 1;
+      const willMoveForward = delta > 0 && targetXRef.current < maxScroll - 0.5;
+      const willMoveBackward = delta < 0 && targetXRef.current > 0.5;
 
-      if (isMovingForward || isMovingBackward) {
+      if (willMoveForward || willMoveBackward) {
         e.preventDefault();
         e.stopPropagation();
+        markInteraction(1500);
         directionRef.current = delta > 0 ? 1 : -1;
-        updateTrackPosition(targetXRef.current + delta * 1.35, 0.35);
+        targetXRef.current = Math.max(0, Math.min(targetXRef.current + delta * 1.05, maxScroll));
       }
     };
 
@@ -363,13 +366,93 @@ export default function ServicesShowcase() {
     return () => {
       viewport.removeEventListener("wheel", onViewportWheel);
     };
-  }, [getMaxScroll, updateTrackPosition]);
+  }, [getMaxScroll, markInteraction]);
 
   // =========================================================================
-  // MOBILE TOUCH SCROLL TRIGGER (Vertical Thumb Swipe & Horizontal Drag)
-  // - Swiping UP or LEFT on phone scrubs forward 01 → 09
-  // - Swiping DOWN or RIGHT on phone scrubs backward 09 → 01
-  // - Pauses auto-scroll on touch, smoothly resumes on release
+  // DESKTOP MOUSE DRAG & FLING MOMENTUM (Grab to smoothly glide cards)
+  // - Click & drag horizontally across the cards
+  // - Fling/release applies release momentum with silky exponential deceleration
+  // - Safeguards card clicks: drags > 5px prevent accidental service navigation
+  // =========================================================================
+  useEffect(() => {
+    const viewport = scrollContainerRef.current;
+    if (!viewport) return;
+
+    let startX = 0;
+    let startTargetX = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocity = 0;
+
+    const onMouseDown = (e: MouseEvent) => {
+      if (e.button !== 0) return; // Only primary mouse button
+      isDraggingRef.current = true;
+      hasDraggedRef.current = false;
+      isHoveredRef.current = true;
+      markInteraction(2000);
+
+      startX = e.clientX;
+      startTargetX = targetXRef.current;
+      lastX = e.clientX;
+      lastTime = performance.now();
+      velocity = 0;
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current) return;
+      const diff = startX - e.clientX;
+
+      if (Math.abs(diff) > 5) {
+        hasDraggedRef.current = true;
+      }
+
+      const now = performance.now();
+      const dt = Math.max(1, now - lastTime);
+      velocity = (lastX - e.clientX) / dt; // pixels per ms
+      lastX = e.clientX;
+      lastTime = now;
+
+      const maxScroll = getMaxScroll();
+      targetXRef.current = Math.max(0, Math.min(startTargetX + diff, maxScroll));
+      if (Math.abs(diff) > 2) {
+        directionRef.current = diff > 0 ? 1 : -1;
+      }
+    };
+
+    const onMouseUp = () => {
+      if (!isDraggingRef.current) return;
+      isDraggingRef.current = false;
+
+      // Apply silky throw momentum
+      if (Math.abs(velocity) > 0.12) {
+        const maxScroll = getMaxScroll();
+        const throwDistance = velocity * 240;
+        targetXRef.current = Math.max(0, Math.min(targetXRef.current + throwDistance, maxScroll));
+        directionRef.current = velocity > 0 ? 1 : -1;
+      }
+
+      markInteraction(1400);
+      setTimeout(() => {
+        isHoveredRef.current = false;
+      }, 500);
+    };
+
+    viewport.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+
+    return () => {
+      viewport.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    };
+  }, [getMaxScroll, markInteraction]);
+
+  // =========================================================================
+  // MOBILE TOUCH SWIPE & FLING MOMENTUM (Vertical Thumb Swipe & Horizontal Drag)
+  // - Swiping UP or LEFT scrubs forward 01 → 09
+  // - Swiping DOWN or RIGHT scrubs backward 09 → 01
+  // - Silky inertia throw on touch release
   // =========================================================================
   useEffect(() => {
     const viewport = scrollContainerRef.current;
@@ -377,14 +460,25 @@ export default function ServicesShowcase() {
 
     let startX = 0;
     let startY = 0;
+    let startTargetX = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocity = 0;
     let touchActive = false;
 
     const onTouchStart = (e: TouchEvent) => {
-      isHoveredRef.current = true;
       touchActive = true;
+      isDraggingRef.current = true;
+      hasDraggedRef.current = false;
+      isHoveredRef.current = true;
+      markInteraction(2000);
+
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
-      isSwipingRef.current = false;
+      startTargetX = targetXRef.current;
+      lastX = startX;
+      lastTime = performance.now();
+      velocity = 0;
     };
 
     const onTouchMove = (e: TouchEvent) => {
@@ -395,41 +489,59 @@ export default function ServicesShowcase() {
       const diffX = startX - currentX;
       const diffY = startY - currentY;
 
+      const now = performance.now();
+      const dt = Math.max(1, now - lastTime);
+
       if (!isAnyOpenRef.current) {
-        // In standalone showcase mode, any thumb swipe smoothly scrubs through cards
+        // In standalone showcase mode, any thumb swipe scrubs forward/backward
         const dominantDelta = Math.abs(diffX) >= Math.abs(diffY) ? diffX : diffY;
 
         if (Math.abs(dominantDelta) > 5) {
-          isSwipingRef.current = true;
-          if (e.cancelable) {
-            e.preventDefault();
-          }
-          startX = currentX;
-          startY = currentY;
+          hasDraggedRef.current = true;
+          if (e.cancelable) e.preventDefault();
+
+          velocity = (lastX - currentX) / dt;
+          lastX = currentX;
+          lastTime = now;
+
+          const maxScroll = getMaxScroll();
+          targetXRef.current = Math.max(0, Math.min(startTargetX + dominantDelta * 1.35, maxScroll));
           directionRef.current = dominantDelta > 0 ? 1 : -1;
-          updateTrackPosition(targetXRef.current + dominantDelta * 1.5, 0.22);
         }
       } else {
-        // When a sub-service is expanded, horizontal drags move cards, while vertical swipes scroll the page
+        // Subservice open: horizontal swipe scrubs cards; vertical swipe scrolls page
         if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 5) {
-          isSwipingRef.current = true;
-          if (e.cancelable) {
-            e.preventDefault();
-          }
-          startX = currentX;
-          startY = currentY;
+          hasDraggedRef.current = true;
+          if (e.cancelable) e.preventDefault();
+
+          velocity = (lastX - currentX) / dt;
+          lastX = currentX;
+          lastTime = now;
+
+          const maxScroll = getMaxScroll();
+          targetXRef.current = Math.max(0, Math.min(startTargetX + diffX * 1.35, maxScroll));
           directionRef.current = diffX > 0 ? 1 : -1;
-          updateTrackPosition(targetXRef.current + diffX * 1.5, 0.22);
         }
       }
     };
 
     const onTouchEnd = () => {
+      if (!touchActive) return;
       touchActive = false;
+      isDraggingRef.current = false;
+
+      // Apply touch inertia throw
+      if (Math.abs(velocity) > 0.12) {
+        const maxScroll = getMaxScroll();
+        const throwDistance = velocity * 220;
+        targetXRef.current = Math.max(0, Math.min(targetXRef.current + throwDistance, maxScroll));
+        directionRef.current = velocity > 0 ? 1 : -1;
+      }
+
+      markInteraction(1400);
       setTimeout(() => {
-        isSwipingRef.current = false;
         isHoveredRef.current = false;
-      }, 1200);
+      }, 500);
     };
 
     viewport.addEventListener("touchstart", onTouchStart, { passive: true });
@@ -441,8 +553,36 @@ export default function ServicesShowcase() {
       viewport.removeEventListener("touchmove", onTouchMove);
       viewport.removeEventListener("touchend", onTouchEnd);
     };
-  }, [updateTrackPosition]);
+  }, [getMaxScroll, markInteraction]);
 
+  // =========================================================================
+  // KEYBOARD ARROW NAVIGATION (Smooth one-card gliding)
+  // =========================================================================
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (isAnyOpenRef.current) return;
+      const targetTag = (e.target as HTMLElement)?.tagName?.toLowerCase();
+      if (targetTag === "input" || targetTag === "textarea" || targetTag === "select") return;
+
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        markInteraction(1600);
+        const cardWidth = trackRef.current ? trackRef.current.scrollWidth / SHOWCASE_SERVICES.length : 360;
+        const maxScroll = getMaxScroll();
+        targetXRef.current = Math.min(maxScroll, targetXRef.current + cardWidth);
+        directionRef.current = 1;
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        markInteraction(1600);
+        const cardWidth = trackRef.current ? trackRef.current.scrollWidth / SHOWCASE_SERVICES.length : 360;
+        targetXRef.current = Math.max(0, targetXRef.current - cardWidth);
+        directionRef.current = -1;
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [getMaxScroll, markInteraction]);
   // Auto-reveal if hash is present (e.g. #bridal-makeup, #hair-services, etc.)
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -769,9 +909,16 @@ export default function ServicesShowcase() {
         onMouseLeave={() => {
           isHoveredRef.current = false;
         }}
-        className="relative w-full overflow-hidden rounded-none border border-[#8D6CA3]/30 bg-[#F1EDF7] flex items-center h-[calc(100dvh-104px)] sm:h-[calc(100dvh-120px)] lg:h-[calc(100dvh-152px)] max-h-[800px]"
+        className="relative w-full overflow-hidden rounded-none border border-[#8D6CA3]/30 bg-[#F1EDF7] flex items-center h-[calc(100dvh-112px)] min-h-[490px] max-h-[620px] sm:h-[calc(100dvh-120px)] sm:max-h-[800px] lg:h-[calc(100dvh-152px)]"
       >
-        {/* Viewport Container (Fills the entire showcase frame with zero padding) */}
+        {/* Mobile Swipe Hint Badge */}
+        <div className="sm:hidden pointer-events-none absolute top-3 right-3 z-40 flex items-center gap-1.5 rounded-full bg-[#25232A]/75 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-white backdrop-blur-md border border-white/15">
+          <span>{String(activeIndex + 1).padStart(2, "0")} / 09</span>
+          <span className="text-white/40">•</span>
+          <span className="text-white/80 uppercase">Swipe</span>
+        </div>
+
+        {/* Viewport Container (Fills the entire showcase frame with zero padding) */} 
         <div
           ref={scrollContainerRef}
           className="relative w-full h-full overflow-hidden p-0 flex items-center select-none cursor-grab active:cursor-grabbing"
@@ -789,10 +936,12 @@ export default function ServicesShowcase() {
                   onMouseEnter={() => {
                     isHoveredRef.current = true;
                   }}
+                  onMouseLeave={() => {
+                    isHoveredRef.current = false;
+                  }}
                   onClick={() => {
-                    if (!isSwipingRef.current) {
-                      handleServiceSelect(service.actionKey);
-                    }
+                    if (hasDraggedRef.current) return;
+                    handleServiceSelect(service.actionKey);
                   }}
                   className={`saree-arch-card group relative flex-shrink-0 h-full aspect-[736/1200] overflow-hidden bg-[#F1EDF7] border-r border-[#8D6CA3]/20 last:border-r-0 select-none text-left cursor-pointer transition-all duration-300 ${isCurrent
                       ? "ring-1 ring-inset ring-[#8D6CA3]/50 shadow-[inset_0_0_40px_rgba(141,108,163,0.15)]"
@@ -815,7 +964,7 @@ export default function ServicesShowcase() {
                   {/* Deep Grounding Scrim Gradient at Base for Text Readability */}
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-64 sm:h-72 lg:h-84 bg-gradient-to-t from-[#25232A]/96 via-[#25232A]/72 via-45% to-transparent"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-52 sm:h-72 lg:h-84 bg-gradient-to-t from-[#25232A]/96 via-[#25232A]/72 via-45% to-transparent"
                   />
 
                   {/* Decorative Mughal Arch Overlay with Gold Contour & Corner Masks */}
@@ -879,31 +1028,31 @@ export default function ServicesShowcase() {
                   {/* =============================================================
                       SERVICE NAME & DETAILS DIRECTLY ON THE IMAGE
                      ============================================================= */}
-                  <div className="absolute inset-x-0 bottom-0 z-40 p-4 sm:p-5 lg:p-6 flex flex-col justify-end">
+                  <div className="absolute inset-x-0 bottom-0 z-40 p-3.5 sm:p-5 lg:p-6 flex flex-col justify-end">
                     {/* Number & Category Tag Pill */}
-                    <div className="flex items-center gap-2 mb-2 transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
-                      <span className={`${interTight.className} text-[11px] sm:text-xs font-bold text-white px-2.5 py-0.5 rounded-full bg-[#8D6CA3] border border-white/20 shadow-sm backdrop-blur-md`}>
+                    <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+                      <span className={`${interTight.className} text-[10px] sm:text-xs font-bold text-white px-2 sm:px-2.5 py-0.5 rounded-full bg-[#8D6CA3] border border-white/20 shadow-sm backdrop-blur-md`}>
                         {service.number}
                       </span>
-                      <span className="font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#EDE4F3] drop-shadow-sm truncate">
+                      <span className="font-sans text-[9px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#EDE4F3] drop-shadow-sm truncate">
                         {service.tag}
                       </span>
                     </div>
 
                     {/* Service Name displayed prominently on the image */}
                     <h3
-                      className={`${interTight.className} text-2xl sm:text-3xl lg:text-[32px] font-bold uppercase tracking-[-0.02em] leading-tight group-hover:text-[#EDE4F3] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]`}
+                      className={`${interTight.className} text-xl sm:text-2xl lg:text-[32px] font-bold uppercase tracking-[-0.02em] leading-tight group-hover:text-[#EDE4F3] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]`}
                     >
                       {renderCardTitle(service.title)}
                     </h3>
 
                     {/* Touch to Explore Callout Bar */}
-                    <div className="mt-3.5 flex items-center justify-between pt-2.5 border-t border-white/20">
-                      <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white/90 group-hover:text-[#EDE4F3] flex items-center gap-1.5 transition-colors">
+                    <div className="mt-2.5 sm:mt-3.5 flex items-center justify-between pt-2 sm:pt-2.5 border-t border-white/20">
+                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white/90 group-hover:text-[#EDE4F3] flex items-center gap-1 sm:gap-1.5 transition-colors">
                         <span>Touch to Explore</span>
                         <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[2.2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>
-                      <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-white/95 border border-white flex items-center justify-center text-[#8D6CA3] shadow-sm transition-all duration-300 group-hover:bg-[#8D6CA3] group-hover:text-white">
+                      <div className="h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-white/95 border border-white flex items-center justify-center text-[#8D6CA3] shadow-sm transition-all duration-300 group-hover:bg-[#8D6CA3] group-hover:text-white">
                         <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.2]" />
                       </div>
                     </div>
@@ -919,7 +1068,7 @@ export default function ServicesShowcase() {
       {isBridalOpen && (
         <div
           id="bridal-makeup-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "bridal" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "bridal" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <BridalMakeupSection onBackToServices={handleBackToServices} />
@@ -930,7 +1079,7 @@ export default function ServicesShowcase() {
       {isHairOpen && (
         <div
           id="hair-services-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "hair" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "hair" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <HairServicesSection onBackToServices={handleBackToServices} />
@@ -941,7 +1090,7 @@ export default function ServicesShowcase() {
       {isBeautyOpen && (
         <div
           id="beauty-grooming-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "beauty" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "beauty" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <BeautyGroomingServicesSection onBackToServices={handleBackToServices} />
@@ -952,7 +1101,7 @@ export default function ServicesShowcase() {
       {isSkinOpen && (
         <div
           id="skin-facial-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "skin" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "skin" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <SkinFacialServicesSection onBackToServices={handleBackToServices} />
@@ -963,7 +1112,7 @@ export default function ServicesShowcase() {
       {isAdditionalOpen && (
         <div
           id="additional-services-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "additional" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "additional" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <AdditionalServicesSection onBackToServices={handleBackToServices} />
@@ -974,7 +1123,7 @@ export default function ServicesShowcase() {
       {isMensOpen && (
         <div
           id="mens-services-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "mens" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "mens" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <MensServicesSection onBackToServices={handleBackToServices} />
@@ -985,7 +1134,7 @@ export default function ServicesShowcase() {
       {isGroomOpen && (
         <div
           id="groom-makeup-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "groom" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "groom" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <GroomMakeupSection onBackToServices={handleBackToServices} />
@@ -996,7 +1145,7 @@ export default function ServicesShowcase() {
       {isRentalOpen && (
         <div
           id="rental-jewels-section"
-          className={`w-full mt-8 sm:mt-12 lg:mt-16 scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "rental" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
+          className={`w-full mt-5 sm:mt-12 lg:mt-16 scroll-mt-20 sm:scroll-mt-28 transition-all duration-400 ease-out ${closingSection === "rental" ? "opacity-0 translate-y-6 pointer-events-none" : "opacity-100 translate-y-0"
             }`}
         >
           <RentalJewelsSection onBackToServices={handleBackToServices} />
