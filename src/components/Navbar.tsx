@@ -11,10 +11,6 @@ const navLinks = [
   { name: "Bridal Gallery", href: "/bridal-gallery" },
 ];
 
-const whatsappLink =
-  "https://wa.me/919789376174?text=" +
-  encodeURIComponent("Hi Touch! I'd love to book an appointment.");
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -31,6 +27,18 @@ export default function Navbar() {
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setMenuOpen(false);
+    if (pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById("booking");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", "/#booking");
+      }
+    }
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
@@ -98,14 +106,13 @@ export default function Navbar() {
           </div>
 
           {/* DESKTOP BOOKING BUTTON */}
-        <a
-  href={whatsappLink}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="relative z-10 group hidden shrink-0 items-center justify-center gap-2 border border-black/20 bg-white px-5 py-2.5 text-xs font-semibold tracking-[0.04em] text-black transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99] hover:text-white lg:inline-flex"
->
-  <span>Book Appointment</span>
-</a>
+          <Link
+            href="/#booking"
+            onClick={handleBookingClick}
+            className="relative z-10 group hidden shrink-0 items-center justify-center gap-2 border border-black/20 bg-white px-5 py-2.5 text-xs font-semibold tracking-[0.04em] text-black transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99] hover:text-white lg:inline-flex cursor-pointer"
+          >
+            <span>Book Appointment</span>
+          </Link>
 
        
 {/* MOBILE MENU BUTTON */}
@@ -163,17 +170,13 @@ export default function Navbar() {
     </div>
 
     {/* MOBILE BOOKING BUTTON */}
-    <a
-      href={whatsappLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={() => setMenuOpen(false)}
-      className="group mt-5 flex items-center justify-center gap-2 rounded-full bg-[#D77D99] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
+    <Link
+      href="/#booking"
+      onClick={handleBookingClick}
+      className="group mt-5 flex items-center justify-center gap-2 rounded-full bg-[#D77D99] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3] cursor-pointer"
     >
       <span>Book an Appointment</span>
-
-    
-    </a>
+    </Link>
 
     {/* MOBILE FOOTER TEXT */}
     <p className="mt-3 text-center text-xs text-black/50">
