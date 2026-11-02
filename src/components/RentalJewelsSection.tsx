@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Inter_Tight } from "next/font/google";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
@@ -82,7 +82,7 @@ interface RentalJewelsSectionProps {
 }
 
 const ROW_HEIGHT = 115;
-const PANEL_HEIGHT = 420;
+const PANEL_HEIGHT = 360;
 
 export default function RentalJewelsSection({
   onBackToServices,
@@ -163,12 +163,6 @@ export default function RentalJewelsSection({
             <span className="block text-[#25232A]">Rental Jewels,</span>
             <span className="block text-[#8D6CA3]">Collection.</span>
           </h2>
-
-          <div className="mt-3.5 flex items-center gap-2">
-            <span className="h-[1.5px] w-12 bg-[#8D6CA3]" />
-            <span className="h-1 w-1 rounded-full bg-[#8D6CA3]" />
-            <span className="h-[1px] w-20 bg-[#8D6CA3]/40" />
-          </div>
         </div>
 
         {/* =========================================================================
@@ -202,11 +196,6 @@ export default function RentalJewelsSection({
 
                     <div className="flex-1 min-w-0 max-w-[420px] sm:max-w-md lg:max-w-lg xl:max-w-xl">
                       <div className="flex items-baseline gap-2 sm:gap-3">
-                        <span
-                          className={`${interTight.className} text-[11px] sm:text-xs font-bold tracking-wider text-[#8D6CA3] shrink-0`}
-                        >
-                          {service.number}
-                        </span>
                         <h3
                           className={`${interTight.className} text-[15px] sm:text-xl lg:text-[23px] font-bold tracking-[-0.01em] text-[#25232A] group-hover:text-[#8D6CA3] transition-colors truncate sm:whitespace-normal`}
                         >
@@ -222,16 +211,7 @@ export default function RentalJewelsSection({
                     </div>
                   </div>
 
-                  {/* Far Right: Diagonal Arrow-Up-Right Icon */} 
-                  <div className="flex-shrink-0 z-10">
-                    <div
-                      className="h-8 w-8 sm:h-10 sm:w-10 rounded-none flex items-center justify-center transition-all duration-200 border border-[#8D6CA3]/25 text-[#8D6CA3] bg-[#EDE4F3]/60 group-hover:border-[#8D6CA3] group-hover:bg-[#8D6CA3] group-hover:text-white"
-                    >
-                      <ArrowUpRight
-                        className="h-4 w-4 sm:h-5 sm:w-5 stroke-[2.2] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </div>
-                  </div>
+                  
                 </button>
               );
             })}
@@ -246,7 +226,7 @@ export default function RentalJewelsSection({
             style={{
               transform: `translateY(${getPanelY(displayIndex)}px)`,
             }}
-            className={`hidden lg:block absolute right-14 lg:right-20 xl:right-28 top-0 w-[320px] xl:w-[350px] h-[420px] rounded-none overflow-hidden border-2 border-[#8D6CA3] bg-[#25232A] shadow-[0_25px_60px_rgba(37,35,42,0.25)] transition-all duration-300 ease-out z-20 pointer-events-none ${
+            className={`hidden lg:block absolute right-14 lg:right-20 xl:right-28 top-0 w-[275px] xl:w-[305px] h-[360px] rounded-none overflow-hidden border-2 border-[#8D6CA3] bg-[#25232A] shadow-[0_25px_60px_rgba(37,35,42,0.25)] transition-all duration-300 ease-out z-20 pointer-events-none ${
               hoveredIndex !== null
                 ? "opacity-100 scale-100"
                 : "opacity-0 scale-95"
@@ -282,7 +262,7 @@ export default function RentalJewelsSection({
             <div className="absolute inset-x-0 bottom-0 z-30 p-4 sm:p-5 flex items-end justify-between gap-3">
               <div>
                 <span className="text-[10px] font-sans font-semibold tracking-[0.2em] text-white/80 uppercase block">
-                  {activeService.number} • SIGNATURE COLLECTION
+                  SIGNATURE COLLECTION
                 </span>
                 <span
                   className={`${interTight.className} text-lg xl:text-xl font-bold uppercase tracking-tight text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]`}
@@ -296,7 +276,6 @@ export default function RentalJewelsSection({
                 className="inline-flex items-center gap-1.5 rounded-none bg-[#8D6CA3] px-3.5 py-1.5 text-xs font-semibold text-white shadow-md transition-transform duration-250 hover:scale-105 hover:bg-[#76558D]"
               >
                 <span>Book</span>
-                <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.2]" />
               </button>
             </div>
           </div>
