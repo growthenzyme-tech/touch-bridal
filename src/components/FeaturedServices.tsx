@@ -421,7 +421,7 @@ return (
                   <Link
                     href={`/?service=${encodeURIComponent(service.title)}#booking`}
                     aria-label={`Enquire about ${service.title}`}
-                    className="flex h-full flex-col border border-[#e8e1ef] bg-white text-[#25232c] shadow-[0_10px_30px_rgba(56,39,76,0.07)] outline-offset-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(56,39,76,0.13)] focus-visible:outline-2 focus-visible:outline-[#9675ba]"
+                    className={`${interTight.className} flex h-full flex-col border border-[#e8e1ef] bg-white text-[#25232c] shadow-[0_10px_30px_rgba(56,39,76,0.07)] outline-offset-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(56,39,76,0.13)] focus-visible:outline-2 focus-visible:outline-[#9675ba]`}
                   >
                     {/* IMAGE AREA */}
                     <div className="service-image-wrapper relative aspect-[4/5] shrink-0 overflow-hidden bg-[#eee8f8]">
@@ -469,11 +469,11 @@ return (
                     {/* CARD INFORMATION */}
                     <div className="flex flex-1 flex-col bg-white px-5 pb-5 pt-5">
 
-                      <h3
-                        className={`${serif.className} text-[24px] font-semibold leading-tight text-[#25232c] sm:text-[26px]`}
-                      >
-                        {service.title}
-                      </h3>
+                    <h3
+  className={`${interTight.className} text-[24px] font-semibold leading-tight text-[#25232c] sm:text-[26px]`}
+>
+  {service.title}
+</h3>
 
                       <p className="mt-2 text-[12px] leading-[1.8] text-[#77737f] sm:text-[13px]">
                         {service.description}
