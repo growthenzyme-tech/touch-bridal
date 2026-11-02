@@ -118,13 +118,14 @@ return (
 
           {/* LEFT CONTENT */}
           <div className="bridal-gallery-text">
-            <span className="mb-5 inline-flex items-center gap-3 text-[10px] font-semibold tracking-[0.24em] text-[#8D6CA3] sm:text-xs">
-              <span className="h-px w-8 bg-[#9a6845]" />
-              OUR BRIDAL GALLERY
-            </span>
+           <span
+  className={`${interTight.className} mb-4 ml-2 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675BA] sm:text-xs`}
+>
+  OUR BRIDAL GALLERY
+</span>
 
           <h2
-  className={`${interTight.className} max-w-[520px] text-3xl font-bold uppercase leading-[1.05] tracking-[-0.02em] text-[#25232A] sm:text-4xl lg:text-[52px]`}
+  className={`${interTight.className} max-w-[520px] text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
 >
   <span className="block">
     Every bride,
@@ -144,7 +145,6 @@ return (
               className="mt-8 inline-flex items-center gap-3 bg-[#8D6CA3] px-6 py-3.5 text-xs font-semibold tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#2d1b13]"
             >
               EXPLORE BRIDAL GALLERY
-              <span className="text-base">↗</span>
             </Link>
           </div>
 

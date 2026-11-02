@@ -63,7 +63,7 @@ const bridalLooks = [
     id: 9,
     title: "Wedding Reception Glam",
     category: "Reception",
-    image: "/reception/Recep01.webp",
+    image: "/reception/recep01.jpg",
   },
   {
     id: 10,
@@ -87,7 +87,7 @@ const bridalLooks = [
     id: 13,
     title: "Reception Elegance",
     category: "Reception",
-    image: "/reception/Recep02.webp",
+    image: "/reception/recep02.jpg",
   },
   {
     id: 14,
@@ -359,7 +359,7 @@ export default function BridalMakeoverGallery() {
                 </div>
 
                 {/* CORNER ICON */}
-                <div className="absolute right-4 top-4 z-[70] flex h-10 w-10 items-center justify-center rounded-full bg-white/85 text-[#25232A] backdrop-blur-md sm:right-5 sm:top-5 sm:h-12 sm:w-12">
+                {/* <div className="absolute right-4 top-4 z-[70] flex h-10 w-10 items-center justify-center rounded-full bg-white/85 text-[#25232A] backdrop-blur-md sm:right-5 sm:top-5 sm:h-12 sm:w-12">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -369,7 +369,7 @@ export default function BridalMakeoverGallery() {
                   >
                     <path d="M7 3H3v4M3 3l7 7M17 21h4v-4m0 4-7-7" />
                   </svg>
-                </div>
+                </div> */}
               </>
             )}
           </div>
@@ -377,19 +377,19 @@ export default function BridalMakeoverGallery() {
 
         {/* GALLERY CTA */}
         <div className="mt-8 flex flex-col items-center text-center">
-          <p className="max-w-[420px] text-xs leading-6 text-[#817887] sm:text-sm">
+          {/* <p className="max-w-[420px] text-xs leading-6 text-[#817887] sm:text-sm">
             Every bride deserves a look that feels uniquely hers. Let&apos;s
             create your perfect bridal moment.
-          </p>
+          </p> */}
 
-          <a
-            href="https://wa.me/919789376174"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex min-h-10 items-center justify-center rounded-full bg-[#25232A] px-6 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
-          >
-            Enquire for Your Bridal Look
-          </a>
+         <a
+  href="https://wa.me/919789376174"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="-mt-5 inline-flex min-h-10 items-center justify-center bg-[#25232A] px-6 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
+>
+  Enquire for Your Bridal Look
+</a>
         </div>
       </div>
     </section>

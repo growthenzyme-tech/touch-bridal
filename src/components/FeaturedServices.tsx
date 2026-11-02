@@ -337,17 +337,16 @@ return (
           ref={introRef}
           className="flex min-w-0 flex-col items-start justify-center"
         >
-          <p className="services-intro-item mb-4 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs">
-            
-            Discover Our Services
-          </p>
+        <p className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase leading-6 tracking-[0.24em] text-[#9675ba] sm:text-xs">
+  Discover Our Services
+</p>
 
-         <h2
+      <h2
   id="featured-services-heading"
-  className={`${interTight.className} services-intro-item max-w-sm text-[40px] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#25232A] sm:text-5xl lg:text-[52px]`}
+  className={`${interTight.className} services-intro-item max-w-sm text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold leading-[1] tracking-[-0.02em] text-[#25232A]`}
 >
   Beauty for your most{" "}
-  <span className=" text-[#8D6CA3]">
+  <span className="text-[#8D6CA3]">
     special moments.
   </span>
 </h2>
@@ -363,12 +362,6 @@ return (
           >
             View All Services
 
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            >
-              →
-            </span>
           </Link>
         </div>
 

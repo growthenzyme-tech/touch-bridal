@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Inter_Tight } from "next/font/google";
 import BridalMakeoverGallery from "@/components/BridalMakeoverGallery";
-
+import WeddingRentals from "@/components/WeddingRentals";
 const interTight = Inter_Tight({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -71,7 +71,7 @@ export default function BridalGalleryPage() {
                 <div className="mt-2 h-px bg-[#F1EDF7]" />
 
                 <p className="mt-2 text-[8px] font-medium text-[#8D6CA3]">
-                  Explore the look ↗
+                  Explore the look 
                 </p>
 
               </div>
@@ -214,6 +214,7 @@ export default function BridalGalleryPage() {
       </section>
 
 <BridalMakeoverGallery />
+<WeddingRentals />
     </main>
   );
 }

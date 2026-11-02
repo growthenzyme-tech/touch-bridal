@@ -309,10 +309,11 @@ return (
         <div className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
           {/* LEFT: HEADLINE AND BOOKING */}
           <div className="relative z-10 flex flex-col items-start">
-            <p className="hero-eyebrow mb-6 flex items-center gap-3 text-[9px] font-medium uppercase tracking-[0.22em] text-[#8D6CA3] opacity-0 sm:text-[10px]">
-              <span className="h-px w-8 bg-[#8D6CA3]" />
-              Touch Bridal Makeover Studio & Unisex Salon
-            </p>
+            <p
+  className={`${interTight.className} hero-eyebrow mb-4 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] opacity-0 sm:text-xs`}
+>
+  Touch Bridal Makeover Studio & Unisex Salon
+</p>
 
             <h1
               className={`${interTight.className} text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
@@ -340,7 +341,7 @@ return (
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#8D6CA3]/30 bg-[#8D6CA3] px-7 text-xs font-semibold tracking-[0.04em] text-white shadow-[0_8px_24px_rgba(141,108,163,0.22)] transition-all duration-500 hover:-translate-y-1 hover:bg-[#76558D] hover:shadow-[0_12px_30px_rgba(141,108,163,0.3)]"
+                className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/30 bg-[#8D6CA3] px-7 text-xs font-semibold tracking-[0.04em] text-white shadow-[0_8px_24px_rgba(141,108,163,0.22)] transition-all duration-500 hover:-translate-y-1 hover:bg-[#76558D] hover:shadow-[0_12px_30px_rgba(141,108,163,0.3)]"
               >
                 <span
                   aria-hidden="true"
@@ -355,7 +356,7 @@ return (
               {/* SECONDARY: BRIDAL GALLERY */}
               <Link
                 href="/bridal-gallery"
-                className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden rounded-full border border-[#8D6CA3]/25 bg-white/75 px-7 text-xs font-semibold tracking-[0.04em] text-[#25232A] shadow-[0_5px_18px_rgba(37,35,42,0.06)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#8D6CA3]/50 hover:bg-white"
+                className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/25 bg-white/75 px-7 text-xs font-semibold tracking-[0.04em] text-[#25232A] shadow-[0_5px_18px_rgba(37,35,42,0.06)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#8D6CA3]/50 hover:bg-white"
               >
                 <span
                   aria-hidden="true"
@@ -437,13 +438,13 @@ return (
 
             {/* Top-right card: featured look */}
             <div className="float-card absolute right-0 top-[5%] w-[46%] max-w-[215px]">
-              <div className="rounded-2xl border border-[#8D6CA3]/10 bg-white/95 p-3 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur">
+              <div className=" border border-[#8D6CA3]/10 bg-white/95 p-3 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur">
                 <div className="flex items-center gap-2.5">
                   <img
                     src={bridalImages[nextIndex].src}
                     alt=""
                     loading="lazy"
-                    className="h-11 w-11 shrink-0 rounded-lg object-cover sm:h-12 sm:w-12"
+                    className="h-11 w-11 shrink-0 object-cover sm:h-12 sm:w-12"
                   />
 
                   <div className="min-w-0 leading-tight">
@@ -485,10 +486,10 @@ return (
 
             {/* Bottom-right card: trust points */}
             <div className="float-card absolute bottom-[4%] right-0 w-[48%] max-w-[225px]">
-              <div className="space-y-3 rounded-2xl border border-[#8D6CA3]/10 bg-white/95 p-3.5 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur">
+              <div className="space-y-3 border border-[#8D6CA3]/10 bg-white/95 p-3.5 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur">
                 {trustPoints.map((point, index) => (
                   <div key={point.title} className="flex items-center gap-2.5">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#EDE4F3] text-[#8D6CA3]">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center  bg-[#EDE4F3] text-[#8D6CA3]">
                       {index === 0 ? (
                         <CalendarIcon className="h-4 w-4" />
                       ) : (

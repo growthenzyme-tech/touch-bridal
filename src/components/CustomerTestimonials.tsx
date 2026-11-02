@@ -77,7 +77,7 @@ function Stars({ className = "" }: { className?: string }) {
 
 function ReviewCard({ review }: { review: (typeof reviews)[number] }) {
   return (
-    <article className="flex h-full flex-col rounded-[20px] border border-[#E6DEF0] bg-[#F1EDF7] p-5 transition-shadow duration-300 hover:shadow-[0_16px_36px_-20px_rgba(141,108,163,0.55)] sm:p-6">
+    <article className="flex h-full flex-col border border-[#E6DEF0] bg-[#F1EDF7] p-5 transition-shadow duration-300 hover:shadow-[0_16px_36px_-20px_rgba(141,108,163,0.55)] sm:p-6">
       <div className="flex items-center justify-between">
         <Stars />
 
@@ -163,7 +163,7 @@ export default function CustomerTestimonials() {
         <div className="overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-14">
           <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[0.78fr_1.6fr] lg:gap-6">
             {/* LEFT: PURPLE INTRO PANEL (fills the height of the reviews) */}
-           <div className="testimonial-reveal relative flex min-h-[440px] flex-col justify-between gap-6 overflow-hidden rounded-[20px] bg-[#8D6CA3] p-6 text-white sm:min-h-[480px] sm:gap-8 sm:p-7 lg:min-h-[520px] lg:p-8">
+           <div className="testimonial-reveal relative flex min-h-[440px] flex-col justify-between gap-6 overflow-hidden bg-[#8D6CA3] p-6 text-white sm:min-h-[480px] sm:gap-8 sm:p-7 lg:min-h-[520px] lg:p-8">
               {/* Decorative quote mark */}
               <span
                 aria-hidden="true"
@@ -174,16 +174,16 @@ export default function CustomerTestimonials() {
 
               {/* TOP: HEADING */}
               <div className="relative">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-white/80 sm:text-xs">
-                  Testimonials
-                </p>
+               <p className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase tracking-[0.24em] text-white/80 sm:text-xs">
+  Testimonials
+</p>
 
                 <h2
-                  className={`${cormorant.className} mt-4 text-[clamp(2.4rem,4.2vw,3.6rem)] font-semibold leading-[1.05]`}
-                >
-                  What our clients say{" "}
-                  <span className="italic text-[#E6DAF2]">about us</span>
-                </h2>
+  className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold leading-[1] tracking-[-0.02em]`}
+>
+  What our clients say{" "}
+  <span className="text-[#E6DAF2]">about us</span>
+</h2>
 
                 <p className="mt-5 max-w-[340px] text-sm leading-7 text-white/85">
                   Heartfelt words from our brides and clients, shared in their
