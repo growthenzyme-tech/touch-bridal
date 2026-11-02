@@ -191,7 +191,7 @@ export default function LocationContact() {
           </div>
 
           {/* RIGHT: LOCATION & GOOGLE MAP */}
-          <div className="flex min-h-[440px] flex-col rounded-[24px] border border-[#25232A]/10 bg-white p-5 shadow-[0_8px_30px_rgba(37,35,42,0.04)] sm:p-7 lg:min-h-[520px]">
+          <div className="flex min-h-[440px] flex-col rounded-[4px] border border-[#25232A]/10 bg-white p-5 shadow-[0_8px_30px_rgba(37,35,42,0.04)] sm:p-7 lg:min-h-[520px]">
             {/* SECTION LABEL */}
             <span className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs">
   FIND US HERE
@@ -211,7 +211,7 @@ export default function LocationContact() {
             </p>
 
             {/* GOOGLE MAP PREVIEW */}
-            <div className="mt-5 min-h-[260px] flex-1 overflow-hidden rounded-[18px] border border-[#25232A]/10 bg-white shadow-sm">
+            <div className="mt-5 min-h-[260px] flex-1 overflow-hidden border border-[#25232A]/10 bg-white shadow-sm">
               <iframe
                 title="Touch Bridal Makeover Studio location"
                 src={mapEmbedUrl}
