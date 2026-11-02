@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -28,17 +28,54 @@ export default function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const scrollToBooking = useCallback(() => {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const targetId = isMobile ? "booking-form" : "booking";
+    const el =
+      document.getElementById(targetId) ||
+      document.getElementById("booking") ||
+      document.getElementById("booking-form");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      return true;
+    }
+    return false;
+  }, []);
+
   const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     setMenuOpen(false);
     if (pathname === "/") {
       e.preventDefault();
-      const el = document.getElementById("booking");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", "/#booking");
-      }
+      scrollToBooking();
+      window.history.pushState(null, "", "/#booking");
+    } else {
+      sessionStorage.setItem("touch_scroll_booking", "true");
     }
   };
+
+  useEffect(() => {
+    if (pathname === "/") {
+      const shouldScroll =
+        sessionStorage.getItem("touch_scroll_booking") === "true" ||
+        window.location.hash === "#booking" ||
+        window.location.hash === "#booking-form";
+
+      if (shouldScroll) {
+        sessionStorage.removeItem("touch_scroll_booking");
+
+        let attempts = 0;
+        const interval = setInterval(() => {
+          attempts++;
+          const scrolled = scrollToBooking();
+          if (scrolled || attempts >= 12) {
+            clearInterval(interval);
+          }
+        }, 120);
+
+        return () => clearInterval(interval);
+      }
+    }
+  }, [pathname, scrollToBooking]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
