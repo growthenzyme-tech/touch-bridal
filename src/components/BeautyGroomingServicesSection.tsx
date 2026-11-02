@@ -167,7 +167,7 @@ export default function BeautyGroomingServicesSection({
   return (
     <section
       aria-label="Beauty & Grooming Services Collection"
-      className="relative w-full overflow-hidden rounded-none bg-[#F1EDF7] border border-[#8D6CA3]/30 py-10 sm:py-14 lg:py-16 px-6 sm:px-10 lg:px-14 select-none"
+      className="relative w-full overflow-hidden rounded-none bg-[#F1EDF7] border border-[#8D6CA3]/30 py-6 sm:py-10 lg:py-16 px-3 sm:px-8 lg:px-14 select-none"
     >
       {/* 1. Thin vertical muted-gold accent line near the left edge */}
       <div
@@ -208,7 +208,7 @@ export default function BeautyGroomingServicesSection({
         </div>
 
         {/* Section Heading matching the editorial design */}
-        <div className="mb-8 sm:mb-10 lg:mb-12 pl-2 sm:pl-4">
+        <div className="mb-5 sm:mb-8 lg:mb-12 pl-1 sm:pl-4">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-[#8D6CA3]" />
             <span className="text-[11px] font-semibold uppercase tracking-[0.24em] font-bold text-[#8D6CA3] sm:text-xs">
@@ -217,7 +217,7 @@ export default function BeautyGroomingServicesSection({
           </div>
 
           <h2
-            className={`${interTight.className} mt-3 max-w-[580px] text-3xl font-bold uppercase leading-[1.05] tracking-[-0.02em] sm:text-4xl lg:text-[50px]`}
+            className={`${interTight.className} mt-3 max-w-[580px] text-2xl font-bold uppercase leading-[1.1] tracking-[-0.02em] sm:text-4xl lg:text-[50px]`}
           >
             <span className="block text-[#25232A]">Beauty & Grooming,</span>
             <span className="block text-[#8D6CA3]">Collection.</span>
@@ -248,35 +248,43 @@ export default function BeautyGroomingServicesSection({
                   onMouseEnter={() => { setHoveredIndex(index); setDisplayIndex(index); }}
                   aria-selected={isHovered}
                   role="tab"
-                  className="group relative w-full text-left transition-colors duration-200 min-h-[100px] lg:h-[110px] flex items-center justify-between gap-6 px-6 sm:px-10 lg:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-[18px] bg-transparent hover:bg-[#8D6CA3]/10 focus:outline-none cursor-pointer"
+                  className="group relative w-full text-left transition-colors duration-200 min-h-[82px] sm:min-h-[105px] lg:h-[115px] flex items-center justify-between gap-2.5 sm:gap-6 px-2.5 sm:px-6 lg:px-12 py-2.5 sm:py-4.5 rounded-[12px] sm:rounded-[18px] bg-transparent hover:bg-[#8D6CA3]/10 focus:outline-none cursor-pointer"
                 >
-                  {/* Left: Number, Title, and Short Quote/Description */}
-                  <div className="flex-1 max-w-[420px] sm:max-w-md lg:max-w-lg xl:max-w-xl pr-4">
-                    <div className="flex items-baseline gap-3">
-                      <span
-                        className={`${interTight.className} text-xs font-bold tracking-wider text-[#8D6CA3]`}
-                      >
-                        {service.number}
-                      </span>
-                      <h3
-                        className={`${interTight.className} text-xl sm:text-2xl lg:text-[23px] font-bold tracking-[-0.01em] text-[#25232A] group-hover:text-[#8D6CA3] transition-colors`}
-                      >
-                        {service.title}
-                      </h3>
-                    </div>
+                  {/* Left: Mobile Image Thumbnail + Content */}
+                  <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0 pr-2 sm:pr-4">
+                    {/* Mobile Thumbnail (Reveals image on mobile/tablet where hover panel is hidden) */}
+                    <img
+                      src={service.image}
+                      alt={service.alt || service.title}
+                      className="lg:hidden h-14 w-14 sm:h-16 sm:w-16 rounded-[8px] sm:rounded-[10px] object-cover object-top border border-[#8D6CA3]/30 shadow-xs shrink-0"
+                    />
 
-                    <p
-                      className={`mt-1 text-xs sm:text-[13px] lg:text-[14px] leading-relaxed line-clamp-2 transition-colors text-[#716B76] group-hover:text-[#25232A]`}
-                    >
-                      {service.description}
-                    </p>
+                    <div className="flex-1 min-w-0 max-w-[420px] sm:max-w-md lg:max-w-lg xl:max-w-xl">
+                      <div className="flex items-baseline gap-2 sm:gap-3">
+                        <span
+                          className={`${interTight.className} text-[11px] sm:text-xs font-bold tracking-wider text-[#8D6CA3] shrink-0`}
+                        >
+                          {service.number}
+                        </span>
+                        <h3
+                          className={`${interTight.className} text-[15px] sm:text-xl lg:text-[23px] font-bold tracking-[-0.01em] text-[#25232A] group-hover:text-[#8D6CA3] transition-colors truncate sm:whitespace-normal`}
+                        >
+                          {service.title}
+                        </h3>
+                      </div>
 
+                      <p
+                        className={`mt-1 text-[11px] sm:text-[13px] lg:text-[14px] leading-relaxed line-clamp-2 transition-colors text-[#716B76] group-hover:text-[#25232A]`}
+                      >
+                        {service.description}
+                      </p>
                     </div>
+                  </div>
 
                   {/* Far Right: Diagonal Arrow-Up-Right Icon */}
                   <div className="flex-shrink-0 z-10">
                     <div
-                      className="h-10 w-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center transition-all duration-200 border border-[#8D6CA3]/25 text-[#8D6CA3] bg-[#EDE4F3]/60 group-hover:border-[#8D6CA3] group-hover:bg-[#8D6CA3] group-hover:text-white"
+                      className="h-8 w-8 sm:h-10 sm:w-10 rounded-full flex items-center justify-center transition-all duration-200 border border-[#8D6CA3]/25 text-[#8D6CA3] bg-[#EDE4F3]/60 group-hover:border-[#8D6CA3] group-hover:bg-[#8D6CA3] group-hover:text-white"
                     >
                       <ArrowUpRight
                         className="h-5 w-5 stroke-[2.2] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
