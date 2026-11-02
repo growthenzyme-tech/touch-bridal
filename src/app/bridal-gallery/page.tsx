@@ -7,6 +7,7 @@ import { Inter_Tight } from "next/font/google";
 import BridalMakeoverGallery from "@/components/BridalMakeoverGallery";
 import WeddingRentals from "@/components/WeddingRentals";
 import RentalEnquiry from "@/components/RentalEnquiry";
+import ContactBooking from "@/components/ContactBooking";
 const interTight = Inter_Tight({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -222,6 +223,7 @@ export default function BridalGalleryPage() {
 <BridalMakeoverGallery />
 <WeddingRentals />
 {/* <RentalEnquiry /> */}
+<ContactBooking />
     </main>
   );
 }
