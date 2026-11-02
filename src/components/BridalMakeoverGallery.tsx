@@ -2,13 +2,20 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Inter_Tight } from "next/font/google";
 
 const tabs = [
   { key: "Bridal Makeup", label: "Bridal makeup photographs" },
   { key: "Reception", label: "Reception makeup looks" },
   { key: "Party Makeup", label: "Party makeup looks" },
   { key: "Transformations", label: "Bridal transformation gallery" },
+
 ];
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
 
 const bridalLooks = [
   {
@@ -155,7 +162,7 @@ function TransformationCard({
   item: (typeof transformations)[number];
 }) {
   return (
-    <article className="relative overflow-hidden bg-white p-4 shadow-[0_12px_30px_-20px_rgba(141,108,163,0.5)]">
+    <article className="relative overflow-hidden bg-white p-3 sm:p-4 lg:p-5 shadow-[0_12px_30px_-20px_rgba(141,108,163,0.5)]">
       {/* soft lavender shapes */}
       <div
         aria-hidden="true"
@@ -167,16 +174,15 @@ function TransformationCard({
       />
 
       {/* faint watermark */}
-      <p
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center text-3xl font-semibold italic tracking-[-0.03em] text-[#8D6CA3]/10 sm:text-4xl"
-      >
-        Before / After
-      </p>
-
-      <div className="relative flex h-[190px] items-center justify-center sm:h-[200px] lg:h-[215px]">
+    <p
+  aria-hidden="true"
+  className={`${interTight.className} pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center text-3xl font-semibold italic tracking-[-0.03em] text-[#8D6CA3]/10 sm:text-4xl`}
+>
+  Before / After
+</p>
+      <div className="relative flex h-[clamp(190px,22vw,250px)] items-center justify-center">
         {/* BEFORE */}
-        <div className="relative -mr-3 -mt-10 h-[150px] w-[88px] sm:h-[160px] sm:w-[96px] lg:h-[195px] lg:w-[124px]">
+        <div className="relative -mr-4 -mt-8 h-[clamp(155px,17vw,205px)] w-[clamp(95px,10vw,135px)]">
           <div className="relative h-full w-full overflow-hidden rounded-t-full border-[3px] border-white bg-[#E4D9ED] shadow-[0_8px_20px_-10px_rgba(37,35,42,0.4)]">
             <Image
               src={item.before}
@@ -192,7 +198,7 @@ function TransformationCard({
         </div>
 
         {/* AFTER */}
-        <div className="relative z-10 mt-12 h-[150px] w-[88px] sm:h-[160px] sm:w-[96px] lg:h-[195px] lg:w-[124px]">
+      <div className="relative z-10 mt-10 h-[clamp(155px,17vw,205px)] w-[clamp(95px,10vw,135px)]">
           <div className="relative h-full w-full overflow-hidden rounded-b-full border-[3px] border-white bg-[#E4D9ED] shadow-[0_8px_20px_-10px_rgba(37,35,42,0.4)]">
             <Image
               src={item.after}
@@ -208,9 +214,9 @@ function TransformationCard({
         </div>
       </div>
 
-      <p className="relative mt-4 text-center text-xs font-semibold text-[#25232A]">
-        {item.title}
-      </p>
+      <p className={`${interTight.className} relative mt-4 text-center text-xs font-semibold text-[#25232A]`}>
+  {item.title}
+</p>
     </article>
   );
 }
@@ -236,20 +242,26 @@ export default function BridalMakeoverGallery() {
           {/* LEFT: INTRO + FOUR BUTTONS */}
           <div className="flex flex-col justify-between gap-8">
             <div>
-              <span className="inline-flex rounded-full bg-white px-3 py-1 text-[9px] font-medium uppercase tracking-[0.15em] text-[#8D6CA3]">
-                The Bridal Collection
-              </span>
+           <p
+  className={`${interTight.className} services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase leading-6 tracking-[0.24em] text-[#9675ba] sm:text-xs`}
+>
+  The Bridal Collection
+</p>
 
-              <h2 className="mt-4 text-3xl font-semibold leading-[1.1] tracking-[-0.035em] text-[#25232A] sm:text-4xl">
-                Bridal Makeover
-                <span className="text-[#8D6CA3]"> Gallery</span>
-              </h2>
+              <h2
+  className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+>
+  Bridal Makeover
+  <span className="text-[#8D6CA3]"> Gallery</span>
+</h2>
 
-              <p className="mt-4 max-w-[380px] text-xs leading-6 text-[#817887] sm:text-sm">
-                A collection of beautiful bridal transformations, timeless
-                elegance, and unforgettable moments captured through our
-                artistry.
-              </p>
+            <p
+  className={`${interTight.className} mt-4 max-w-[380px] text-xs leading-6 text-[#817887] sm:text-sm`}
+>
+  A collection of beautiful bridal transformations, timeless
+  elegance, and unforgettable moments captured through our
+  artistry.
+</p>
             </div>
 
             <div className="flex flex-col gap-2.5" role="tablist">
@@ -282,12 +294,12 @@ export default function BridalMakeoverGallery() {
                     </span>
 
                     <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-semibold text-[#25232A]">
-                        {tab.label}
-                      </span>
-                      <span className="mt-0.5 block text-[11px] text-[#817887]">
-                        {count} {tab.key === "Transformations" ? "before & after" : "looks"}
-                      </span>
+                    <span className={`${interTight.className} block text-sm font-semibold text-[#25232A]`}>
+  {tab.label}
+</span>
+                      <span className={`${interTight.className} mt-0.5 block text-[11px] text-[#817887]`}>
+  {count} {tab.key === "Transformations" ? "before & after" : "looks"}
+</span>
                     </span>
 
                     <span
@@ -307,80 +319,68 @@ export default function BridalMakeoverGallery() {
           </div>
 
           {/* RIGHT: CONTENT INSIDE THE SAME LAVENDER PANEL */}
+         <div
+  role="tabpanel"
+  className={`relative overflow-hidden bg-[#E9E1F2]/60 ${
+    isTransform
+      ? "p-3 sm:p-4 lg:p-5"
+      : "h-[380px] sm:h-[480px] lg:h-auto lg:min-h-[540px]"
+  }`}
+>
+  {isTransform ? (
+    <div
+      key={activeKey}
+      className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4"
+    >
+      {transformations.map((item) => (
+        <TransformationCard key={item.id} item={item} />
+      ))}
+    </div>
+  ) : (
+    <>
+      <div
+        key={activeKey}
+        className="absolute inset-y-0 left-1/2 w-[520px] -translate-x-1/2 sm:w-full"
+      >
+        {looks.map((look, index) => (
           <div
-            role="tabpanel"
-            className={`relative overflow-hidden bg-[#E9E1F2]/60 ${
-              isTransform
-                ? "p-4 sm:p-5 lg:min-h-[540px]"
-                : "h-[380px] sm:h-[480px] lg:h-auto lg:min-h-[540px]"
-            }`}
+            key={look.id}
+            className={`absolute ${positions[index]} transition-transform duration-500 hover:z-[60] hover:scale-[1.03]`}
           >
-            {isTransform ? (
-              <div
-                key={activeKey}
-                className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5"
-              >
-                {transformations.map((item) => (
-                  <TransformationCard key={item.id} item={item} />
-                ))}
-              </div>
-            ) : (
-              <>
-                <div
-                  key={activeKey}
-                  className="absolute inset-y-0 left-1/2 w-[520px] -translate-x-1/2 sm:w-full"
-                >
-                  {looks.map((look, index) => (
-                    <div
-                      key={look.id}
-                      className={`absolute ${positions[index]} transition-transform duration-500 hover:z-[60] hover:scale-[1.03]`}
-                    >
-                      <div className="relative h-full w-full overflow-hidden border-[3px] border-white bg-[#E4D9ED] shadow-[0_10px_28px_-14px_rgba(37,35,42,0.35)] sm:border-4">
-                        <Image
-                          src={look.image}
-                          alt={look.title}
-                          fill
-                          sizes="(max-width: 640px) 30vw, 260px"
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* LABEL */}
-                <div className="absolute bottom-4 left-4 z-[70] rounded-full border border-white/70 bg-white/85 px-4 py-2 backdrop-blur-md sm:bottom-5 sm:left-5">
-                  <p className="text-[8px] font-medium uppercase tracking-[0.15em] text-[#8D6CA3]">
-                    Touch Bridal
-                  </p>
-                  <p className="mt-0.5 text-xs font-semibold text-[#25232A] sm:text-sm">
-                    {activeTab.label}
-                  </p>
-                </div>
-
-                {/* CORNER ICON */}
-                {/* <div className="absolute right-4 top-4 z-[70] flex h-10 w-10 items-center justify-center rounded-full bg-white/85 text-[#25232A] backdrop-blur-md sm:right-5 sm:top-5 sm:h-12 sm:w-12">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    className="h-5 w-5 sm:h-6 sm:w-6"
-                  >
-                    <path d="M7 3H3v4M3 3l7 7M17 21h4v-4m0 4-7-7" />
-                  </svg>
-                </div> */}
-              </>
-            )}
+            <div className="relative h-full w-full overflow-hidden border-[3px] border-white bg-[#E4D9ED] shadow-[0_10px_28px_-14px_rgba(37,35,42,0.35)] sm:border-4">
+              <Image
+                src={look.image}
+                alt={look.title}
+                fill
+                sizes="(max-width: 640px) 30vw, 260px"
+                className="object-cover"
+              />
+            </div>
           </div>
+        ))}
+      </div>
+
+      {/* LABEL */}
+      <div className="absolute bottom-4 left-4 z-[70] border border-white/70 bg-white/85 px-4 py-2 backdrop-blur-md sm:bottom-5 sm:left-5">
+        <p
+          className={`${interTight.className} text-[8px] font-medium uppercase tracking-[0.15em] text-[#8D6CA3]`}
+        >
+          Touch Bridal
+        </p>
+
+        <p
+          className={`${interTight.className} mt-0.5 text-xs font-semibold text-[#25232A] sm:text-sm`}
+        >
+          {activeTab.label}
+        </p>
+      </div>
+    </>
+  )}
+</div>
         </div>
 
         {/* GALLERY CTA */}
         <div className="mt-8 flex flex-col items-center text-center">
-          {/* <p className="max-w-[420px] text-xs leading-6 text-[#817887] sm:text-sm">
-            Every bride deserves a look that feels uniquely hers. Let&apos;s
-            create your perfect bridal moment.
-          </p> */}
 
          <a
   href="https://wa.me/919789376174"
@@ -388,7 +388,7 @@ export default function BridalMakeoverGallery() {
   rel="noopener noreferrer"
   className="-mt-5 inline-flex min-h-10 items-center justify-center bg-[#25232A] px-6 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
 >
-  Enquire for Your Bridal Look
+  Enquire
 </a>
         </div>
       </div>
