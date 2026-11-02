@@ -486,7 +486,7 @@ return (
 
             {/* Bottom-right card: trust points */}
             <div className="float-card absolute bottom-[4%] right-0 w-[48%] max-w-[225px]">
-              <div className="space-y-3 border border-[#8D6CA3]/10 bg-white/95 p-3.5 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur">
+              {/* <div className="space-y-3 border border-[#8D6CA3]/10 bg-white/95 p-3.5 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur">
                 {trustPoints.map((point, index) => (
                   <div key={point.title} className="flex items-center gap-2.5">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center  bg-[#EDE4F3] text-[#8D6CA3]">
@@ -508,7 +508,7 @@ return (
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
