@@ -46,13 +46,13 @@ export default function Navbar() {
 <div className="relative flex items-center justify-between gap-3 overflow-hidden rounded-full px-4 py-1.5 sm:px-6 sm:py-2 lg:px-7 lg:py-2">
 
   {/* RIGHT LAVENDER SHAPE */}
-  <div
-    aria-hidden="true"
-    className="pointer-events-none absolute right-0 top-0 hidden h-full w-[30%] bg-gradient-to-r from-[#6D55B5] to-[#8D6CA3] md:block"
-    style={{
-      clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0 100%)",
-    }}
-  />
+ <div
+  aria-hidden="true"
+  className="pointer-events-none absolute right-0 top-0 hidden h-full w-[30%] bg-gradient-to-r from-[#A99AD8] to-[#C2B5E5] md:block"
+  style={{
+    clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0 100%)",
+  }}
+/>
           {/* BRAND */}
           <Link
             href="/"
