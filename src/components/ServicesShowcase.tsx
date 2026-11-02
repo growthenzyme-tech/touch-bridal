@@ -928,7 +928,7 @@ export default function ServicesShowcase() {
         className="relative w-full overflow-hidden rounded-none border-0 bg-white flex items-center h-[calc(100dvh-112px)] min-h-[490px] max-h-[620px] sm:h-[calc(100dvh-120px)] sm:max-h-[800px] lg:h-[calc(100dvh-152px)]"
       >
         {/* Mobile Swipe Hint Badge */}
-        <div className="sm:hidden pointer-events-none absolute top-3 right-3 z-40 flex items-center gap-1.5 rounded-full bg-[#25232A]/75 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-white backdrop-blur-md border border-white/15">
+        <div className="sm:hidden pointer-events-none absolute top-3 right-3 z-40 flex items-center gap-1.5 rounded-none bg-[#25232A]/75 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-white backdrop-blur-md border border-white/15">
           <span>{String(activeIndex + 1).padStart(2, "0")} / 09</span>
           <span className="text-white/40">•</span>
           <span className="text-white/80 uppercase">Swipe</span>
@@ -1056,7 +1056,7 @@ export default function ServicesShowcase() {
                   <div className="absolute inset-x-0 bottom-0 z-40 p-3.5 sm:p-5 lg:p-6 flex flex-col justify-end">
                     {/* Number & Category Tag Pill */}
                     <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
-                      <span className={`${interTight.className} text-[10px] sm:text-xs font-bold text-white px-2 sm:px-2.5 py-0.5 rounded-full bg-[#8D6CA3] border border-white/20 shadow-sm backdrop-blur-md`}>
+                      <span className={`${interTight.className} text-[10px] sm:text-xs font-bold text-white px-2 sm:px-2.5 py-0.5 rounded-none bg-[#8D6CA3] border border-white/20 shadow-sm backdrop-blur-md`}>
                         {service.number}
                       </span>
                       <span className={`${interTight.className} text-[9px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#EDE4F3] drop-shadow-sm truncate`}>
@@ -1077,7 +1077,7 @@ export default function ServicesShowcase() {
                         <span>Touch to Explore</span>
                         <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[2.2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>
-                      <div className="h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-white/95 border border-white flex items-center justify-center text-[#8D6CA3] shadow-sm transition-all duration-300 group-hover:bg-[#8D6CA3] group-hover:text-white">
+                      <div className="h-6 w-6 sm:h-8 sm:w-8 rounded-none bg-white/95 border border-white flex items-center justify-center text-[#8D6CA3] shadow-sm transition-all duration-300 group-hover:bg-[#8D6CA3] group-hover:text-white">
                         <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.2]" />
                       </div>
                     </div>

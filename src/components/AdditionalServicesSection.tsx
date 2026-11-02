@@ -122,7 +122,7 @@ export default function AdditionalServicesSection({
             type="button"
             onClick={onBackToServices}
             aria-label="Back to all services"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-[#8D6CA3]/25 bg-white px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-[13px] font-semibold tracking-wide text-[#25232A] shadow-sm transition-all duration-250 hover:border-[#8D6CA3] hover:bg-[#8D6CA3] hover:text-white hover:shadow-[0_4px_16px_rgba(141,108,163,0.25)]"
+            className="group inline-flex items-center gap-2.5 rounded-none border border-[#8D6CA3]/25 bg-white px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-[13px] font-semibold tracking-wide text-[#25232A] shadow-sm transition-all duration-250 hover:border-[#8D6CA3] hover:bg-[#8D6CA3] hover:text-white hover:shadow-[0_4px_16px_rgba(141,108,163,0.25)]"
           >
             <ArrowLeft className="h-4 w-4 stroke-[2.2] transition-transform duration-250 group-hover:-translate-x-1 text-[#25232A] group-hover:text-white" />
             <span>Back to All Services</span>
@@ -182,7 +182,7 @@ export default function AdditionalServicesSection({
                   onMouseEnter={() => { setHoveredIndex(index); setDisplayIndex(index); }}
                   aria-selected={isHovered}
                   role="tab"
-                  className="group relative w-full text-left transition-colors duration-200 min-h-[115px] lg:min-h-[135px] flex items-center justify-between gap-6 px-6 sm:px-10 lg:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-[18px] bg-transparent hover:bg-[#8D6CA3]/10 focus:outline-none cursor-pointer"
+                  className="group relative w-full text-left transition-colors duration-200 min-h-[115px] lg:min-h-[135px] flex items-center justify-between gap-6 px-6 sm:px-10 lg:px-12 py-4 sm:py-5 rounded-none bg-transparent hover:bg-[#8D6CA3]/10 focus:outline-none cursor-pointer"
                 >
                   {/* Left: Mobile Image Thumbnail + Content */}
                   <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0 pr-2 sm:pr-4">
@@ -190,7 +190,7 @@ export default function AdditionalServicesSection({
                     <img
                       src={service.image}
                       alt={service.alt || service.title}
-                      className="lg:hidden h-14 w-14 sm:h-16 sm:w-16 rounded-[8px] sm:rounded-[10px] object-cover object-top border border-[#8D6CA3]/30 shadow-xs shrink-0"
+                      className="lg:hidden h-14 w-14 sm:h-16 sm:w-16 rounded-none object-cover object-top border border-[#8D6CA3]/30 shadow-xs shrink-0"
                     />
 
                     <div className="flex-1 min-w-0 max-w-[420px] sm:max-w-md lg:max-w-lg xl:max-w-xl">
@@ -218,7 +218,7 @@ export default function AdditionalServicesSection({
                   {/* Far Right: Diagonal Arrow-Up-Right Icon */}
                   <div className="flex-shrink-0 z-10">
                     <div
-                      className="h-8 w-8 sm:h-10 sm:w-10 rounded-full flex items-center justify-center transition-all duration-200 border border-[#8D6CA3]/25 text-[#8D6CA3] bg-[#EDE4F3]/60 group-hover:border-[#8D6CA3] group-hover:bg-[#8D6CA3] group-hover:text-white"
+                      className="h-8 w-8 sm:h-10 sm:w-10 rounded-none flex items-center justify-center transition-all duration-200 border border-[#8D6CA3]/25 text-[#8D6CA3] bg-[#EDE4F3]/60 group-hover:border-[#8D6CA3] group-hover:bg-[#8D6CA3] group-hover:text-white"
                     >
                       <ArrowUpRight
                         className="h-5 w-5 stroke-[2.2] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -286,7 +286,7 @@ export default function AdditionalServicesSection({
               <button
                 type="button"
                 onClick={() => handleServiceClick(activeService.title)}
-                className="inline-flex items-center gap-1.5 rounded-full bg-[#8D6CA3] px-3.5 py-1.5 text-xs font-semibold text-white shadow-md transition-transform duration-250 hover:scale-105 hover:bg-[#76558D]"
+                className="inline-flex items-center gap-1.5 rounded-none bg-[#8D6CA3] px-3.5 py-1.5 text-xs font-semibold text-white shadow-md transition-transform duration-250 hover:scale-105 hover:bg-[#76558D]"
               >
                 <span>Book</span>
                 <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.2]" />
