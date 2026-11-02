@@ -274,7 +274,7 @@ export default function BeautyGroomingServicesSection({
                       </div>
 
                       <p
-                        className={`mt-1 text-[11px] sm:text-[13px] lg:text-[14px] leading-relaxed line-clamp-2 transition-colors text-[#716B76] group-hover:text-[#25232A]`}
+                        className={`${interTight.className} mt-1 text-[11px] sm:text-[13px] lg:text-[14px] leading-relaxed line-clamp-2 transition-colors text-[#716B76] group-hover:text-[#25232A]`}
                       >
                         {service.description}
                       </p>

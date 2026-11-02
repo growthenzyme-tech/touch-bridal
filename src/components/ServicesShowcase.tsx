@@ -28,7 +28,10 @@ const MUGHAL_ARCH_INNER_PATH =
   "M 368 24 C 397 50, 434 76, 482 102 C 550 140, 628 188, 682 246 C 711 279, 722 318, 722 366 V 1296 H 14 V 366 C 14 318, 25 279, 54 246 C 108 188, 186 140, 254 102 C 302 76, 339 50, 368 24 Z";
 
 const MUGHAL_CORNER_MASK_PATH =
-  "M 0 0 H 736 V 1308 H 0 Z M 368 12 C 400 40, 440 68, 490 95 C 560 135, 640 185, 695 245 C 725 280, 736 320, 736 370 V 1308 H 0 V 370 C 0 320, 11 280, 41 245 C 96 185, 176 135, 246 95 C 296 68, 336 40, 368 12 Z";
+  "M -10 -10 H 368 L 368 12 C 336 40, 296 68, 246 95 C 176 135, 96 185, 41 245 C 11 280, 0 320, 0 370 L -10 375 Z M 746 -10 H 368 L 368 12 C 400 40, 440 68, 490 95 C 560 135, 640 185, 695 245 C 725 280, 736 320, 736 370 L 746 375 Z";
+
+const MUGHAL_ARCH_CLIP_PATH =
+  "M 0.50000 0.00917 C 0.54348 0.03058 0.59783 0.05199 0.66576 0.07263 C 0.76087 0.10321 0.86957 0.14144 0.94429 0.18731 C 0.98505 0.21407 1.00000 0.24465 1.00000 0.28287 V 1.00000 H 0.00000 V 0.28287 C 0.00000 0.24465 0.01495 0.21407 0.05571 0.18731 C 0.13043 0.14144 0.23913 0.10321 0.33424 0.07263 C 0.40217 0.05199 0.45652 0.03058 0.50000 0.00917 Z";
 
 const WHATSAPP_ENQUIRY_URL =
   "https://wa.me/919789376174?text=" +
@@ -893,6 +896,19 @@ export default function ServicesShowcase() {
       aria-label="Bridal Saree Showcase & Services"
       className="relative z-10 mx-auto w-full max-w-[1320px]"
     >
+      {/* Global Normalized SVG ClipPath for 100% Leak-Free Arch Contouring */}
+      <svg
+        className="absolute w-0 h-0 overflow-hidden pointer-events-none"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <defs>
+          <clipPath id="mughal-arch-clip" clipPathUnits="objectBoundingBox">
+            <path d={MUGHAL_ARCH_CLIP_PATH} />
+          </clipPath>
+        </defs>
+      </svg>
+
       {/* =========================================================================
           FIRST SECTION: Seamless Mughal Arch Colonnade (Enlarged Frame & Gap-0)
           - Frame size increased: fills screen height & max-w-[1320px]
@@ -909,7 +925,7 @@ export default function ServicesShowcase() {
         onMouseLeave={() => {
           isHoveredRef.current = false;
         }}
-        className="relative w-full overflow-hidden rounded-none border border-[#8D6CA3]/30 bg-[#F1EDF7] flex items-center h-[calc(100dvh-112px)] min-h-[490px] max-h-[620px] sm:h-[calc(100dvh-120px)] sm:max-h-[800px] lg:h-[calc(100dvh-152px)]"
+        className="relative w-full overflow-hidden rounded-none border-0 bg-white flex items-center h-[calc(100dvh-112px)] min-h-[490px] max-h-[620px] sm:h-[calc(100dvh-120px)] sm:max-h-[800px] lg:h-[calc(100dvh-152px)]"
       >
         {/* Mobile Swipe Hint Badge */}
         <div className="sm:hidden pointer-events-none absolute top-3 right-3 z-40 flex items-center gap-1.5 rounded-full bg-[#25232A]/75 px-2.5 py-1 text-[10px] font-semibold tracking-wider text-white backdrop-blur-md border border-white/15">
@@ -921,12 +937,12 @@ export default function ServicesShowcase() {
         {/* Viewport Container (Fills the entire showcase frame with zero padding) */} 
         <div
           ref={scrollContainerRef}
-          className="relative w-full h-full overflow-hidden p-0 flex items-center select-none cursor-grab active:cursor-grabbing"
+          className="relative w-full h-full overflow-hidden p-0 flex items-center select-none cursor-grab active:cursor-grabbing bg-white"
         >
           {/* Moving Track: Exactly 9 Services with ZERO gap between cards */}
           <div
             ref={trackRef}
-            className="flex gap-0 items-center will-change-transform h-full"
+            className="flex gap-0 items-center will-change-transform h-full bg-white"
           >
             {SHOWCASE_SERVICES.map((service, index) => {
               const isCurrent = activeIndex === index;
@@ -943,29 +959,35 @@ export default function ServicesShowcase() {
                     if (hasDraggedRef.current) return;
                     handleServiceSelect(service.actionKey);
                   }}
-                  className={`saree-arch-card group relative flex-shrink-0 h-full aspect-[736/1200] overflow-hidden bg-[#F1EDF7] border-r border-[#8D6CA3]/20 last:border-r-0 select-none text-left cursor-pointer transition-all duration-300 ${isCurrent
-                      ? "ring-1 ring-inset ring-[#8D6CA3]/50 shadow-[inset_0_0_40px_rgba(141,108,163,0.15)]"
-                      : "hover:ring-1 hover:ring-inset hover:ring-[#8D6CA3]/30"
-                    }`}
+                  className="saree-arch-card group relative flex-shrink-0 h-full aspect-[736/1200] bg-white select-none text-left cursor-pointer transition-all duration-300 -mr-[1px]"
                 >
-                  {/* Subtle Warm Backdrop behind Model */}
+                  {/* Hardware Mughal Arch Clipper: Eliminates all image & gradient pixels outside the arch silhouette */}
                   <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-gradient-to-b from-[#EDE4F3] via-[#E4D9ED] to-[#D8C8E4]"
-                  />
+                    className="relative h-full w-full overflow-hidden bg-white"
+                    style={{
+                      clipPath: "url(#mughal-arch-clip)",
+                      WebkitClipPath: "url(#mughal-arch-clip)",
+                    }}
+                  >
+                    {/* Subtle Warm Backdrop behind Model */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-b from-[#EDE4F3] via-[#E4D9ED] to-[#D8C8E4]"
+                    />
 
-                  {/* Seamlessly Fitted Service Image inside Mughal Arch Frame */}
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="relative z-10 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-                  />
+                    {/* Seamlessly Fitted Service Image inside Mughal Arch Frame */}
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="relative z-10 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                    />
 
-                  {/* Deep Grounding Scrim Gradient at Base for Text Readability */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-52 sm:h-72 lg:h-84 bg-gradient-to-t from-[#25232A]/96 via-[#25232A]/72 via-45% to-transparent"
-                  />
+                    {/* Deep Grounding Scrim Gradient at Base for Text Readability */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-52 sm:h-72 lg:h-84 bg-gradient-to-t from-[#25232A]/96 via-[#25232A]/72 via-45% to-transparent"
+                    />
+                  </div>
 
                   {/* Decorative Mughal Arch Overlay with Gold Contour & Corner Masks */}
                   <svg
@@ -991,11 +1013,14 @@ export default function ServicesShowcase() {
                       </linearGradient>
                     </defs>
 
-                    {/* Soft Top Corner Masks to Reveal Mughal Arch Silhouette */}
+                    {/* Seamless Overlapping Top Corner Masks (Zero center seams, 10px bleed) */}
                     <path
                       d={MUGHAL_CORNER_MASK_PATH}
-                      fill="#F1EDF7"
-                      fillRule="evenodd"
+                      fill="#FFFFFF"
+                      stroke="#FFFFFF"
+                      strokeWidth="2"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
                       className="transition-colors duration-500"
                     />
 
@@ -1034,7 +1059,7 @@ export default function ServicesShowcase() {
                       <span className={`${interTight.className} text-[10px] sm:text-xs font-bold text-white px-2 sm:px-2.5 py-0.5 rounded-full bg-[#8D6CA3] border border-white/20 shadow-sm backdrop-blur-md`}>
                         {service.number}
                       </span>
-                      <span className="font-sans text-[9px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#EDE4F3] drop-shadow-sm truncate">
+                      <span className={`${interTight.className} text-[9px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#EDE4F3] drop-shadow-sm truncate`}>
                         {service.tag}
                       </span>
                     </div>
@@ -1048,7 +1073,7 @@ export default function ServicesShowcase() {
 
                     {/* Touch to Explore Callout Bar */}
                     <div className="mt-2.5 sm:mt-3.5 flex items-center justify-between pt-2 sm:pt-2.5 border-t border-white/20">
-                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white/90 group-hover:text-[#EDE4F3] flex items-center gap-1 sm:gap-1.5 transition-colors">
+                      <span className={`${interTight.className} text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white/90 group-hover:text-[#EDE4F3] flex items-center gap-1 sm:gap-1.5 transition-colors`}>
                         <span>Touch to Explore</span>
                         <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 stroke-[2.2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </span>
