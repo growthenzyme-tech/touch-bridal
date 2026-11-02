@@ -309,10 +309,11 @@ return (
         <div className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-6">
           {/* LEFT: HEADLINE AND BOOKING */}
           <div className="relative z-10 flex flex-col items-start">
-            <p className="hero-eyebrow mb-6 flex items-center gap-3 text-[9px] font-medium uppercase tracking-[0.22em] text-[#8D6CA3] opacity-0 sm:text-[10px]">
-             
-              Touch Bridal Makeover Studio & Unisex Salon
-            </p>
+            <p
+  className={`${interTight.className} hero-eyebrow mb-4 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] opacity-0 sm:text-xs`}
+>
+  Touch Bridal Makeover Studio & Unisex Salon
+</p>
 
             <h1
               className={`${interTight.className} text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
