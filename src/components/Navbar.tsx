@@ -42,12 +42,22 @@ export default function Navbar() {
   }`}
 >
         {/* NAVBAR MAIN */}
-        <div className="flex items-center justify-between gap-3 px-4 py-1.5 sm:px-6 sm:py-2 lg:px-7 lg:py-2">
+       {/* NAVBAR MAIN */}
+<div className="relative flex items-center justify-between gap-3 overflow-hidden rounded-full px-4 py-1.5 sm:px-6 sm:py-2 lg:px-7 lg:py-2">
+
+  {/* RIGHT LAVENDER SHAPE */}
+ <div
+  aria-hidden="true"
+  className="pointer-events-none absolute right-0 top-0 hidden h-full w-[30%] bg-gradient-to-r from-[#A99AD8] to-[#C2B5E5] md:block"
+  style={{
+    clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0 100%)",
+  }}
+/>
           {/* BRAND */}
           <Link
             href="/"
             onClick={() => setMenuOpen(false)}
-            className="group flex min-w-0 shrink items-center py-0.5 ml-3 sm:ml-5 md:ml-7 lg:ml-8 xl:ml-10"
+            className="group relative z-10 flex min-w-0 shrink items-center py-0.5 ml-3 sm:ml-5 md:ml-7 lg:ml-8 xl:ml-10"
             aria-label="S Touch Bridal Makeover Studio & Unisex Salon"
           >
             <img
@@ -92,9 +102,9 @@ export default function Navbar() {
   href={whatsappLink}
   target="_blank"
   rel="noopener noreferrer"
-  className="group hidden shrink-0 items-center justify-center gap-2 rounded-full border border-black/20 bg-white px-5 py-2.5 text-xs font-semibold tracking-[0.04em] text-black transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99] hover:text-white lg:inline-flex"
+  className="relative z-10 group hidden shrink-0 items-center justify-center gap-2 border border-black/20 bg-white px-5 py-2.5 text-xs font-semibold tracking-[0.04em] text-black transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99] hover:text-white lg:inline-flex"
 >
-  <span>Book an Appointment</span>
+  <span>Book Appointment</span>
 </a>
 
        
