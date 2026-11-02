@@ -34,13 +34,13 @@ export default function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
-      <nav
-        className={`mx-auto w-full max-w-[1500px] rounded-full border transition-all duration-500 ${
-          scrolled
-            ? "border-black/10 bg-white/75 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-2xl"
-            : "border-white/20 bg-white/10 backdrop-blur-md"
-        }`}
-      >
+     <nav
+  className={`mx-auto w-full max-w-[1500px] rounded-full border transition-all duration-500 ${
+    scrolled
+      ? "border-black/10 bg-white/75 shadow-[0_8px_30px_rgba(0,0,0,0.06)] backdrop-blur-2xl"
+      : "border-white/20 bg-white/10 backdrop-blur-md"
+  }`}
+>
         {/* NAVBAR MAIN */}
         <div className="flex items-center justify-between gap-3 px-4 py-1.5 sm:px-6 sm:py-2 lg:px-7 lg:py-2">
           {/* BRAND */}
@@ -97,81 +97,82 @@ export default function Navbar() {
   <span>Book an Appointment</span>
 </a>
 
-          {/* MOBILE MENU BUTTON */}
-          <button
-            type="button"
-            aria-label={
-              menuOpen
-                ? "Close navigation menu"
-                : "Open navigation menu"
-            }
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex h-10 w-10 shrink-0 flex-col items-center justify-center gap-1.5 rounded-full border border-black/15 bg-white/30 transition-colors duration-300 hover:border-[#D77D99]/50 hover:bg-[#D77D99]/10 md:hidden"
-          >
-            <span
-              className={`h-px w-5 bg-black transition-transform duration-300 ${
-                menuOpen ? "translate-y-[4px] rotate-45" : ""
-              }`}
-            />
+       
+{/* MOBILE MENU BUTTON */}
+<button
+  type="button"
+  aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+  aria-expanded={menuOpen}
+  onClick={() => setMenuOpen(!menuOpen)}
+  className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D77D99]/30 bg-[#F1EDF7] transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99]/15 active:scale-95 md:hidden"
+>
+  <span
+    className={`absolute h-[2px] w-5 rounded-full bg-[#8D6CA3] transition-transform duration-300 ease-in-out ${
+      menuOpen ? "rotate-45" : "-translate-y-[4px]"
+    }`}
+  />
 
-            <span
-              className={`h-px w-5 bg-black transition-transform duration-300 ${
-                menuOpen ? "-translate-y-[3px] -rotate-45" : ""
-              }`}
-            />
-          </button>
+  <span
+    className={`absolute h-[2px] w-5 rounded-full bg-[#8D6CA3] transition-transform duration-300 ease-in-out ${
+      menuOpen ? "-rotate-45" : "translate-y-[4px]"
+    }`}
+  />
+</button>
+
         </div>
 
         {/* MOBILE NAVIGATION */}
-        <div
-          className={`grid transition-all duration-500 ease-out md:hidden ${
-            menuOpen
-              ? "grid-rows-[1fr] opacity-100"
-              : "grid-rows-[0fr] opacity-0"
+     
+
+{/* MOBILE NAVIGATION */}
+<div
+  className={`absolute left-3 right-3 top-full mt-3 overflow-hidden rounded-[24px] border border-[#D77D99]/20 bg-white shadow-[0_12px_35px_rgba(0,0,0,0.08)] transition-all duration-300 ease-in-out md:hidden ${
+    menuOpen
+      ? "visible translate-y-0 opacity-100"
+      : "invisible -translate-y-2 opacity-0 pointer-events-none"
+  }`}
+>
+  <div className="px-5 py-5 sm:px-6">
+
+    {/* MOBILE LINKS */}
+    <div className="flex flex-col gap-4">
+      {navLinks.map((link) => (
+        <Link
+          key={link.name}
+          href={link.href}
+          onClick={() => setMenuOpen(false)}
+          className={`text-lg font-medium transition-colors duration-300 ${
+            isActive(link.href)
+              ? "text-[#D77D99]"
+              : "text-black/75 hover:text-[#D77D99]"
           }`}
         >
-          <div className="overflow-hidden">
-            <div className="border-t border-black/10 px-6 pb-6 pt-5">
-              {/* MOBILE LINKS */}
-              <div className="flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className={`text-xl font-medium transition-colors duration-300 ${
-                      isActive(link.href)
-                        ? "text-[#D77D99]"
-                        : "text-black/70 hover:text-[#D77D99]"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
+          {link.name}
+        </Link>
+      ))}
+    </div>
 
-              {/* MOBILE BOOKING BUTTON */}
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMenuOpen(false)}
-                className="group mt-6 flex items-center justify-center gap-2 rounded-full border border-black bg-black px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99]"
-              >
-                <span>Book an Appointment</span>
+    {/* MOBILE BOOKING BUTTON */}
+    <a
+      href={whatsappLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => setMenuOpen(false)}
+      className="group mt-5 flex items-center justify-center gap-2 rounded-full bg-[#D77D99] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
+    >
+      <span>Book an Appointment</span>
 
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  ↗
-                </span>
-              </a>
+    
+    </a>
 
-              <p className="mt-4 text-center text-xs text-black/50">
-                We usually reply within a few hours.
-              </p>
-            </div>
-          </div>
-        </div>
+    {/* MOBILE FOOTER TEXT */}
+    <p className="mt-3 text-center text-xs text-black/50">
+      We usually reply within a few hours.
+    </p>
+
+  </div>
+</div>
+
       </nav>
     </header>
   );
