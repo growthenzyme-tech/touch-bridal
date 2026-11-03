@@ -1064,7 +1064,7 @@ export default function ServicesShowcase() {
 
                     {/* View More Callout Bar */}
                     <div className="mt-2.5 sm:mt-3.5 flex items-center pt-2 sm:pt-2.5 border-t border-white/20">
-                      <span className={`${interTight.className} inline-flex items-center justify-center rounded-none bg-[#8D6CA3] px-3.5 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-[0.14em] text-white shadow-sm transition-colors duration-300 group-hover:bg-[#76558D]`}>
+                      <span className={`${interTight.className} text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white/90 group-hover:text-[#EDE4F3] transition-colors`}>
                         View More
                       </span>
                     </div>
