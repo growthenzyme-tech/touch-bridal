@@ -48,7 +48,7 @@ Message: ${formData.message || "I would like to know more about your services."}
   )}`;
 
   const inputClass =
-    "mt-2 h-11 w-full border border-[#8D6CA3]/25 bg-[#F1EDF7]/50 px-5 text-xs text-[#25232A] outline-none transition placeholder:text-[#817887]/70 focus:border-[#8D6CA3] focus:bg-white";
+    "mt-2 h-11 w-full border border-[#8D6CA3]/25 bg-[#F1EDF7]/50 px-5 text-xs text-[#25232A] outline-none transition placeholder:text-[#817887]/70 focus:border-[#8D6CA3] focus:bg-white rounded-md";
 
   const contactItems = [
     {
@@ -107,7 +107,7 @@ Message: ${formData.message || "I would like to know more about your services."}
                   {...(item.external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="group flex items-center gap-4 bg-white p-4 transition-shadow duration-300 hover:shadow-[0_12px_30px_-20px_rgba(141,108,163,0.7)]"
+                  className="rounded-lg group flex items-center gap-4 bg-white p-4 transition-shadow duration-300 hover:shadow-[0_12px_30px_-20px_rgba(141,108,163,0.7)]"
                 >
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#8D6CA3] text-white transition-colors duration-300 group-hover:bg-[#25232A]">
                     <svg
@@ -150,12 +150,12 @@ Message: ${formData.message || "I would like to know more about your services."}
           </div>
 
           {/* RIGHT: FORM */}
-          <div className=" bg-white p-6 sm:p-8">
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className=" bg-white p-6 sm:p-8 ">
+            <form onSubmit={handleSubmit} className="space-y-4 ">
               <div>
                 <label
                   htmlFor="contact-name"
-                  className="text-xs font-medium text-[#25232A]"
+                  className="text-xs font-medium text-[#25232A] "
                 >
                   Your Name *
                 </label>
@@ -168,6 +168,7 @@ Message: ${formData.message || "I would like to know more about your services."}
                   onChange={handleChange}
                   placeholder="Enter your name"
                   className={inputClass}
+                  
                 />
               </div>
 
