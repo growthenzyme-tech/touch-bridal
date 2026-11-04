@@ -33,7 +33,7 @@ export default function Navbar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-2">
      <nav
   className={`mx-auto w-full max-w-[1500px] rounded-full border transition-all duration-500 ${
     scrolled
