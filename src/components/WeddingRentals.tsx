@@ -56,7 +56,7 @@ export default function WeddingRentals() {
     <>
       <section
         id="wedding-rentals"
-        className="relative overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+        className="relative overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20 -mt-20"
       >
         <div className="mx-auto max-w-[1320px]">
           {/* SECTION INTRO */}
