@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@opentelemetry/api": "^1.9.1",
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
-    "firebase": "^13.1.0",
+    "firebase": "^13.2.0",
+    "firebase-admin": "^14.5.0",
     "gsap": "^3.15.0",
     "lucide-react": "^1.61.0",
     "motion": "^14.6.0",

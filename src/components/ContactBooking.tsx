@@ -23,9 +23,39 @@ export default function ContactBooking() {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
 
+  if (!formData.name.trim() || !formData.phone.trim()) {
+    alert("Please enter your name and contact number.");
+    return;
+  }
+
+  try {
+    // Step 1: Save enquiry to Firestore through the API
+    const response = await fetch("/api/enquiries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: "contact",
+        name: formData.name,
+        phone: formData.phone,
+        message:
+          formData.message ||
+          "I would like to know more about your services.",
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      alert(result.message || "Unable to submit your enquiry.");
+      return;
+    }
+
+    // Step 2: Open WhatsApp after successful Firestore submission
     const message = `
 Hello Touch Bridal!
 
@@ -41,7 +71,19 @@ Message: ${formData.message || "I would like to know more about your services."}
     )}`;
 
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  };
+
+    // Step 3: Reset form
+    setFormData({
+      name: "",
+      phone: "",
+      message: "",
+    });
+
+  } catch (error) {
+    console.error("Contact enquiry error:", error);
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     SALON_LOCATION

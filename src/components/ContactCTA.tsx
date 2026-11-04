@@ -48,22 +48,54 @@ function ContactCTAContent() {
     }
   }, [serviceFromUrl]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 
-    if (selectedServices.length === 0) {
-      alert("Please select at least one service.");
+  event.preventDefault();
+const formElement = event.currentTarget;
+
+  if (selectedServices.length === 0) {
+    alert("Please select at least one service.");
+    return;
+  }
+
+  const formData = new FormData(event.currentTarget);
+
+  const name = String(formData.get("name") || "").trim();
+  const phone = String(formData.get("phone") || "").trim();
+  const service = selectedServices.join(", ");
+  const eventDate = String(formData.get("eventDate") || "").trim();
+  const message = String(formData.get("message") || "").trim();
+
+  if (!name || !phone) {
+    alert("Please enter your name and phone number.");
+    return;
+  }
+
+  try {
+    // Step 1: Save appointment enquiry to Firestore
+    const response = await fetch("/api/enquiries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: "appointment",
+        name,
+        phone,
+        selectedServices,
+        eventDate,
+        message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      alert(result.message || "Unable to submit your appointment enquiry.");
       return;
     }
 
-    const formData = new FormData(event.currentTarget);
-
-    const name = String(formData.get("name") || "").trim();
-    const phone = String(formData.get("phone") || "").trim();
-    const service = selectedServices.join(", ");
-    const eventDate = String(formData.get("eventDate") || "").trim();
-    const message = String(formData.get("message") || "").trim();
-
+    // Step 2: Open WhatsApp after successful save
     const enquiry = [
       "Hello Touch Bridal Makeover Studio & Unisex Salon!",
       "",
@@ -80,7 +112,18 @@ function ContactCTAContent() {
       "_blank",
       "noopener,noreferrer"
     );
-  };
+
+    // alert("Your appointment enquiry has been saved successfully!");
+
+    // Step 3: Reset form
+formElement.reset();
+setSelectedServices([]);
+
+  } catch (error) {
+    console.error("Appointment enquiry error:", error);
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   return (
     <section
@@ -273,9 +316,9 @@ function ContactCTAContent() {
 
               <button
                 type="submit"
-                className="group ml-40 flex w-fit items-center justify-center gap-3 bg-[#8D6CA3] px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors duration-300 hover:bg-[#76568D] sm:text-xs"
+                className="group ml-50 flex w-fit items-center justify-center gap-3 bg-[#8D6CA3] px-6 py-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition-colors duration-300 hover:bg-[#76568D] sm:text-xs"
               >
-                Send Appointment Enquiry
+                Send Enquiry
               </button>
 
               <p className="text-center text-[10px] leading-5 text-[#8A7B95]">

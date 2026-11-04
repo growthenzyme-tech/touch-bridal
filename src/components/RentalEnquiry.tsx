@@ -46,7 +46,8 @@ export default function RentalEnquiry() {
     });
   };
 
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   if (selectedItems.length === 0) {
@@ -54,9 +55,36 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     return;
   }
 
-  const whatsappNumber = "919789376174";
+  setStatus("");
 
-  const enquiry = `
+  try {
+    // Step 1: Save rental enquiry to Firestore
+    const response = await fetch("/api/enquiries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: "rental",
+        name: formData.name,
+        phone: formData.phone,
+        selectedItems,
+        eventDate: formData.eventDate,
+        message: formData.message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      setStatus(result.message || "Unable to submit your rental enquiry.");
+      return;
+    }
+
+    // Step 2: Prepare WhatsApp enquiry
+    const whatsappNumber = "919789376174";
+
+    const enquiry = `
 *Wedding Rental Enquiry*
 
 *Name:* ${formData.name}
@@ -68,14 +96,32 @@ ${selectedItems.map((item) => `• ${item}`).join("\n")}
 
 *Additional Details:*
 ${formData.message || "No additional details provided."}
-  `;
+    `.trim();
 
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    enquiry
-  )}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      enquiry
+    )}`;
 
-  window.open(whatsappUrl, "_blank");
+    // Step 3: Open WhatsApp after successful save
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    // Step 4: Reset form
+    setFormData({
+      name: "",
+      phone: "",
+      eventDate: "",
+      message: "",
+    });
+
+    setSelectedItems([]);
+    setStatus("");
+
+  } catch (error) {
+    console.error("Rental enquiry error:", error);
+    setStatus("Something went wrong. Please try again.");
+  }
 };
+
 
   return (
    <section
