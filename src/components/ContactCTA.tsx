@@ -29,9 +29,11 @@ function ContactCTAContent() {
         setSelectedServices([serviceFromUrl]);
       }
 
-      if (window.location.hash === "#booking" || serviceFromUrl) {
+      if (window.location.hash === "#booking" || window.location.hash === "#booking-form" || serviceFromUrl) {
         const timer = setTimeout(() => {
-          const el = document.getElementById("booking");
+          const isMobile = window.innerWidth < 768;
+          const targetId = isMobile ? "booking-form" : "booking";
+          const el = document.getElementById(targetId) || document.getElementById("booking") || document.getElementById("booking-form");
 
           if (el) {
             el.scrollIntoView({
@@ -83,7 +85,7 @@ function ContactCTAContent() {
   return (
     <section
       id="booking"
-      className={`${interTight.className} -mt-6 px-3 py-6 sm:-mt-8 sm:px-5 sm:py-8 lg:-mt-20 lg:px-8 lg:py-10`}
+      className={`${interTight.className} scroll-mt-24 sm:scroll-mt-28 -mt-6 px-3 py-6 sm:-mt-8 sm:px-5 sm:py-8 lg:-mt-20 lg:px-8 lg:py-10`}
     >
       <div className="mx-auto w-full max-w-[1320px]">
         <div className="grid overflow-hidden border-0 bg-white md:grid-cols-2">
@@ -153,7 +155,7 @@ function ContactCTAContent() {
 
           {/* RIGHT: BOOKING FORM PANEL */}
 
-          <div className="flex flex-col justify-center bg-white px-5 py-9 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+          <div id="booking-form" className="scroll-mt-24 sm:scroll-mt-28 flex flex-col justify-center bg-white px-5 py-9 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
             <div>
             <p
   className={`${interTight.className} services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs`}

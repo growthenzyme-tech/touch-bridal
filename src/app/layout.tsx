@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { Inter_Tight } from "next/font/google";
 
 const interTight = Inter_Tight({
@@ -27,8 +28,8 @@ export default function RootLayout({
       <body className={`${interTight.className} flex min-h-full flex-col`}>
         <Navbar />
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   );
 }
-

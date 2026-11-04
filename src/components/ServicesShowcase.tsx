@@ -1062,10 +1062,10 @@ export default function ServicesShowcase() {
                       {renderCardTitle(service.title)}
                     </h3>
 
-                    {/* Touch to Explore Callout Bar */}
+                    {/* View More Callout Bar */}
                     <div className="mt-2.5 sm:mt-3.5 flex items-center pt-2 sm:pt-2.5 border-t border-white/20">
                       <span className={`${interTight.className} text-[10px] sm:text-xs font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white/90 group-hover:text-[#EDE4F3] transition-colors`}>
-                        Touch to Explore
+                        View More
                       </span>
                     </div>
                   </div>
