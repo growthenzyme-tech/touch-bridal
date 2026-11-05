@@ -145,6 +145,8 @@ export default function FeaturedServices() {
     };
   }, [updateScrollButtons]);
 
+
+
   const scrollServices = (direction: "left" | "right") => {
     const carousel = carouselRef.current;
 
@@ -163,6 +165,147 @@ export default function FeaturedServices() {
       behavior: "smooth",
     });
   };
+
+  
+// Mobile-only automatic service carousel
+
+
+  // Mobile-only automatic service carousel
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const mobileQuery = window.matchMedia("(max-width: 639px)");
+
+    let masterTimeline: gsap.core.Timeline | null = null;
+    let resumeTimeout: ReturnType<typeof setTimeout> | undefined;
+    let isInteracting = false;
+
+    const clearResumeTimeout = () => {
+      if (resumeTimeout) {
+        clearTimeout(resumeTimeout);
+        resumeTimeout = undefined;
+      }
+    };
+
+    const createSlider = () => {
+      masterTimeline?.kill();
+      masterTimeline = null;
+
+      if (!mobileQuery.matches || isInteracting) return;
+
+      const cards = gsap.utils.toArray<HTMLElement>(
+        "[data-service-card]",
+        carousel
+      );
+
+      if (!cards.length) return;
+
+      const timeline = gsap.timeline({
+        repeat: -1,
+      });
+
+      masterTimeline = timeline;
+
+      cards.forEach((card) => {
+        const nextCard = card.nextElementSibling as HTMLElement | null;
+
+        if (!nextCard) return;
+
+        timeline.to(carousel, {
+          scrollLeft: nextCard.offsetLeft - cards[0].offsetLeft,
+          duration: 2,
+          ease: "power2.inOut",
+        });
+      });
+
+      // Smoothly return to the first card
+      timeline.to(carousel, {
+        scrollLeft: 0,
+        duration: 2,
+        ease: "power2.inOut",
+      });
+    };
+
+    // Pause when the user interacts
+    const pauseSlider = () => {
+      if (!mobileQuery.matches) return;
+
+      isInteracting = true;
+      clearResumeTimeout();
+      masterTimeline?.pause();
+    };
+
+    // Resume 3 seconds after interaction ends
+    const resumeSlider = () => {
+      if (!mobileQuery.matches) return;
+
+      clearResumeTimeout();
+
+      resumeTimeout = setTimeout(() => {
+        isInteracting = false;
+
+        if (masterTimeline) {
+          masterTimeline.resume();
+        } else {
+          createSlider();
+        }
+      }, 3000);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        masterTimeline?.pause();
+      } else if (!isInteracting && mobileQuery.matches) {
+        masterTimeline?.resume();
+      }
+    };
+
+    // Touch interactions
+    carousel.addEventListener("touchstart", pauseSlider, {
+      passive: true,
+    });
+
+    carousel.addEventListener("touchend", resumeSlider);
+    carousel.addEventListener("touchcancel", resumeSlider);
+
+    // Pointer interactions: click, drag and hover
+    carousel.addEventListener("pointerdown", pauseSlider);
+    carousel.addEventListener("pointerup", resumeSlider);
+    carousel.addEventListener("pointercancel", resumeSlider);
+    carousel.addEventListener("pointerenter", pauseSlider);
+    carousel.addEventListener("pointerleave", resumeSlider);
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    mobileQuery.addEventListener("change", createSlider);
+
+    createSlider();
+
+    return () => {
+      masterTimeline?.kill();
+      clearResumeTimeout();
+
+      carousel.removeEventListener("touchstart", pauseSlider);
+      carousel.removeEventListener("touchend", resumeSlider);
+      carousel.removeEventListener("touchcancel", resumeSlider);
+
+      carousel.removeEventListener("pointerdown", pauseSlider);
+      carousel.removeEventListener("pointerup", resumeSlider);
+      carousel.removeEventListener("pointercancel", resumeSlider);
+      carousel.removeEventListener("pointerenter", pauseSlider);
+      carousel.removeEventListener("pointerleave", resumeSlider);
+
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange
+      );
+
+      mobileQuery.removeEventListener("change", createSlider);
+    };
+  }, []);
+
+
+
 
   useGSAP(
     () => {
@@ -374,7 +517,7 @@ return (
               onClick={() => scrollServices("left")}
               disabled={!canScrollLeft}
               aria-label="Scroll to previous services"
-              className={`absolute left-0 top-[40%] z-20 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#dcd2e9] bg-white text-lg text-[#9675ba] shadow-md transition-all duration-300 hover:bg-[#9675ba] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9675ba] ${
+              className={`absolute left-0 top-[40%] z-20 hidden sm:flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#dcd2e9] bg-white text-lg text-[#9675ba] shadow-md transition-all duration-300 hover:bg-[#9675ba] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9675ba] ${
                 canScrollLeft
                   ? "pointer-events-auto scale-100 opacity-100"
                   : "pointer-events-none scale-90 opacity-0"
@@ -389,7 +532,7 @@ return (
               onClick={() => scrollServices("right")}
               disabled={!canScrollRight}
               aria-label="Scroll to next services"
-              className={`absolute right-0 top-[40%] z-20 flex h-11 w-11 translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#dcd2e9] bg-white text-lg text-[#9675ba] shadow-md transition-all duration-300 hover:bg-[#9675ba] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9675ba] ${
+              className={`absolute right-0 top-[40%] z-20 hidden sm:flex h-11 w-11 translate-x-1/2 -translate-y-1/2 items-center justify-center border border-[#dcd2e9] bg-white text-lg text-[#9675ba] shadow-md transition-all duration-300 hover:bg-[#9675ba] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9675ba] ${
                 canScrollRight
                   ? "pointer-events-auto scale-100 opacity-100"
                   : "pointer-events-none scale-90 opacity-0"
