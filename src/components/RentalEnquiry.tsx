@@ -16,6 +16,12 @@ const rentalItems = [
   "Wedding Crown",
 ];
 
+type ApiResponse = {
+  success: boolean;
+  message?: string;
+  enquiryId?: string;
+};
+
 export default function RentalEnquiry() {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [formData, setFormData] = useState({
@@ -47,6 +53,7 @@ export default function RentalEnquiry() {
   };
 
 
+
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
@@ -74,14 +81,25 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       }),
     });
 
-    const result = await response.json();
+    // Step 2: Read response safely
+    const responseText = await response.text();
+
+    let result: ApiResponse;
+
+    try {
+      result = JSON.parse(responseText) as ApiResponse;
+    } catch {
+      console.error("Invalid API response:", responseText);
+      setStatus("Server error. Please try again later.");
+      return;
+    }
 
     if (!response.ok || !result.success) {
       setStatus(result.message || "Unable to submit your rental enquiry.");
       return;
     }
 
-    // Step 2: Prepare WhatsApp enquiry
+    // Step 3: Prepare WhatsApp enquiry
     const whatsappNumber = "919789376174";
 
     const enquiry = `
@@ -102,10 +120,10 @@ ${formData.message || "No additional details provided."}
       enquiry
     )}`;
 
-    // Step 3: Open WhatsApp after successful save
+    // Step 4: Open WhatsApp after successful save
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
-    // Step 4: Reset form
+    // Step 5: Reset form
     setFormData({
       name: "",
       phone: "",
@@ -121,6 +139,7 @@ ${formData.message || "No additional details provided."}
     setStatus("Something went wrong. Please try again.");
   }
 };
+
 
 
   return (

@@ -3,6 +3,11 @@
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "919789376174";
+type ApiResponse = {
+  success: boolean;
+  message?: string;
+  enquiryId?: string;
+};
 
 // Replace this with your salon's exact address.
 const SALON_LOCATION = "Touch Bridal Makeover Studio, Kerala";
@@ -23,6 +28,7 @@ export default function ContactBooking() {
     }));
   };
 
+
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
@@ -32,7 +38,6 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
   }
 
   try {
-    // Step 1: Save enquiry to Firestore through the API
     const response = await fetch("/api/enquiries", {
       method: "POST",
       headers: {
@@ -48,14 +53,25 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       }),
     });
 
-    const result = await response.json();
+    // Read API response safely
+    const responseText = await response.text();
+
+    let result: ApiResponse;
+
+    try {
+      result = JSON.parse(responseText) as ApiResponse;
+    } catch {
+      console.error("Invalid API response:", responseText);
+      alert("Server error. Please try again later.");
+      return;
+    }
 
     if (!response.ok || !result.success) {
       alert(result.message || "Unable to submit your enquiry.");
       return;
     }
 
-    // Step 2: Open WhatsApp after successful Firestore submission
+    // Open WhatsApp after successful Firestore submission
     const message = `
 Hello Touch Bridal!
 
@@ -72,7 +88,7 @@ Message: ${formData.message || "I would like to know more about your services."}
 
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
-    // Step 3: Reset form
+    // Reset form
     setFormData({
       name: "",
       phone: "",
@@ -84,6 +100,7 @@ Message: ${formData.message || "I would like to know more about your services."}
     alert("Something went wrong. Please try again.");
   }
 };
+
 
   const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     SALON_LOCATION

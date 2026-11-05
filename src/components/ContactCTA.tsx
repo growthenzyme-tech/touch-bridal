@@ -16,6 +16,11 @@ const interTight = Inter_Tight({
 
 const whatsappNumber = "919789376174";
 const phoneNumber = "+919789376174";
+type ApiResponse = {
+  success: boolean;
+  message?: string;
+  enquiryId?: string;
+};
 
 function ContactCTAContent() {
   const searchParams = useSearchParams();
@@ -88,12 +93,24 @@ const formElement = event.currentTarget;
       }),
     });
 
-    const result = await response.json();
+ 
+const responseText = await response.text();
 
-    if (!response.ok || !result.success) {
-      alert(result.message || "Unable to submit your appointment enquiry.");
-      return;
-    }
+let result: ApiResponse;
+
+try {
+  result = JSON.parse(responseText) as ApiResponse;
+} catch {
+  console.error("Invalid API response:", responseText);
+  alert("Server error. Please try again later.");
+  return;
+}
+
+if (!response.ok || !result.success) {
+  alert(result.message || "Unable to submit your appointment enquiry.");
+  return;
+}
+
 
     // Step 2: Open WhatsApp after successful save
     const enquiry = [
