@@ -42,10 +42,11 @@ const bridalImages = [
 ];
 
 const paragraphText =
-  "From bridal makeovers to everyday beauty and grooming, we make every occasion special.";
+  "Discover professional bridal makeup, unisex salon services, wedding rental collections and creative nail art at Touch Bridal Makeover Studio & Unisex Salon. Your destination for beauty, grooming and wedding styling.";
 
 // TODO: replace these placeholder details with your real information.
 const happyCount = "500+";
+
 const trustPoints = [
   { title: "Free Consultation", detail: "before your big day" },
   { title: "Premium Products", detail: "skin-safe & long lasting" },
@@ -57,11 +58,33 @@ const navLinks = [
   { name: "Bridal Gallery", href: "/bridal-gallery", chevron: false },
 ];
 
+// const services = [
+//   { number: "01", title: "Bridal Makeup", detail: "Your signature look" },
+//   { number: "02", title: "Hair Styling", detail: "Beautifully finished" },
+//   { number: "03", title: "Beauty Services", detail: "Care made personal" },
+//   { number: "04", title: "Bridal Gallery", detail: "Explore our work" },
+// ];
 const services = [
-  { number: "01", title: "Bridal Makeup", detail: "Your signature look" },
-  { number: "02", title: "Hair Styling", detail: "Beautifully finished" },
-  { number: "03", title: "Beauty Services", detail: "Care made personal" },
-  { number: "04", title: "Bridal Gallery", detail: "Explore our work" },
+  {
+    number: "01",
+    title: "Unisex Salon",
+    detail: "Beauty & Grooming",
+  },
+  {
+    number: "02",
+    title: "Bridal Makeover Studio",
+    detail: "Your perfect bridal look",
+  },
+  {
+    number: "03",
+    title: "Wedding Rentals",
+    detail: "Exclusive wedding collections",
+  },
+  {
+    number: "04",
+    title: "Nail Arts",
+    detail: "Creative nail designs",
+  },
 ];
 
 /* ---------- Small inline icons ---------- */
@@ -146,6 +169,7 @@ function SparkIcon({ className }: IconProps) {
 export default function BridalHero() {
   const heroRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const servicesTrackRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(0);
 
@@ -293,6 +317,34 @@ useGSAP(
     encodeURIComponent(
       "Hi, I would like to enquire about bridal makeup and salon appointments.",
     );
+
+
+
+    
+  // Continuous right-to-left services marquee
+  useGSAP(
+    () => {
+      const track = servicesTrackRef.current;
+      if (!track) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const animation = gsap.to(track, {
+          xPercent: -50,
+          duration: 24,
+          ease: "none",
+          repeat: -1,
+        });
+
+        return () => animation.kill();
+      });
+
+      return () => mm.revert();
+    },
+    { scope: contentRef }
+  );
+
 
 return (
   <section
@@ -514,29 +566,86 @@ return (
         </div>
 
         {/* SERVICES STRIP */}
-        <div className="mt-10 rounded-2xl border border-[#8D6CA3]/15 bg-white/60 px-5 py-5 sm:mt-12 sm:px-7">
-          <div className="grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-4">
-            {services.map((item) => (
-              <div key={item.number} className="flex gap-3">
-                <span
-                  className={`${interTight.className} pt-0.5 text-sm text-[#8D6CA3]`}
-                >
-                  {item.number}
-                </span>
+        
+  {/* CONTINUOUS SERVICES MARQUEE */}
+  <div className="mt-10 overflow-hidden rounded-2xl border border-[#8D6CA3]/15 bg-white/60 py-5 sm:mt-12 sm:py-6">
 
-                <div>
-                  <p className="text-xs font-semibold text-[#25232A] sm:text-sm">
-                    {item.title}
-                  </p>
+    <div
+      ref={servicesTrackRef}
+      className="flex w-max will-change-transform"
+    >
 
-                  <p className="mt-1 text-[10px] text-[#817887] sm:text-xs">
-                    {item.detail}
-                  </p>
-                </div>
-              </div>
-            ))}
+      {/* FIRST SERVICES GROUP */}
+      <div className="flex shrink-0 items-center gap-10 px-5 sm:gap-16 sm:px-8 lg:gap-20">
+
+        {services.map((item) => (
+          <div
+            key={item.number}
+            className="flex shrink-0 items-center gap-3"
+          >
+            {/* <span
+              className={`${interTight.className} text-sm font-semibold text-[#8D6CA3]`}
+            >
+              {item.number}
+            </span> */}
+
+            <div className="min-w-max">
+              <p className="text-xs font-semibold text-[#25232A] sm:text-sm">
+                {item.title}
+              </p>
+
+              <p className="mt-1 text-[10px] text-[#817887] sm:text-xs">
+                {item.detail}
+              </p>
+            </div>
+
+            <span
+              aria-hidden="true"
+              className="ml-5 h-2 w-2 rounded-full bg-[#8D6CA3]/50 sm:ml-8"
+            />
           </div>
-        </div>
+        ))}
+
+      </div>
+
+      {/* DUPLICATE GROUP FOR SEAMLESS LOOP */}
+      <div
+        aria-hidden="true"
+        className="flex shrink-0 items-center gap-10 px-5 sm:gap-16 sm:px-8 lg:gap-20"
+      >
+
+        {services.map((item) => (
+          <div
+            key={`duplicate-${item.number}`}
+            className="flex shrink-0 items-center gap-3"
+          >
+            {/* <span
+              className={`${interTight.className} text-sm font-semibold text-[#8D6CA3]`}
+            >
+              {item.number}
+            </span> */}
+
+            <div className="min-w-max">
+              <p className="text-xs font-semibold text-[#25232A] sm:text-sm">
+                {item.title}
+              </p>
+
+              <p className="mt-1 text-[10px] text-[#817887] sm:text-xs">
+                {item.detail}
+              </p>
+            </div>
+
+            <span
+              className="ml-5 h-2 w-2 rounded-full bg-[#8D6CA3]/50 sm:ml-8"
+            />
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  </div>
+
 
         {/* FOOTER NOTE */}
       </div>
