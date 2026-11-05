@@ -1,7 +1,6 @@
 
 import { NextRequest, NextResponse } from "next/server";
-import { FieldValue } from "firebase-admin/firestore";
-import { adminDb } from "@/lib/firebase-admin";
+import { createFirestoreDocument } from "@/lib/firebase-rest";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -174,18 +173,16 @@ export async function POST(request: NextRequest) {
       };
     }
 
-    const docRef = await adminDb
-      .collection(collectionName)
-      .add({
-        ...documentData,
-        createdAt: FieldValue.serverTimestamp(),
-      });
+ const enquiryId = await createFirestoreDocument(collectionName, {
+  ...documentData,
+  createdAt: new Date().toISOString(),
+});
 
     return NextResponse.json(
       {
         success: true,
         message: "Your enquiry has been saved successfully.",
-        enquiryId: docRef.id,
+      enquiryId,
       },
       { status: 201 }
     );

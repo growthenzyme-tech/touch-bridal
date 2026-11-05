@@ -1,25 +1,24 @@
 import { NextResponse } from "next/server";
-import { adminDb } from "@/lib/firebase-admin";
+import { testFirestoreConnection } from "@/lib/firebase-rest";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    await adminDb.listCollections();
+    await testFirestoreConnection();
 
     return NextResponse.json({
       success: true,
-      message: "Firebase Admin connected successfully!",
-      database: "Cloud Firestore",
+      message: "Firestore REST connection successful.",
     });
   } catch (error) {
-    console.error("Firebase connection error:", error);
+    console.error("Firestore test error:", error);
 
     return NextResponse.json(
       {
         success: false,
-        message: "Firebase connection failed.",
+        message: "Firestore connection failed.",
       },
       { status: 500 }
     );
