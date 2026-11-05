@@ -484,20 +484,19 @@ return (
   Discover Our Services
 </p>
 
-      <h2
+   <h2
   id="featured-services-heading"
   className={`${interTight.className} services-intro-item max-w-sm text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold leading-[1] tracking-[-0.02em] text-[#25232A]`}
 >
-  Beauty for your most{" "}
+  BRIDAL MAKEUP &{" "}
   <span className="text-[#8D6CA3]">
-    special moments.
+    BEAUTY SERVICES.
   </span>
 </h2>
 
-          <p className="services-intro-item mt-5 max-w-sm text-sm leading-7 text-[#77737f] sm:text-[15px]">
-            From bridal makeovers to everyday beauty care, discover services
-            designed around you.
-          </p>
+         <p className="services-intro-item mt-5 max-w-sm text-sm leading-7 text-[#77737f] sm:text-[15px]">
+  Discover professional bridal makeup, hair styling and beauty services for men and women at Touch Bridal Makeover Studio & Unisex Salon in Nagercoil.
+</p>
 
           <Link
             href="/services"
