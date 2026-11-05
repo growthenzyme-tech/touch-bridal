@@ -1,13 +1,19 @@
 "use client";
 
 import { useState } from "react";
-
+import { Inter_Tight } from "next/font/google";
 const WHATSAPP_NUMBER = "919789376174";
 type ApiResponse = {
   success: boolean;
   message?: string;
   enquiryId?: string;
 };
+
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
 
 // Replace this with your salon's exact address.
 const SALON_LOCATION = "Touch Bridal Makeover Studio, Kerala";
@@ -154,9 +160,11 @@ Message: ${formData.message || "I would like to know more about your services."}
         <div className="grid gap-6  bg-[#F1EDF7] p-5 sm:p-8 lg:grid-cols-2 lg:gap-8 lg:p-10">
           {/* LEFT: CONTACT INFORMATION + MAP */}
           <div className="flex flex-col">
-            <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#25232A] sm:text-4xl">
-              Contact <span className="text-[#8D6CA3]">Us</span>
-            </h2>
+           <h2
+  className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+>
+  Contact <span className="text-[#8D6CA3]">Us</span>
+</h2>
 
             <div className="mt-6 grid gap-3">
               {contactItems.map((item) => (
