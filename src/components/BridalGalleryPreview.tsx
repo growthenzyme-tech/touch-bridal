@@ -121,30 +121,29 @@ return (
            <span
   className={`${interTight.className} mb-4 ml-2 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675BA] sm:text-xs`}
 >
-  OUR BRIDAL GALLERY
+  BRIDAL MAKEUP GALLERY
 </span>
 
           <h2
   className={`${interTight.className} max-w-[520px] text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
 >
   <span className="block">
-    Every bride,
+   Bridal Looks,
   </span>
 
   <span className="block text-[#8D6CA3]">
-    beautifully unique.
+    Beautifully Captured.
   </span>
 </h2>
-            <p className="mt-5 max-w-[430px] text-sm leading-7 text-[#786354] sm:text-base">
-              Explore our bridal makeup and styling looks, thoughtfully
-              created to celebrate your most special moments.
-            </p>
-
+            <p className="mt-5 max-w-[430px] text-sm leading-7 text-[#817887] sm:text-base">
+  Explore our bridal makeup portfolio, featuring timeless
+  traditional looks and elegant contemporary transformations.
+</p>
             <Link
               href="/bridal-gallery"
               className="mt-8 inline-flex items-center gap-3 bg-[#8D6CA3] px-6 py-3.5 text-xs font-semibold tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#2d1b13]"
             >
-              EXPLORE BRIDAL GALLERY
+              VIEW BRIDAL COLLECTION
             </Link>
           </div>
 

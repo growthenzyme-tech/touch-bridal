@@ -125,11 +125,12 @@ export default function EditorialServicesMosaic() {
           >
             SERVICES &amp; EXPERTISE
           </motion.p>
-
-          <h2 className="max-w-4xl text-[clamp(2.3rem,4.8vw,4.5rem)] font-extrabold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]">
-            ONE SIGNATURE <span className="text-[#8D6CA3]">TOUCH.</span>
-          </h2>
-
+<h2
+  className={`${interTight.className} max-w-4xl text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+>
+  ONE SIGNATURE{" "}
+  <span className="text-[#8D6CA3]">TOUCH.</span>
+</h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-[#716B76] sm:text-[15px]">
             Experience bespoke bridal transformations, luxury unisex salon care,
             exclusive wedding rentals, and statement nail artistry.
