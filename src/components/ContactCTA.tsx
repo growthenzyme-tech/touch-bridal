@@ -169,15 +169,19 @@ setSelectedServices([]);
             </div>
 
             {/* Main message */}
-            <div className="relative z-10 mt-16 max-w-md">
+            <div className="relative z-10 mt-10 max-w-lg">
 
               <h2
-                className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-white`}
-              >
-                Your beauty.
-                <br />
-                Your moment.
-              </h2>
+  className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-white`}
+>
+  Bridal & Groom
+  <br />
+  Makeovers in
+  <br />
+  <span className="text-[#E5D8EF]">
+    Nagercoil.
+  </span>
+</h2>
 
               <p className="mt-5 max-w-sm text-xs leading-7 text-white/85 sm:text-sm">
                 Tell us about your special occasion. Let's create a look that

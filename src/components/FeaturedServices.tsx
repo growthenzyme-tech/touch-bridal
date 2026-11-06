@@ -481,7 +481,7 @@ return (
           className="flex min-w-0 flex-col items-start justify-center"
         >
         <p className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase leading-6 tracking-[0.24em] text-[#9675ba] sm:text-xs">
-  Discover Our Services
+  OUR SERVICES
 </p>
 
    <h2
