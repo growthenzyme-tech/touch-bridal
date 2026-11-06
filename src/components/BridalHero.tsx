@@ -368,18 +368,18 @@ return (
 </p>
 
             <h1
-              className={`${interTight.className} text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+              className={`${interTight.className} text-[clamp(2.15rem,4.5vw,4.3rem)] font-bold uppercase leading-[1.03] tracking-[-0.02em] text-[#25232A]`}
             >
               <span className="hero-line block opacity-0">
                 Your Dream Bridal
               </span>
 
               <span className="hero-line block opacity-0">
-                Look, Beautifully
+                &amp; Groom Look,
               </span>
 
               <span className="hero-line block text-[#8D6CA3] opacity-0">
-                Brought to Life.
+                Beautifully Brought to Life.
               </span>
             </h1>
 

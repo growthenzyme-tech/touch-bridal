@@ -1,4 +1,5 @@
 import BridalHero from "@/components/BridalHero";
+import EditorialServicesMosaic from "@/components/EditorialServicesMosaic";
 import AboutUs from "@/components/AboutUs";
 import FeaturedServices from "@/components/FeaturedServices";
 import BridalGalleryPreview from "@/components/BridalGalleryPreview";
@@ -19,6 +20,7 @@ export default function HomePage() {
   return (
    <main className="min-h-screen bg-white text-[#302832]">
       <BridalHero />
+      <EditorialServicesMosaic />
       <AboutUs />
       <FeaturedServices />
       <BridalGalleryPreview/>
