@@ -163,7 +163,7 @@ export default function CustomerTestimonials() {
         <div className="overflow-hidden bg-white px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-14">
           <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[0.78fr_1.6fr] lg:gap-6">
             {/* LEFT: PURPLE INTRO PANEL (fills the height of the reviews) */}
-           <div className="testimonial-reveal relative flex min-h-[440px] flex-col justify-between gap-6 overflow-hidden bg-[#8D6CA3] p-6 text-white sm:min-h-[480px] sm:gap-8 sm:p-7 lg:min-h-[520px] lg:p-8">
+           <div className="testimonial-reveal relative flex min-h-[400px] flex-col justify-between gap-5 overflow-hidden bg-[#8D6CA3] p-6 text-white sm:min-h-[440px] sm:gap-6 sm:p-7 lg:min-h-[529px] lg:p-8">
               {/* Decorative quote mark */}
               <span
                 aria-hidden="true"
@@ -220,7 +220,7 @@ export default function CustomerTestimonials() {
 
             {/* RIGHT: REVIEWS (two per row, the last one centred) */}
             {/* RIGHT: REVIEWS — 2 × 2 GRID */}
-<div className="grid grid-cols-1 content-start gap-5 sm:grid-cols-2">
+<div className="grid grid-cols-1 content-start gap-x-7 gap-y-7 sm:mt-1 sm:grid-cols-2 lg:mt-1.5">
   {reviews.slice(0, 4).map((review) => (
     <div
       key={review.id}

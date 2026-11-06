@@ -78,7 +78,7 @@ export default function Navbar() {
   }, [pathname, scrollToBooking]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-2">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-0 sm:px-6 sm:pt-0">
      <nav
   className={`mx-auto w-full max-w-[1500px] rounded-full border transition-all duration-500 ${
     scrolled
@@ -158,7 +158,7 @@ export default function Navbar() {
   aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
   aria-expanded={menuOpen}
   onClick={() => setMenuOpen(!menuOpen)}
-  className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#D77D99]/30 bg-[#F1EDF7] transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99]/15 active:scale-95 md:hidden"
+  className="relative flex h-10 w-11 shrink-0 items-center justify-center rounded-full border border-[#D77D99]/30 bg-[#F1EDF7] transition-all duration-300 hover:border-[#D77D99] hover:bg-[#D77D99]/15 active:scale-95 md:hidden"
 >
   <span
     className={`absolute h-[2px] w-5 rounded-full bg-[#8D6CA3] transition-transform duration-300 ease-in-out ${
