@@ -44,11 +44,6 @@ const bridalImages = [
     alt: "Touch Bridal creative nail art and extensions",
     label: "Nail Artistry",
   },
-  {
-    src: "/nailart/nail.webp",
-    alt: "Creative nail art designs",
-    label: "Nail Art",
-  },
 ];
 
 const paragraphText =
