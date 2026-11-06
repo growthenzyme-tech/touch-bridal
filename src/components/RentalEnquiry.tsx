@@ -376,12 +376,11 @@ ${formData.message || "No additional details provided."}
 
               {/* SUBMIT */}
               <button
-                type="submit"
-                className=" ml-80 flex min-h-12 w-fill items-center justify-center gap-3 bg-[#25232A] px-6 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#8D6CA3]"
-              >
-                Submit
-              
-              </button>
+  type="submit"
+  className="ml-80 flex min-h-12 items-center justify-center gap-2.5 border border-[#8D6CA3]/30 bg-[#8D6CA3] px-6 text-xs font-semibold tracking-[0.04em] text-white shadow-[0_8px_24px_rgba(141,108,163,0.22)] transition-all duration-500 hover:-translate-y-1 hover:bg-[#76558D] hover:shadow-[0_12px_30px_rgba(141,108,163,0.3)]"
+>
+  Submit
+</button>
 
               {/* STATUS */}
               {status && (

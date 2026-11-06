@@ -56,11 +56,11 @@ export default function WeddingRentals() {
     <>
       <section
         id="wedding-rentals"
-        className="relative overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20 -mt-20"
+        className="relative overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20 -mt-10"
       >
-        <div className="mx-auto max-w-[1320px]">
+        <div className="mx-auto max-w-[1320px] -mt-6">
           {/* SECTION INTRO */}
-          <div className="flex flex-col items-center text-center">
+          <div className="relative -top-4 flex flex-col items-center text-center">
             <span className="inline-flex bg-[#F1EDF7] px-3 py-1 text-[9px] font-medium uppercase tracking-[0.15em] text-[#8D6CA3]">
               The Wedding Collection
             </span>
@@ -168,7 +168,7 @@ export default function WeddingRentals() {
             </div>
 
             {/* CAROUSEL ARROWS */}
-            <div className="mt-4 flex items-center justify-center gap-3">
+            <div className="mt-0 flex items-center justify-center gap-3">
               <button
                 type="button"
                 onClick={() => go(-1)}

@@ -153,7 +153,7 @@ Message: ${formData.message || "I would like to know more about your services."}
 
   return (
     <section
-      id="contact"
+       id="booking-form"
       className="bg-white px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
     >
       <div className="mx-auto max-w-[1320px]">
@@ -279,7 +279,7 @@ Message: ${formData.message || "I would like to know more about your services."}
 
              <button
   type="submit"
-  className="flex min-h-12 w-fill items-center justify-center gap-3 bg-[#25232A] px-6 text-xs font-semibold text-white transition-colors duration-300 hover:bg-[#8D6CA3]"
+  className="flex min-h-12 w-fill items-center justify-center gap-3 bg-[#8D6CA3] px-6 text-xs font-semibold text-white transition-colors duration-300 hover:bg-[#76558D]"
 >
   Send Enquiry
 </button>

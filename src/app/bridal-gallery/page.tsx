@@ -126,44 +126,50 @@ export default function BridalGalleryPage() {
             </div>
 
             {/* CENTER HERO CONTENT */}
-            <div className="relative z-10 mx-auto flex max-w-[600px] flex-col items-center text-center">
+            <div className="relative z-10 mx-auto flex max-w-[700px] flex-col items-center text-center">
 
               {/* Eyebrow */}
              <span
   className={`${interTight.className} services-intro-item mb-4 ml-2 flex items-center gap-3 bg-[#F1EDF7] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs`}
 >
-  The Bridal Collection
+  BRIDAL MAKEUP COLLECTION
 </span>
               {/* Heading */}
-            <h1
+<h1
   className={`${interTight.className} mt-4 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
 >
-  Bridal Looks That
+  Professional Bridal
   <span className="block text-[#8D6CA3]">
-    Celebrate You
+    Makeup & Styling
   </span>
 </h1>
 
               {/* Description */}
               <p className="mt-3 max-w-[500px] text-xs leading-6 text-[#817887] sm:text-sm sm:leading-7">
 
-                Discover beautiful bridal makeovers, elegant reception
-                looks, and timeless transformations created for your
-                most special moments.
+               Explore our wedding, reception and engagement makeup
+  looks, along with beautiful transformations for every
+  special occasion.
 
               </p>
 
               {/* Buttons */}
               <div className="mt-5 flex flex-wrap justify-center gap-3">
 
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-10 items-center justify-center  bg-[#25232A] px-6 text-[10px] font-semibold tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#8D6CA3] sm:text-xs"
-                >
-                  Bridal Enquiry
-                </a>
+            <a
+  href="#booking"
+  onClick={(e) => {
+    e.preventDefault();
+
+    document.getElementById("booking-form")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+  className="group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/30 bg-[#8D6CA3] px-7 text-xs font-semibold tracking-[0.04em] text-white shadow-[0_8px_24px_rgba(141,108,163,0.22)] transition-all duration-500 hover:-translate-y-1 hover:bg-[#76558D] hover:shadow-[0_12px_30px_rgba(141,108,163,0.3)]"
+>
+  <span className="relative">Bridal Enquiry</span>
+</a>
 
                 <Link
                   href="#bridal-looks"
