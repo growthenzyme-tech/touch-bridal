@@ -42,7 +42,7 @@ const bridalImages = [
 ];
 
 const paragraphText =
-  "Discover professional bridal makeup, unisex salon services, wedding rental collections and creative nail art at Touch Bridal Makeover Studio & Unisex Salon. Your destination for beauty, grooming and wedding styling.";
+  "Discover professional bridal makeup, groom makeover styling, unisex salon services, wedding rental collections and creative nail art at Touch Bridal Makeover Studio & Unisex Salon. Your destination for beauty, grooming and wedding styling.";
 
 // TODO: replace these placeholder details with your real information.
 const happyCount = "500+";
@@ -395,11 +395,6 @@ return (
                 rel="noopener noreferrer"
                 className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/30 bg-[#8D6CA3] px-7 text-xs font-semibold tracking-[0.04em] text-white shadow-[0_8px_24px_rgba(141,108,163,0.22)] transition-all duration-500 hover:-translate-y-1 hover:bg-[#76558D] hover:shadow-[0_12px_30px_rgba(141,108,163,0.3)]"
               >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-gradient-to-b from-white/15 via-transparent to-black/10"
-                />
-
                 <span className="relative">
                   Book an Appointment
                 </span>
@@ -410,11 +405,6 @@ return (
                 href="/bridal-gallery"
                 className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/25 bg-white/75 px-7 text-xs font-semibold tracking-[0.04em] text-[#25232A] shadow-[0_5px_18px_rgba(37,35,42,0.06)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#8D6CA3]/50 hover:bg-white"
               >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-gradient-to-b from-white/70 via-transparent to-[#8D6CA3]/5"
-                />
-
                 <span className="relative">
                   Explore Bridal Gallery
                 </span>
@@ -443,7 +433,7 @@ return (
                 </p>
 
                 <p className="text-[10px] text-[#817887]">
-                  Happy Brides
+                  Happy Brides &amp; Grooms
                 </p>
               </div>
             </div>
