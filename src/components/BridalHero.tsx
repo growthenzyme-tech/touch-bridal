@@ -44,6 +44,11 @@ const bridalImages = [
     alt: "Touch Bridal creative nail art and extensions",
     label: "Nail Artistry",
   },
+  {
+    src: "/nailart/nail.webp",
+    alt: "Creative nail art designs",
+    label: "Nail Art",
+  },
 ];
 
 const paragraphText =
@@ -427,7 +432,7 @@ return (
                 className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/25 bg-white/75 px-7 text-xs font-semibold tracking-[0.04em] text-[#25232A] shadow-[0_5px_18px_rgba(37,35,42,0.06)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#8D6CA3]/50 hover:bg-white"
               >
                 <span className="relative">
-                  Explore Bridal Gallery
+                 Bridal Gallery
                 </span>
               </Link>
             </div>
@@ -538,7 +543,7 @@ return (
             </p>
 
             <p className="mt-0.5 text-[8px] text-[#817887] sm:text-[9px]">
-              Now booking
+              Start Booking
             </p>
 
           </div>
