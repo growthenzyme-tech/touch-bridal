@@ -149,7 +149,7 @@ return (
           </div>
 
           {/* RIGHT SIDE: EIGHT-IMAGE EDITORIAL COLLAGE */}
-          <div className="bridal-collage relative isolate aspect-[7/9] w-full min-w-0 overflow-hidden !rounded-none bg-[#f4eee7] sm:aspect-[4/5] lg:aspect-[7/9]">
+          <div className="bridal-collage relative isolate aspect-[7/9] w-full min-w-0 overflow-hidden !rounded-none bg-white sm:aspect-[4/5] lg:aspect-[7/9]">
             <svg
               className="block h-full w-full"
               viewBox="0 0 700 900"

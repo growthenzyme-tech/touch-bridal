@@ -4,13 +4,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Inter_Tight } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
+
 const secondStaticImage = {
   src: "/mens/about206.jpg",
   alt: "The S Touch Traditional Groom Styling",
@@ -18,8 +24,12 @@ const secondStaticImage = {
 
 const aboutImages = [
   {
-    src: "/mens/about208.jpg",
+    src: "/bridal/about.webp",
     alt: "The S Touch Signature Bridal Look",
+  },
+  {
+    src: "/mens/groom2.webp",
+    alt: "The S Touch Signature Groom Styling",
   },
   {
     src: "/mens/about205.jpg",
@@ -46,6 +56,11 @@ const aboutImages = [
 export default function AboutUs() {
   const [active, setActive] = useState(0);
 
+  // Animation references
+  const sectionRef = useRef<HTMLElement>(null);
+  const leftContentRef = useRef<HTMLDivElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
+
   // Automatic main image slideshow
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -55,8 +70,72 @@ export default function AboutUs() {
     return () => window.clearInterval(timer);
   }, []);
 
+  // GSAP entrance animations
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const entranceTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        // LEFT: Image collage moves from left
+        entranceTimeline.fromTo(
+          leftContentRef.current,
+          {
+            x: -90,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          0
+        );
+
+        // RIGHT: About content moves from right
+        entranceTimeline.fromTo(
+          rightContentRef.current,
+          {
+            x: 90,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          0.15
+        );
+      });
+
+      // Show everything immediately for reduced-motion users
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(
+          [leftContentRef.current, rightContentRef.current],
+          {
+            x: 0,
+            opacity: 1,
+          }
+        );
+      });
+
+      return () => mm.revert();
+    },
+    { scope: sectionRef }
+  );
+
   return (
     <section
+      ref={sectionRef}
       id="about-us"
       className={`${interTight.className} relative -mt-4 mx-auto w-full max-w-[1320px] overflow-hidden bg-white px-5 pb-2 text-[#22212a] sm:px-8 sm:pb-3 lg:px-12 lg:pb-4`}
     >
@@ -64,7 +143,10 @@ export default function AboutUs() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-24">
 
           {/* LEFT — EDITORIAL IMAGE COLLAGE */}
-          <div className="relative order-1 mx-auto h-[420px] w-full max-w-[570px] sm:h-[520px] lg:h-[570px]">
+          <div
+            ref={leftContentRef}
+            className="relative order-1 mx-auto h-[420px] w-full max-w-[570px] opacity-0 sm:h-[520px] lg:h-[570px]"
+          >
 
             {/* Main animated image slideshow */}
             <div className="absolute left-[8%] top-[25%] z-[2] h-[59%] w-[43%] overflow-hidden rounded-[5px] bg-[#eee8f8] shadow-[0_12px_35px_rgba(30,20,45,0.10)]">
@@ -128,15 +210,15 @@ export default function AboutUs() {
             {/* Second static image */}
             <div className="absolute bottom-[5%] right-[5%] z-[2] h-[53%] w-[43%] overflow-hidden rounded-[5px] bg-[#eee8f8] shadow-[0_12px_35px_rgba(30,20,45,0.12)]">
 
-             <Image
-  src={secondStaticImage.src}
-  alt={secondStaticImage.alt}
-  fill
-  unoptimized
-  sizes="(max-width: 640px) 43vw, 245px"
-  draggable={false}
-  className="object-cover object-top"
-/>
+              <Image
+                src={secondStaticImage.src}
+                alt={secondStaticImage.alt}
+                fill
+                unoptimized
+                sizes="(max-width: 640px) 43vw, 245px"
+                draggable={false}
+                className="object-cover object-top"
+              />
 
             </div>
 
@@ -180,7 +262,10 @@ export default function AboutUs() {
           </div>
 
           {/* RIGHT — ABOUT US TYPOGRAPHY */}
-          <div className="order-2 flex flex-col items-start lg:pl-2">
+          <div
+            ref={rightContentRef}
+            className="order-2 flex flex-col items-start opacity-0 lg:pl-2"
+          >
 
             {/* Eyebrow */}
             <div className="mb-5 flex items-center gap-3">
@@ -219,7 +304,7 @@ export default function AboutUs() {
               </p>
 
               <p>
-                We don't just create beautiful looks. We create
+                We don&apos;t just create beautiful looks. We create
                 unforgettable bridal moments, cherished memories,
                 and the confidence to embrace your beauty.
               </p>

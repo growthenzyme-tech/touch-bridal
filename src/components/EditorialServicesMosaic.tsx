@@ -102,10 +102,10 @@ const serviceCategories: ServiceCategory[] = [
 
 export default function EditorialServicesMosaic() {
   return (
-    <section
-      id="services-expertise"
-      className={`${interTight.className} relative overflow-hidden px-2 pb-2 pt-0 sm:px-3 sm:pb-3 lg:px-4 lg:pb-4`}
-    >
+  <section
+  id="services-expertise"
+  className={`${interTight.className} relative overflow-hidden px-2 pb-2 pt-0 sm:px-3 sm:pb-3 lg:px-4 lg:pb-4 mt-4 sm:mt-6 lg:mt-10`}
+>
       {/* Container matching Hero max-w-[1320px] and bg-[#F1EDF7] */}
       <div className="relative mx-auto w-full max-w-[1320px] overflow-hidden bg-[#F1EDF7] px-5 py-12 text-[#25232A] sm:px-8 sm:py-16 lg:px-12 lg:py-20">
         {/* ATTRACTIVE SECTION HEADER WITH ANIMATION */}
