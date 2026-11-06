@@ -144,9 +144,9 @@ setSelectedServices([]);
 
   return (
     <section
-      id="booking"
-      className={`${interTight.className} scroll-mt-24 sm:scroll-mt-28 -mt-6 px-3 py-6 sm:-mt-8 sm:px-5 sm:py-8 lg:-mt-6 lg:px-8 lg:py-10`}
-    >
+  id="booking"
+  className={`${interTight.className} scroll-mt-24 sm:scroll-mt-28 -mt-2 px-3 py-6 sm:-mt-2 sm:px-5 sm:py-8 lg:-mt-2 lg:px-8 lg:py-10`}
+>
       <div className="mx-auto w-full max-w-[1320px]">
         <div className="grid overflow-hidden border-0 bg-white md:grid-cols-2">
           {/* LEFT: BRIDAL IMAGE PANEL */}
