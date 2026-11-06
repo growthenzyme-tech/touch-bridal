@@ -20,9 +20,9 @@ const interTight = Inter_Tight({
 const bridalLooks = [
   {
     id: 1,
-    title: "Traditional Bridal",
+    title: "Signature Traditional Bridal",
     category: "Bridal Makeup",
-    image: "/bridal/bridem01.webp",
+    image: "/images/bridal-gallery/bridal7.jpg",
   },
   {
     id: 2,

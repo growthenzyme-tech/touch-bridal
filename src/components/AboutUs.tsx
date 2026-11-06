@@ -18,38 +18,38 @@ const interTight = Inter_Tight({
 });
 
 const secondStaticImage = {
-  src: "/mens/about206.jpg",
-  alt: "The S Touch Traditional Groom Styling",
+  src: "/images/about/couple1.jpg",
+  alt: "The S Touch Signature Bride & Groom Wedding Transformation",
 };
 
 const aboutImages = [
   {
-    src: "/bridal/about.webp",
-    alt: "The S Touch Signature Bridal Look",
+    src: "/images/about/bride1.jpg",
+    alt: "The S Touch Signature Bridal Makeup",
   },
   {
-    src: "/mens/groom2.webp",
+    src: "/images/about/groom1.jpg",
     alt: "The S Touch Signature Groom Styling",
   },
   {
-    src: "/mens/about205.jpg",
-    alt: "The S Touch Traditional Bridal Makeup",
+    src: "/images/about/couple1.jpg",
+    alt: "The S Touch Wedding Couple Transformation",
   },
   {
-    src: "/mens/about202.jpg",
-    alt: "The S Touch Royal Bridal Styling",
+    src: "/images/about/bride2.jpg",
+    alt: "The S Touch Elegant Bridal Makeover",
   },
   {
-    src: "/mens/about203.jpg",
-    alt: "The S Touch Elegant Hair and Makeup",
+    src: "/images/about/grrom2.jpg",
+    alt: "The S Touch Royal Groom Styling",
   },
   {
-    src: "/bridal/bridem01.webp",
-    alt: "The S Touch Reception Look",
+    src: "/images/about/couple2.jpg",
+    alt: "The S Touch Classic Couple Makeover",
   },
   {
-    src: "/bridal/bridem02.webp",
-    alt: "The S Touch Classic Bridal Radiance",
+    src: "/images/about/couple3.jpg",
+    alt: "The S Touch Bespoke Wedding Couple Look",
   },
 ];
 
@@ -190,7 +190,7 @@ export default function AboutUs() {
               </div>
 
               <h3 className="mt-4 text-lg font-bold leading-tight text-[#282530] sm:text-xl">
-                Bridal Beauty
+                Bridal &amp; Groom
                 <br />
                 With A Signature
                 <br />
@@ -201,7 +201,7 @@ export default function AboutUs() {
 
               <div className="mt-3 flex items-center justify-between gap-2">
                 <span className="text-[8px] uppercase tracking-[0.12em] text-[#8f8999]">
-                  Bridal · Beauty · Styling
+                  Bride · Groom · Styling
                 </span>
               </div>
 
@@ -244,10 +244,10 @@ export default function AboutUs() {
 
               {aboutImages.map((image, index) => (
                 <button
-                  key={image.src}
+                  key={`${image.src}-${index}`}
                   type="button"
                   onClick={() => setActive(index)}
-                  aria-label={`Show bridal image ${index + 1}`}
+                  aria-label={`Show makeover image ${index + 1}`}
                   aria-current={active === index ? "true" : undefined}
                   className={`h-[3px] transition-all duration-500 ${
                     active === index
@@ -293,27 +293,30 @@ export default function AboutUs() {
               <p>
                 Welcome to The S Touch Bridal Makeover, where timeless
                 elegance meets modern beauty. We are dedicated to making
-                every bride feel beautiful, confident, and extraordinary
-                on her most special day.
+                every bride feel beautiful and radiant, and every groom
+                look impeccably groomed, confident, and extraordinary on
+                their most special day.
               </p>
 
               <p>
                 Every brushstroke is crafted with love, every hairstyle
-                is styled with precision, and every transformation is
-                designed to make you shine with confidence.
+                and groom styling is shaped with precision, and every
+                transformation is designed to make you both shine with
+                confidence.
               </p>
 
               <p>
                 We don&apos;t just create beautiful looks. We create
-                unforgettable bridal moments, cherished memories,
-                and the confidence to embrace your beauty.
+                unforgettable bridal and groom moments, cherished memories,
+                and the confidence to celebrate your beauty in timeless
+                elegance.
               </p>
 
             </div>
 
             {/* Minimal signature line */}
             <p className="mt-7 text-[12px] font-semibold tracking-wide text-[#35313e]">
-              Your dream look. Your timeless elegance.
+              Your dream bridal &amp; groom look. Your timeless elegance.
             </p>
 
             {/* CTA */}

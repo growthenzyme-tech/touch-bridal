@@ -20,24 +20,29 @@ const interTight = Inter_Tight({
 
 const bridalImages = [
   {
-    src: "/images/bridal-01.jpg",
-    alt: "Traditional bridal makeup",
+    src: "/images/hero/brid.jpg",
+    alt: "Touch Bridal signature bridal makeover",
     label: "Bridal Makeup",
   },
   {
-    src: "/images/bridal-02.jpg",
-    alt: "Elegant bridal look",
-    label: "Bridal Beauty",
+    src: "/images/hero/Groomm.jpg",
+    alt: "Touch Bridal groom makeover and styling",
+    label: "Groom Styling",
   },
   {
-    src: "/reception/recep02.jpg",
-    alt: "Elegant wedding reception makeup",
-    label: "Reception Looks",
+    src: "/images/hero/wedding.jpg",
+    alt: "Touch Bridal wedding couple styling",
+    label: "Wedding Styling",
   },
   {
-    src: "/mens/groom.webp",
-    alt: "Bridal hairstyle",
-    label: "Hair & Styling",
+    src: "/images/hero/rental.jpg",
+    alt: "Touch Bridal wedding and bridal jewelry rentals",
+    label: "Wedding Rentals",
+  },
+  {
+    src: "/images/hero/nail.jpg",
+    alt: "Touch Bridal creative nail art and extensions",
+    label: "Nail Artistry",
   },
 ];
 

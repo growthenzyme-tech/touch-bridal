@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 
 const interTight = Inter_Tight({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -20,6 +20,7 @@ interface ServiceCategory {
   imageAlt: string;
   ctaText: string;
   ctaHref: string;
+  ctaAriaLabel: string;
   isExternal?: boolean;
   isTopTextOnDesktop: boolean;
   // Animation coordinates: revealing from the outside
@@ -34,11 +35,14 @@ const serviceCategories: ServiceCategory[] = [
     category: "CARE & GROOMING",
     title: "UNISEX SALON",
     description:
-      "Refined beauty and grooming experiences designed for every style, personality, and occasion.",
+      "Refined hair styling, luxury skin treatments, and precision grooming for men and women in Nagercoil.",
     image: "/images/unisex.jpg",
-    imageAlt: "Touch Bridal premium unisex salon interior and grooming services",
+    imageAlt:
+      "Touch Bridal Unisex Salon in Nagercoil - Hair care, skin facials, and grooming services for men and women",
     ctaText: "EXPLORE",
     ctaHref: "/services",
+    ctaAriaLabel:
+      "Explore Unisex Salon hair styling and skin care services in Nagercoil",
     isTopTextOnDesktop: false, // Column 1: Image top, Text below
     // Reveals from outside LEFT
     desktopImageInitial: { x: -140, y: -30, opacity: 0, scale: 0.9 },
@@ -50,11 +54,14 @@ const serviceCategories: ServiceCategory[] = [
     category: "SIGNATURE BRIDAL",
     title: "BRIDAL MAKEOVER STUDIO",
     description:
-      "Complete bridal beauty experiences crafted to make every celebration feel unforgettable.",
+      "Complete bridal and groom beauty experiences, HD makeup, and styling crafted to make every celebration unforgettable.",
     image: "/images/studio.jpg",
-    imageAlt: "Bridal makeover studio signature bride preparation and styling",
+    imageAlt:
+      "Touch Bridal Makeover Studio in Nagercoil - Professional bridal makeup, groom makeover, and wedding styling",
     ctaText: "EXPLORE",
     ctaHref: "/bridal-gallery",
+    ctaAriaLabel:
+      "Explore Bridal Makeover Studio and wedding packages in Nagercoil",
     isTopTextOnDesktop: true, // Column 2: Text top, Image below
     // Reveals from outside BOTTOM
     desktopImageInitial: { y: 140, opacity: 0, scale: 0.9 },
@@ -66,11 +73,14 @@ const serviceCategories: ServiceCategory[] = [
     category: "OCCASION ESSENTIALS",
     title: "RENTALS",
     description:
-      "Curated beauty and occasion essentials available to complement your perfect look.",
+      "Curated bridal jewelry, antique temple sets, crowns, and wedding accessories available for rent in Nagercoil.",
     image: "/images/jewel.jpg",
-    imageAlt: "Exclusive wedding and bridal jewelry rental collection",
+    imageAlt:
+      "Wedding and bridal jewelry rental collection in Nagercoil - Antique, temple, and royal adornments",
     ctaText: "EXPLORE",
     ctaHref: "/bridal-gallery#wedding-rentals",
+    ctaAriaLabel:
+      "Explore Wedding and Bridal Jewelry rentals in Nagercoil",
     isTopTextOnDesktop: false, // Column 3: Image top, Text below
     // Reveals from outside TOP
     desktopImageInitial: { y: -140, opacity: 0, scale: 0.9 },
@@ -82,15 +92,18 @@ const serviceCategories: ServiceCategory[] = [
     category: "BESPOKE ARTISTRY",
     title: "NAIL ART",
     description:
-      "Express your individuality with detailed nail artistry, elegant finishes, and modern designs.",
+      "Express your individuality with detailed nail artistry, custom extensions, and elegant finishes in Nagercoil.",
     image: "/images/art.jpg",
-    imageAlt: "Creative nail art and luxury nail extensions close-up",
+    imageAlt:
+      "Creative nail art and luxury nail extensions in Nagercoil at Touch Bridal",
     ctaText: "EXPLORE",
     ctaHref:
       "https://wa.me/919789376174?text=" +
       encodeURIComponent(
-        "Hi Touch Bridal! I'd love to explore your Nail Art and creative extensions services.",
+        "Hi Touch Bridal! I'd love to explore your Nail Art and creative extensions services in Nagercoil.",
       ),
+    ctaAriaLabel:
+      "Inquire and book Nail Art and creative extensions on WhatsApp",
     isExternal: true,
     isTopTextOnDesktop: true, // Column 4: Text top, Image below
     // Reveals from outside RIGHT
@@ -100,12 +113,84 @@ const serviceCategories: ServiceCategory[] = [
   },
 ];
 
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": ["BeautySalon", "HairSalon"],
+  name: "Touch Bridal Makeover Studio & Unisex Salon",
+  image: "https://touchbridal.com/images/studio.jpg",
+  description:
+    "Bespoke bridal and groom makeover transformations, luxury unisex salon hair & skin care, exclusive wedding jewelry rentals, and statement nail artistry in Nagercoil, Tamil Nadu.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "215 B Sargunaveethi, Pothys Backside, Ramavarmapuram",
+    addressLocality: "Nagercoil",
+    addressRegion: "Tamil Nadu",
+    postalCode: "629001",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 8.1833,
+    longitude: 77.4119,
+  },
+  telephone: "+919789376174",
+  priceRange: "₹₹",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Editorial Bridal, Groom & Salon Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Unisex Salon Services",
+          description:
+            "Refined hair styling, luxury skin treatments, facials, and precision grooming for men and women in Nagercoil.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Bridal Makeover Studio & Groom Makeover",
+          description:
+            "Complete bridal and groom beauty experiences, HD makeup, and wedding styling crafted to make every celebration unforgettable.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Wedding & Bridal Jewelry Rentals",
+          description:
+            "Curated bridal jewelry, antique temple sets, crowns, and wedding accessories available for rent in Nagercoil.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Creative Nail Art & Extensions",
+          description:
+            "Detailed nail artistry, custom extensions, and elegant finishes in Nagercoil.",
+        },
+      },
+    ],
+  },
+};
+
 export default function EditorialServicesMosaic() {
   return (
   <section
   id="services-expertise"
   className={`${interTight.className} relative overflow-hidden px-2 pb-2 pt-0 sm:px-3 sm:pb-3 lg:px-4 lg:pb-4 mt-4 sm:mt-6 lg:mt-10`}
 >
+      {/* Schema.org Structured Data for Local SEO & Rich Results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+
       {/* Container matching Hero max-w-[1320px] and bg-[#F1EDF7] */}
       <div className="relative mx-auto w-full max-w-[1320px] overflow-hidden bg-[#F1EDF7] px-5 py-12 text-[#25232A] sm:px-8 sm:py-16 lg:px-12 lg:py-20">
         {/* ATTRACTIVE SECTION HEADER WITH ANIMATION */}
@@ -118,21 +203,27 @@ export default function EditorialServicesMosaic() {
         >
           <motion.p
             initial={{ opacity: 0, letterSpacing: "0.15em" }}
-            whileInView={{ opacity: 1, letterSpacing: "0.26em" }}
+            whileInView={{ opacity: 1, letterSpacing: "0.32em" }}
             viewport={{ once: false }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-3 text-[10px] font-bold uppercase text-[#9675ba] sm:text-xs"
+            className="mb-3 text-[10px] font-bold uppercase tracking-[0.32em] text-[#9677bb] sm:text-xs"
           >
             SERVICES &amp; EXPERTISE
           </motion.p>
 
-          <h2 className="max-w-4xl text-[clamp(2.3rem,4.8vw,4.5rem)] font-extrabold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]">
-            ONE SIGNATURE <span className="text-[#8D6CA3]">TOUCH.</span>
+          <h2
+            className={`${interTight.className} max-w-4xl text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+          >
+            ONE SIGNATURE{" "}
+            <span className="text-[#8D6CA3]">
+              TOUCH.
+            </span>
           </h2>
 
-          <p className="mt-4 max-w-xl text-sm leading-7 text-[#716B76] sm:text-[15px]">
-            Experience bespoke bridal transformations, luxury unisex salon care,
-            exclusive wedding rentals, and statement nail artistry.
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[#716B76] sm:text-[15px]">
+            Experience bespoke bridal and groom makeover transformations, luxury
+            unisex salon hair &amp; skin care, exclusive wedding jewelry rentals,
+            and statement nail artistry at Touch Bridal Studio in Nagercoil.
           </p>
 
           <motion.div
@@ -189,6 +280,7 @@ export default function EditorialServicesMosaic() {
                       href={item.ctaHref}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={item.ctaAriaLabel}
                       className="inline-flex items-center justify-center border border-[#8D6CA3]/35 bg-white px-5 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#25232A] shadow-sm transition-all duration-300 hover:scale-[1.04] hover:border-[#8D6CA3] hover:bg-[#8D6CA3] hover:text-white hover:shadow active:scale-95"
                     >
                       {item.ctaText}
@@ -196,6 +288,7 @@ export default function EditorialServicesMosaic() {
                   ) : (
                     <Link
                       href={item.ctaHref}
+                      aria-label={item.ctaAriaLabel}
                       className="inline-flex items-center justify-center border border-[#8D6CA3]/35 bg-white px-5 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#25232A] shadow-sm transition-all duration-300 hover:scale-[1.04] hover:border-[#8D6CA3] hover:bg-[#8D6CA3] hover:text-white hover:shadow active:scale-95"
                     >
                       {item.ctaText}

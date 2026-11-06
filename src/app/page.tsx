@@ -11,10 +11,28 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "Touch Bridal | Unisex Salon, Bridal Makeup, Wedding Rentals & Nail Art in Nagercoil, Tamil Nadu",
-
+    "Touch Bridal | Unisex Salon, Bridal & Groom Makeover, Wedding Rentals & Nail Art in Nagercoil",
   description:
-    "Visit Touch Bridal Makeover Studio & Unisex Salon at Ramavarmapuram, Nagercoil, Tamil Nadu for bridal makeup, unisex salon services, wedding rentals and creative nail art.",
+    "Experience bespoke bridal and groom makeover transformations, luxury unisex salon care, exclusive wedding rentals, and statement nail artistry at Touch Bridal Studio in Ramavarmapuram, Nagercoil, Tamil Nadu.",
+  keywords: [
+    "bridal makeup Nagercoil",
+    "groom makeover Nagercoil",
+    "unisex salon Nagercoil",
+    "wedding jewelry rental Nagercoil",
+    "nail art Nagercoil",
+    "Touch Bridal Makeover Studio",
+    "hair salon Ramavarmapuram",
+    "bridal makeover studio Tamil Nadu",
+  ],
+  openGraph: {
+    title: "Touch Bridal Makeover Studio & Unisex Salon | Nagercoil",
+    description:
+      "Bespoke bridal and groom makeover transformations, luxury unisex salon care, exclusive wedding rentals, and statement nail artistry in Nagercoil, Tamil Nadu.",
+    url: "https://touchbridal.com",
+    siteName: "Touch Bridal Makeover Studio & Unisex Salon",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 export default function HomePage() {
   return (
