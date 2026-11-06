@@ -585,214 +585,102 @@ export default function ServicesShowcase() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [getMaxScroll, markInteraction]);
-  // Auto-reveal if hash is present (e.g. #bridal-makeup, #hair-services, etc.)
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const hash = window.location.hash.toLowerCase();
-      if (hash.includes("groom")) {
-        setIsGroomOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("groom-makeup-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      } else if (hash.includes("mens") || hash.includes("men")) {
-        setIsMensOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("mens-services-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      } else if (
-        hash.includes("additional") ||
-        hash.includes("saree") ||
-        hash.includes("pleating") ||
-        hash.includes("folding")
-      ) {
-        setIsAdditionalOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("additional-services-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      } else if (hash.includes("skin") || hash.includes("facial")) {
-        setIsSkinOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("skin-facial-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      } else if (hash.includes("beauty") || hash.includes("grooming")) {
-        setIsBeautyOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("beauty-grooming-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      } else if (hash.includes("hair")) {
-        setIsHairOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("hair-services-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      } else if (
-        hash.includes("rental") ||
-        hash.includes("jewel") ||
-        hash.includes("temple") ||
-        hash.includes("kundan") ||
-        hash.includes("antique") ||
-        hash.includes("victorian") ||
-        hash.includes("ad") ||
-        hash.includes("jadavu") ||
-        hash.includes("jadau")
-      ) {
-        setIsRentalOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("rental-jewels-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      } else if (hash.includes("bridal") || hash.includes("makeup")) {
-        setIsBridalOpen(true);
-        setTimeout(() => {
-          const el = document.getElementById("bridal-makeup-section");
-          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 180);
-      }
+  const openSectionById = (sectionId: string) => {
+    isHoveredRef.current = true;
+    setClosingSection(null);
+    setIsBridalOpen(sectionId === "bridal");
+    setIsHairOpen(sectionId === "hair");
+    setIsBeautyOpen(sectionId === "beauty");
+    setIsSkinOpen(sectionId === "skin");
+    setIsAdditionalOpen(sectionId === "additional");
+    setIsMensOpen(sectionId === "mens");
+    setIsGroomOpen(sectionId === "groom");
+    setIsRentalOpen(sectionId === "rental");
+
+    const domIdMap: Record<string, string> = {
+      bridal: "bridal-makeup-section",
+      hair: "hair-services-section",
+      beauty: "beauty-grooming-section",
+      skin: "skin-facial-section",
+      additional: "additional-services-section",
+      mens: "mens-services-section",
+      groom: "groom-makeup-section",
+      rental: "rental-jewels-section",
+    };
+
+    const targetDomId = domIdMap[sectionId];
+    if (targetDomId) {
+      const scroll = () => {
+        const el = document.getElementById(targetDomId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      };
+      setTimeout(scroll, 160);
+      setTimeout(scroll, 450);
     }
+  };
+
+  const handleOpenBridalSection = () => openSectionById("bridal");
+  const handleOpenHairSection = () => openSectionById("hair");
+  const handleOpenBeautySection = () => openSectionById("beauty");
+  const handleOpenSkinSection = () => openSectionById("skin");
+  const handleOpenAdditionalSection = () => openSectionById("additional");
+  const handleOpenMensSection = () => openSectionById("mens");
+  const handleOpenGroomSection = () => openSectionById("groom");
+  const handleOpenRentalJewels = () => openSectionById("rental");
+
+  // Auto-reveal if hash or query is present (e.g. #rental-jewels, #beauty-grooming, #bridal-makeup)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const checkHashAndQuery = () => {
+      const target = (window.location.hash + " " + window.location.search).toLowerCase();
+      if (!target.trim()) return;
+
+      if (target.includes("groom")) {
+        openSectionById("groom");
+      } else if (target.includes("mens") || target.includes("men")) {
+        openSectionById("mens");
+      } else if (
+        target.includes("additional") ||
+        target.includes("saree") ||
+        target.includes("pleating") ||
+        target.includes("folding")
+      ) {
+        openSectionById("additional");
+      } else if (target.includes("skin") || target.includes("facial")) {
+        openSectionById("skin");
+      } else if (
+        target.includes("beauty") ||
+        target.includes("grooming") ||
+        target.includes("nail") ||
+        target.includes("art")
+      ) {
+        openSectionById("beauty");
+      } else if (target.includes("hair")) {
+        openSectionById("hair");
+      } else if (
+        target.includes("rental") ||
+        target.includes("jewel") ||
+        target.includes("temple") ||
+        target.includes("kundan") ||
+        target.includes("antique") ||
+        target.includes("victorian") ||
+        target.includes("ad") ||
+        target.includes("jadavu") ||
+        target.includes("jadau")
+      ) {
+        openSectionById("rental");
+      } else if (target.includes("bridal") || target.includes("makeup")) {
+        openSectionById("bridal");
+      }
+    };
+
+    checkHashAndQuery();
+    window.addEventListener("hashchange", checkHashAndQuery);
+    return () => window.removeEventListener("hashchange", checkHashAndQuery);
   }, []);
-
-  const handleOpenBridalSection = () => {
-    isHoveredRef.current = true;
-    setIsRentalOpen(false);
-    setIsHairOpen(false);
-    setIsBeautyOpen(false);
-    setIsSkinOpen(false);
-    setIsAdditionalOpen(false);
-    setIsMensOpen(false);
-    setIsGroomOpen(false);
-    setClosingSection(null);
-    setIsBridalOpen(true);
-    setTimeout(() => {
-      const el = document.getElementById("bridal-makeup-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
-
-  const handleOpenHairSection = () => {
-    isHoveredRef.current = true;
-    setIsRentalOpen(false);
-    setIsBridalOpen(false);
-    setIsBeautyOpen(false);
-    setIsSkinOpen(false);
-    setIsAdditionalOpen(false);
-    setIsMensOpen(false);
-    setIsGroomOpen(false);
-    setClosingSection(null);
-    setIsHairOpen(true);
-    setTimeout(() => {
-      const el = document.getElementById("hair-services-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
-
-  const handleOpenBeautySection = () => {
-    isHoveredRef.current = true;
-    setIsRentalOpen(false);
-    setIsBridalOpen(false);
-    setIsHairOpen(false);
-    setIsSkinOpen(false);
-    setIsAdditionalOpen(false);
-    setIsMensOpen(false);
-    setIsGroomOpen(false);
-    setClosingSection(null);
-    setIsBeautyOpen(true);
-    setTimeout(() => {
-      const el = document.getElementById("beauty-grooming-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
-
-  const handleOpenSkinSection = () => {
-    isHoveredRef.current = true;
-    setIsRentalOpen(false);
-    setIsBridalOpen(false);
-    setIsHairOpen(false);
-    setIsBeautyOpen(false);
-    setIsSkinOpen(false);
-    setIsAdditionalOpen(false);
-    setIsMensOpen(false);
-    setIsGroomOpen(false);
-    setClosingSection(null);
-    setIsSkinOpen(true);
-    setTimeout(() => {
-      const el = document.getElementById("skin-facial-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
-
-  const handleOpenAdditionalSection = () => {
-    isHoveredRef.current = true;
-    setIsRentalOpen(false);
-    setIsBridalOpen(false);
-    setIsHairOpen(false);
-    setIsBeautyOpen(false);
-    setIsSkinOpen(false);
-    setIsMensOpen(false);
-    setIsGroomOpen(false);
-    setClosingSection(null);
-    setIsAdditionalOpen(true);
-    setTimeout(() => {
-      const el = document.getElementById("additional-services-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
-
-  const handleOpenMensSection = () => {
-    isHoveredRef.current = true;
-    setIsRentalOpen(false);
-    setIsBridalOpen(false);
-    setIsHairOpen(false);
-    setIsBeautyOpen(false);
-    setIsSkinOpen(false);
-    setIsAdditionalOpen(false);
-    setIsGroomOpen(false);
-    setClosingSection(null);
-    setIsMensOpen(true);
-    setTimeout(() => {
-      const el = document.getElementById("mens-services-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
-
-  const handleOpenGroomSection = () => {
-    isHoveredRef.current = true;
-    setIsRentalOpen(false);
-    setIsBridalOpen(false);
-    setIsHairOpen(false);
-    setIsBeautyOpen(false);
-    setIsSkinOpen(false);
-    setIsAdditionalOpen(false);
-    setIsMensOpen(false);
-    setClosingSection(null);
-    setIsGroomOpen(true);
-    setTimeout(() => {
-      const el = document.getElementById("groom-makeup-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
-
-  const handleOpenRentalJewels = () => {
-    isHoveredRef.current = true;
-    setIsBridalOpen(false);
-    setIsHairOpen(false);
-    setIsBeautyOpen(false);
-    setIsSkinOpen(false);
-    setIsAdditionalOpen(false);
-    setIsMensOpen(false);
-    setIsGroomOpen(false);
-    setClosingSection(null);
-    setIsRentalOpen(true);
-
-    setTimeout(() => {
-      const el = document.getElementById("rental-jewels-section");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 180);
-  };
 
   const handleOpenAppointmentEnquiry = () => {
     isHoveredRef.current = true;

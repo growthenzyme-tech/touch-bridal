@@ -59,9 +59,9 @@ const serviceCategories: ServiceCategory[] = [
     imageAlt:
       "Touch Bridal Makeover Studio in Nagercoil - Professional bridal makeup, groom makeover, and wedding styling",
     ctaText: "EXPLORE",
-    ctaHref: "/bridal-gallery",
+    ctaHref: "/services?section=bridal-makeup#bridal-makeup",
     ctaAriaLabel:
-      "Explore Bridal Makeover Studio and wedding packages in Nagercoil",
+      "Explore Bridal Makeup and wedding styling services",
     isTopTextOnDesktop: true, // Column 2: Text top, Image below
     // Reveals from outside BOTTOM
     desktopImageInitial: { y: 140, opacity: 0, scale: 0.9 },
@@ -78,9 +78,9 @@ const serviceCategories: ServiceCategory[] = [
     imageAlt:
       "Wedding and bridal jewelry rental collection in Nagercoil - Antique, temple, and royal adornments",
     ctaText: "EXPLORE",
-    ctaHref: "/bridal-gallery#wedding-rentals",
+    ctaHref: "/services?section=rental-jewels#rental-jewels",
     ctaAriaLabel:
-      "Explore Wedding and Bridal Jewelry rentals in Nagercoil",
+      "Explore Rental Jewellery collections on services page",
     isTopTextOnDesktop: false, // Column 3: Image top, Text below
     // Reveals from outside TOP
     desktopImageInitial: { y: -140, opacity: 0, scale: 0.9 },
@@ -97,14 +97,10 @@ const serviceCategories: ServiceCategory[] = [
     imageAlt:
       "Creative nail art and luxury nail extensions in Nagercoil at Touch Bridal",
     ctaText: "EXPLORE",
-    ctaHref:
-      "https://wa.me/919789376174?text=" +
-      encodeURIComponent(
-        "Hi Touch Bridal! I'd love to explore your Nail Art and creative extensions services in Nagercoil.",
-      ),
+    ctaHref: "/services",
     ctaAriaLabel:
-      "Inquire and book Nail Art and creative extensions on WhatsApp",
-    isExternal: true,
+      "Explore salon services in Nagercoil",
+    isExternal: false,
     isTopTextOnDesktop: true, // Column 4: Text top, Image below
     // Reveals from outside RIGHT
     desktopImageInitial: { x: 140, y: 30, opacity: 0, scale: 0.9 },
@@ -264,7 +260,23 @@ export default function EditorialServicesMosaic() {
 
                   {/* Service Title */}
                   <h3 className="mt-4 text-base font-bold uppercase tracking-[-0.01em] text-[#25232A] transition-colors duration-300 group-hover:text-[#8D6CA3] sm:text-lg">
-                    {item.title}
+                    {item.isExternal ? (
+                      <a
+                        href={item.ctaHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#8D6CA3] transition-colors"
+                      >
+                        {item.title}
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.ctaHref}
+                        className="hover:text-[#8D6CA3] transition-colors"
+                      >
+                        {item.title}
+                      </Link>
+                    )}
                   </h3>
 
                   {/* Supporting Text */}
@@ -313,24 +325,51 @@ export default function EditorialServicesMosaic() {
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
                 className="group relative h-[320px] w-full overflow-hidden border border-[#8D6CA3]/15 bg-[#E4D9ED] shadow-[0_4px_20px_rgba(37,35,42,0.04)] transition-shadow duration-500 hover:shadow-[0_20px_45px_rgba(141,108,163,0.22)] sm:h-[350px] lg:h-[380px]"
               >
-                <div className="relative h-full w-full overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.imageAlt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
-                  />
-
-                  {/* Luxury diagonal light shimmer on hover */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-all duration-1000 group-hover:inset-full group-hover:opacity-100"
-                  />
-
-                  {/* Subtle dark tint on hover for depth */}
-                  <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/15" />
-                </div>
+                {item.isExternal ? (
+                  <a
+                    href={item.ctaHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.ctaAriaLabel}
+                    className="block relative h-full w-full overflow-hidden cursor-pointer"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                    />
+                    {/* Luxury diagonal light shimmer on hover */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-all duration-1000 group-hover:inset-full group-hover:opacity-100"
+                    />
+                    {/* Subtle dark tint on hover for depth */}
+                    <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/15" />
+                  </a>
+                ) : (
+                  <Link
+                    href={item.ctaHref}
+                    aria-label={item.ctaAriaLabel}
+                    className="block relative h-full w-full overflow-hidden cursor-pointer"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                    />
+                    {/* Luxury diagonal light shimmer on hover */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-all duration-1000 group-hover:inset-full group-hover:opacity-100"
+                    />
+                    {/* Subtle dark tint on hover for depth */}
+                    <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/15" />
+                  </Link>
+                )}
               </motion.div>
             );
 

@@ -237,6 +237,7 @@ export default function BeautyGroomingServicesSection({
               return (
                 <button
                   key={service.id}
+                  id={service.id}
                   type="button"
                   onClick={() => handleServiceClick(service.title)}
                   onMouseEnter={() => { setHoveredIndex(index); setDisplayIndex(index); }}

@@ -17,28 +17,28 @@ const rentalCategories = [
     id: "01",
     title: "Wedding Jewellery",
     description: "Elegant jewellery pieces to complete your bridal look.",
-    image: "/rentals/jewellery.jpg",
+    image: "/jewels.jpg",
     count: "Jewellery Collection",
   },
   {
     id: "02",
     title: "Wedding Bouquets",
     description: "Beautiful floral arrangements for your special moments.",
-    image: "/rentals/bouquet.jpg",
+    image: "/bougets.jpg",
     count: "Floral Collection",
   },
   {
     id: "03",
     title: "Wedding Hairnets",
     description: "Traditional and delicate details for bridal hairstyles.",
-    image: "/rentals/hairnet.jpg",
+    image: "/hairnets.jpg",
     count: "Hair Accessories",
   },
   {
     id: "04",
-    title: "Wedding Crowns",
+    title: "Wedding Crown",
     description: "Statement crowns that add a royal touch to your look.",
-    image: "/rentals/crown.jpg",
+    image: "/crown.jpg",
     count: "Crown Collection",
   },
 ];
@@ -134,6 +134,7 @@ export default function WeddingRentals() {
                       src={item.image}
                       alt={item.title}
                       fill
+                      unoptimized
                       sizes="(max-width: 640px) 260px, (max-width: 1024px) 340px, 400px"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
