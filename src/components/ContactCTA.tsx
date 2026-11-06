@@ -228,7 +228,7 @@ setSelectedServices([]);
 </p>
 
               <h3
-                className={`${interTight.className} mt-3 text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold leading-[1] tracking-[-0.02em] text-[#25232A]`}
+                className={`${interTight.className} uppercase mt-3 text-[clamp(2rem,4vw,3rem)] font-bold leading-[1] tracking-[-0.02em] text-[#25232A]`}
               >
                 Book Your Appointment
               </h3>

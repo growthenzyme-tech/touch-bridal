@@ -383,9 +383,14 @@ export default function BridalMakeoverGallery() {
         <div className="mt-8 flex flex-col items-center text-center">
 
    <a
-  href="https://wa.me/919789376174"
-  target="_blank"
-  rel="noopener noreferrer"
+  href="#booking"
+  onClick={(e) => {
+  e.preventDefault();
+  document.getElementById("booking-form")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+    });
+  }}
   className="group relative isolate -mt-5 inline-flex min-h-10 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/30 bg-[#8D6CA3] px-6 text-xs font-semibold tracking-[0.04em] text-white shadow-[0_8px_24px_rgba(141,108,163,0.22)] transition-all duration-500 hover:-translate-y-1 hover:bg-[#76558D] hover:shadow-[0_12px_30px_rgba(141,108,163,0.3)]"
 >
   <span className="relative">Enquire</span>
