@@ -136,7 +136,7 @@ export default function BridalGalleryPreview() {
   traditional looks and elegant contemporary transformations.
 </p>
             <Link
-              href="/bridal-gallery"
+              href="/gallery"
               className="mt-8 inline-flex items-center gap-3 bg-[#8D6CA3] px-6 py-3.5 text-xs font-semibold tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#795a9d] "
             >
               VIEW BRIDAL COLLECTION

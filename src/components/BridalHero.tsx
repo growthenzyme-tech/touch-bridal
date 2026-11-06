@@ -60,7 +60,7 @@ const trustPoints = [
 const navLinks = [
   { name: "Home", href: "/", chevron: false },
   { name: "Services", href: "/services", chevron: true },
-  { name: "Bridal Gallery", href: "/bridal-gallery", chevron: false },
+  { name: "Bridal Gallery", href: "/gallery", chevron: false },
 ];
 
 // const services = [
@@ -423,7 +423,7 @@ return (
 
               {/* SECONDARY: BRIDAL GALLERY */}
               <Link
-                href="/bridal-gallery"
+                href="/gallery"
                 className="hero-cta opacity-0 group relative isolate inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden border border-[#8D6CA3]/25 bg-white/75 px-7 text-xs font-semibold tracking-[0.04em] text-[#25232A] shadow-[0_5px_18px_rgba(37,35,42,0.06)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#8D6CA3]/50 hover:bg-white"
               >
                 <span className="relative">
