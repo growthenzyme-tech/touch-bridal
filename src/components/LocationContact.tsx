@@ -60,21 +60,20 @@ export default function LocationContact() {
       WE WOULD LOVE TO WELCOME YOU
     </p>
 
-    <h2
-      className={`${interTight.className} max-w-[600px] text-[clamp(2.5rem,5vw,4.5rem)] font-bold uppercase leading-[0.95] tracking-[-0.045em] text-[#25232A]`}
-    >
-      Location
-      <br />
-      <span className="text-[#8D6CA3]">&amp; Contact</span>
-    </h2>
-
-    <p
-      className={`${interTight.className} mt-6 max-w-[440px] text-sm font-normal leading-7 text-[#817887] sm:text-base`}
-    >
-      Visit Touch Bridal Makeover Studio &amp; Unisex Salon for
-      bridal makeovers, beauty services, and your special occasion
-      needs.
-    </p>
+ <h2
+  className={`${interTight.className} max-w-[600px] text-[clamp(2.5rem,5vw,4.5rem)] font-bold uppercase leading-[0.95] tracking-[-0.045em] text-[#25232A]`}
+>
+  Visit Our
+  <br />
+  <span className="text-[#8D6CA3]">Beauty Studio</span>
+</h2>
+<p
+  className={`${interTight.className} mt-6 max-w-[440px] text-sm font-normal leading-7 text-[#817887] sm:text-base`}
+>
+  Discover bridal makeup, groom makeovers, unisex salon services,
+  wedding rentals and nail art at Touch Bridal, Ramavarmapuram,
+  Nagercoil.
+</p>
   </div>
 
   {/* CONTACT DETAILS */}
@@ -208,14 +207,14 @@ export default function LocationContact() {
           <div className="flex min-h-[440px] flex-col rounded-[4px] border border-[#25232A]/10 bg-white p-5 shadow-[0_8px_30px_rgba(37,35,42,0.04)] sm:p-7 lg:min-h-[520px]">
             {/* SECTION LABEL */}
             <span className="services-intro-item mb-4 ml-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] sm:text-xs">
-  FIND US HERE
+  
 </span>
 
             {/* HEADING */}
             <h3
-              className={`${interTight.className}  text-4xl font-semibold leading-tight text-[#25232A] sm:text-4xl`}
+              className={`${interTight.className} uppercase text-4xl font-semibold leading-tight text-[#25232A] sm:text-4xl`}
             >
-              Visit Our Studio
+              Explore Our Location
             </h3>
 
             {/* DESCRIPTION */}

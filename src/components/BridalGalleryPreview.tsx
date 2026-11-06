@@ -112,37 +112,36 @@ export default function BridalGalleryPreview() {
         >
           <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
 
-            {/* LEFT CONTENT */}
-            <div className="bridal-gallery-text">
-              <span
-                className={`${interTight.className} mb-4 ml-2 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675BA] sm:text-xs`}
-              >
-                OUR BRIDAL GALLERY
-              </span>
+          {/* LEFT CONTENT */}
+          <div className="bridal-gallery-text">
+           <span
+  className={`${interTight.className} mb-4 ml-2 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675BA] sm:text-xs`}
+>
+  BRIDAL MAKEUP GALLERY
+</span>
 
-              <h2
-                className={`${interTight.className} max-w-[520px] text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
-              >
-                <span className="block">
-                  Every bride,
-                </span>
+          <h2
+  className={`${interTight.className} max-w-[520px] text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+>
+  <span className="block">
+   Bridal Looks,
+  </span>
 
-                <span className="block text-[#8D6CA3]">
-                  beautifully unique.
-                </span>
-              </h2>
-              <p className="mt-5 max-w-[430px] text-sm leading-7 text-[#786354] sm:text-base">
-                Explore our bridal makeup and styling looks, thoughtfully
-                created to celebrate your most special moments.
-              </p>
-
-              <Link
-                href="/bridal-gallery"
-                className="mt-8 inline-flex items-center gap-3 bg-[#8D6CA3] px-6 py-3.5 text-xs font-semibold tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#2d1b13]"
-              >
-                EXPLORE BRIDAL GALLERY
-              </Link>
-            </div>
+  <span className="block text-[#8D6CA3]">
+    Beautifully Captured.
+  </span>
+</h2>
+            <p className="mt-5 max-w-[430px] text-sm leading-7 text-[#817887] sm:text-base">
+  Explore our bridal makeup portfolio, featuring timeless
+  traditional looks and elegant contemporary transformations.
+</p>
+            <Link
+              href="/bridal-gallery"
+              className="mt-8 inline-flex items-center gap-3 bg-[#8D6CA3] px-6 py-3.5 text-xs font-semibold tracking-[0.12em] text-white transition-colors duration-300 hover:bg-[#2d1b13]"
+            >
+              VIEW BRIDAL COLLECTION
+            </Link>
+          </div>
 
             {/* RIGHT SIDE: EIGHT-IMAGE EDITORIAL COLLAGE */}
             <div className="bridal-collage relative isolate aspect-[7/9] w-full min-w-0 overflow-hidden !rounded-none bg-white sm:aspect-[4/5] lg:aspect-[7/9]">
