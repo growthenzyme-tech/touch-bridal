@@ -113,15 +113,15 @@ const bridalLooks = [
 /* Neat overlapping layouts (no rotation). Values are % of the collage box. */
 const layouts: Record<number, string[]> = {
   4: [
-    "left-[8%] top-[8%] z-10 h-[50%] w-[24%]",
-    "left-[28%] top-[42%] z-20 h-[50%] w-[24%]",
-    "left-[48%] top-[6%] z-10 h-[50%] w-[24%]",
-    "left-[68%] top-[40%] z-20 h-[50%] w-[24%]",
+    "left-[8%] top-[8%] z-10 h-[50%] w-[30%] sm:w-[24%]",
+    "left-[28%] top-[42%] z-20 h-[50%] w-[30%] sm:w-[24%]",
+    "left-[48%] top-[6%] z-10 h-[50%] w-[30%] sm:w-[24%]",
+    "left-[68%] top-[40%] z-20 h-[50%] w-[30%] sm:w-[24%]",
   ],
   3: [
-    "left-[16%] top-[10%] z-10 h-[56%] w-[27%]",
-    "left-[36%] top-[34%] z-30 h-[56%] w-[27%]",
-    "left-[56%] top-[8%] z-20 h-[56%] w-[27%]",
+    "left-[16%] top-[10%] z-10 h-[56%] w-[32%] sm:w-[27%]",
+    "left-[36%] top-[34%] z-30 h-[56%] w-[32%] sm:w-[27%]",
+    "left-[56%] top-[8%] z-20 h-[56%] w-[32%] sm:w-[27%]",
   ],
 };
 
@@ -324,7 +324,7 @@ export default function BridalMakeoverGallery() {
   className={`relative overflow-hidden bg-[#E9E1F2]/60 ${
     isTransform
       ? "p-3 sm:p-4 lg:p-5"
-      : "h-[380px] sm:h-[480px] lg:h-auto lg:min-h-[540px]"
+      : "h-[400px] sm:h-[480px] lg:h-auto lg:min-h-[540px]"
   }`}
 >
   {isTransform ? (
@@ -340,7 +340,7 @@ export default function BridalMakeoverGallery() {
     <>
       <div
         key={activeKey}
-        className="absolute inset-y-0 left-1/2 w-[520px] -translate-x-1/2 sm:w-full"
+        className="absolute inset-y-0 left-0 w-full sm:left-1/2 sm:-translate-x-1/2 sm:w-full"
       >
         {looks.map((look, index) => (
           <div
