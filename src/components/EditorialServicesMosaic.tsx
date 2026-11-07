@@ -54,7 +54,7 @@ const serviceCategories: ServiceCategory[] = [
     category: "SIGNATURE BRIDAL",
     title: "BRIDAL MAKEOVER STUDIO",
     description:
-      "Complete bridal and groom beauty experiences, HD makeup, and styling crafted to make every celebration unforgettable.",
+      "Complete bridal and groom beauty experiences, HD makeup, and styling in Nagercoil.",
     image: "/images/studio.jpg",
     imageAlt:
       "Touch Bridal Makeover Studio in Nagercoil - Professional bridal makeup, groom makeover, and wedding styling",
@@ -150,7 +150,7 @@ const servicesSchema = {
           "@type": "Service",
           name: "Bridal Makeover Studio & Groom Makeover",
           description:
-            "Complete bridal and groom beauty experiences, HD makeup, and wedding styling crafted to make every celebration unforgettable.",
+            "Complete bridal and groom beauty experiences, HD makeup, and styling in Nagercoil.",
         },
       },
       {
@@ -206,15 +206,15 @@ export default function EditorialServicesMosaic() {
           >
             SERVICES &amp; EXPERTISE
           </motion.p>
-<h2
-  className={`${interTight.className} max-w-4xl text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
->
-  ONE SIGNATURE{" "}
-  <span className="text-[#8D6CA3]">TOUCH.</span>
-</h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-[#716B76] sm:text-[15px]">
-            Experience bespoke bridal transformations, luxury unisex salon care,
-            exclusive wedding rentals, and statement nail artistry.
+          <h2
+            className={`${interTight.className} max-w-4xl text-[clamp(2.3rem,4.8vw,4.5rem)] font-bold uppercase leading-[1] tracking-[-0.02em] text-[#25232A]`}
+          >
+            ONE SIGNATURE{" "}
+            <span className="text-[#8D6CA3]">TOUCH.</span>
+          </h2>
+
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[#716B76] sm:text-[15px]">
+            Looking for a premier makeover salon in Nagercoil? Experience bespoke bridal transformations, luxury unisex salon care, exclusive wedding rentals, and statement nail artistry at Touch Bridal.
           </p>
 
           <motion.div
