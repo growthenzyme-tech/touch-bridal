@@ -37,8 +37,8 @@ const services = [
     title: "Bridal & Groom Makeovers",
     description:
       "Beautiful bridal makeup, groom styling and special occasion looks tailored to your special day.",
-    image: "/images/bridal-01.jpg",
-    image2: "/servicesimg/grrommens.jpg",
+    image: "/makeover 2.jpg",
+    image2: "/makeover.jpg",
     imageAlt: "Bridal makeup and wedding makeover",
     image2Alt: "Groom makeover and wedding styling",
     tag: "BRIDAL BEAUTY",
@@ -48,8 +48,8 @@ const services = [
     title: "Hair Care & Styling",
     description:
       "Haircuts, styling, colouring and hair treatments for both men and women.",
-    image: "/servicesimg/haircare.jpg",
-    image2: "/servicesimg/menHairCare.jpg",
+    image: "/hair.jpg",
+    image2: "/care 1.jpg",
     imageAlt: "Professional hair styling and hair care",
     image2Alt: "Hair styling for men and women",
     tag: "HAIR CARE",
@@ -59,8 +59,8 @@ const services = [
     title: "Skin Care for Men & Women",
     description:
       "Refreshing facials and skincare treatments to help everyone look and feel their best.",
-    image: "/servicesimg/bridal-03.jpg",
-    image2: "/servicesimg/menfacial.jpg",
+    image: "/spa1.jpg",
+    image2: "/spa.jpg",
     imageAlt: "Professional skincare and facial treatments",
     image2Alt: "Skincare treatment for men and women",
     tag: "UNISEX SKIN CARE",
@@ -70,8 +70,8 @@ const services = [
     title: "Beauty & Personal Care",
     description:
       "Makeup, beauty treatments and finishing touches for men and women, for everyday care and special occasions.",
-    image: "/images/bridal-04.jpg",
-    image2: "/servicesimg/menbeauty.jpg",
+    image: "/waxx.jpg",
+    image2: "/waxx1.jpg",
     imageAlt: "Beauty treatments and personal care",
     image2Alt: "Professional beauty and makeup services",
     tag: "BEAUTY SERVICES",
