@@ -219,14 +219,14 @@ export default function LocationContact() {
 
             {/* DESCRIPTION */}
             <p className="mt-2 text-sm leading-6 text-[#25232A]/60">
-              Find Touch Bridal Makeover Studio &amp; Unisex Salon in
+              Find S Touch Bridal Makeover Studio &amp; Unisex Salon in
               Nagercoil.
             </p>
 
             {/* GOOGLE MAP PREVIEW */}
             <div className="mt-5 min-h-[260px] flex-1 overflow-hidden border border-[#25232A]/10 bg-white shadow-sm">
               <iframe
-                title="Touch Bridal Makeover Studio location"
+                title="S Touch Bridal Makeover Studio location"
                 src={mapEmbedUrl}
                 className="h-full min-h-[260px] w-full lg:min-h-[300px]"
                 style={{ border: 0 }}

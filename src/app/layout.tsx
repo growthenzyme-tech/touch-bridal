@@ -12,9 +12,9 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Touch Bridal Makeover Studio & Unisex Salon",
+  title: "S Touch Bridal Makeover Studio & Unisex Salon",
   description:
-    "Discover your perfect bridal look with Touch Bridal Makeover Studio & Unisex Salon.",
+    "Discover your perfect bridal look with S Touch Bridal Makeover Studio & Unisex Salon.",
 };
 
 export default function RootLayout({

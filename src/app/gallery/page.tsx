@@ -45,7 +45,7 @@ export default function BridalGalleryPage() {
               <div className="relative h-[150px] w-[125px] rotate-[-8deg] overflow-hidden  border-[5px] border-white bg-[#E4D9ED] shadow-[0_15px_35px_-15px_rgba(37,35,42,0.25)]">
 
                 <Image
-                  src="/images/bridal-gallery/bridal7.jpg"
+                  src="/11.jpeg"
                   alt="Traditional bridal makeup"
                   fill
                   sizes="125px"
@@ -86,7 +86,7 @@ export default function BridalGalleryPage() {
               <div className="relative ml-auto h-[150px] w-[125px] rotate-[7deg] overflow-hidden border-[5px] border-white bg-[#E4D9ED] shadow-[0_15px_35px_-15px_rgba(37,35,42,0.25)]">
 
                 <Image
-                  src="/images/bridal-gallery/bridal2.jpg"
+                  src="/22.jpeg"
                   alt="Elegant bridal reception makeup"
                   fill
                   sizes="125px"

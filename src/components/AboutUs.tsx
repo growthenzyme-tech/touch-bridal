@@ -18,38 +18,30 @@ const interTight = Inter_Tight({
 });
 
 const secondStaticImage = {
-  src: "/images/about/couple1.jpg",
+  src: "/about 2.jpg",
   alt: "The S Touch Signature Bride & Groom Wedding Transformation",
 };
 
 const aboutImages = [
   {
-    src: "/images/about/bride1.jpg",
+    src: "/about 1.jpg",
     alt: "The S Touch Signature Bridal Makeup",
   },
   {
-    src: "/images/about/groom1.jpg",
+    src: "/about 2.jpg",
     alt: "The S Touch Signature Groom Styling",
   },
   {
-    src: "/images/about/couple1.jpg",
+    src: "/about 3.jpg",
     alt: "The S Touch Wedding Couple Transformation",
   },
   {
-    src: "/images/about/bride2.jpg",
+    src: "/about 4.jpg",
     alt: "The S Touch Elegant Bridal Makeover",
   },
   {
-    src: "/images/about/grrom2.jpg",
-    alt: "The S Touch Royal Groom Styling",
-  },
-  {
-    src: "/images/about/couple2.jpg",
-    alt: "The S Touch Classic Couple Makeover",
-  },
-  {
-    src: "/images/about/couple3.jpg",
-    alt: "The S Touch Bespoke Wedding Couple Look",
+    src: "/about 5.jpg",
+    alt: "The S Touch Bespoke Wedding Styling",
   },
 ];
 

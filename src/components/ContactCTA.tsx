@@ -114,7 +114,7 @@ if (!response.ok || !result.success) {
 
     // Step 2: Open WhatsApp after successful save
     const enquiry = [
-      "Hello Touch Bridal Makeover Studio & Unisex Salon!",
+      "Hello S Touch Bridal Makeover Studio & Unisex Salon!",
       "",
       "I would like to enquire about an appointment.",
       `Name: ${name}`,
@@ -154,7 +154,7 @@ setSelectedServices([]);
           <div className="relative flex min-h-[430px] flex-col justify-between overflow-hidden bg-[#8D6CA3] p-6 sm:min-h-[500px] sm:p-9 lg:min-h-[580px] lg:p-12">
             <img
               src="/servicesimg/black2.jpg"
-              alt="Bridal makeup at Touch Bridal Makeover Studio"
+              alt="Bridal makeup at S Touch Bridal Makeover Studio & Unisex Salon"
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
 
@@ -191,7 +191,7 @@ setSelectedServices([]);
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                    "Hello Touch Bridal Makeover Studio & Unisex Salon! I would like to book an appointment."
+                    "Hello S Touch Bridal Makeover Studio & Unisex Salon! I would like to book an appointment."
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"

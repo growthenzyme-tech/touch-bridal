@@ -17,6 +17,7 @@ export interface BeautySubService {
   description: string;
   image: string;
   alt: string;
+  objectPosition?: "top" | "bottom" | "center";
 }
 
 export const BEAUTY_SUB_SERVICES: BeautySubService[] = [
@@ -62,8 +63,9 @@ export const BEAUTY_SUB_SERVICES: BeautySubService[] = [
     title: "Nail Art",
     description:
       "Express your unique style through beautiful nail art that transforms your nails into tiny works of art.",
-    image: "/images/nail-art.jpg",
+    image: "/org nail.jpeg",
     alt: "Nail Art by S Touch Salon",
+    objectPosition: "bottom",
   },
   {
     id: "mehendi",
@@ -251,7 +253,7 @@ export default function BeautyGroomingServicesSection({
                     <img
                       src={service.image}
                       alt={service.alt || service.title}
-                      className="lg:hidden h-14 w-14 sm:h-16 sm:w-16 rounded-none object-cover object-top border border-[#8D6CA3]/30 shadow-xs shrink-0"
+                      className={`lg:hidden h-14 w-14 sm:h-16 sm:w-16 rounded-none object-cover ${service.objectPosition === "bottom" ? "object-bottom" : "object-top"} border border-[#8D6CA3]/30 shadow-xs shrink-0`}
                     />
 
                     <div className="flex-1 min-w-0 max-w-[420px] sm:max-w-md lg:max-w-lg xl:max-w-xl">
@@ -307,7 +309,7 @@ export default function BeautyGroomingServicesSection({
                   <img
                     src={service.image}
                     alt={service.alt}
-                    className="h-full w-full object-cover object-top"
+                    className={`h-full w-full object-cover ${service.objectPosition === "bottom" ? "object-bottom" : "object-top"}`}
                   />
                 </div>
               );

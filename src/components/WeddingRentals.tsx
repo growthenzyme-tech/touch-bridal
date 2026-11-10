@@ -31,7 +31,7 @@ const rentalCategories = [
     id: "03",
     title: "Wedding Hairnets",
     description: "Traditional and delicate details for bridal hairstyles.",
-    image: "/hairnets.jpg",
+    image: "/org hair.jpeg",
     count: "Hair Accessories",
   },
   {

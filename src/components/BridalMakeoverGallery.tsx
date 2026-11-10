@@ -28,7 +28,7 @@ const bridalLooks = [
     id: 2,
     title: "Reception Glam",
     category: "Reception",
-    image: "/reception/recep1.jpg",
+    image: "/orgg party.jpeg",
   },
   {
     id: 3,
@@ -133,8 +133,8 @@ const transformations = [
   {
     id: 1,
     title: "Natural to Bridal Glam",
-    before: "/before/bf1.jpg",
-    after: "/after/af1.jpg",
+    before: "/before.jpeg",
+    after: "/after.jpeg",
   },
   {
     id: 2,

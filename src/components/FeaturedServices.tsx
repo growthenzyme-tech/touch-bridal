@@ -495,7 +495,7 @@ return (
 </h2>
 
          <p className="services-intro-item mt-5 max-w-sm text-sm leading-7 text-[#77737f] sm:text-[15px]">
-  Discover professional bridal and groom makeovers, hair styling, and beauty services for men and women at Touch Bridal Makeover Studio &amp; Unisex Salon in Nagercoil.
+  Discover professional bridal and groom makeovers, hair styling, and beauty services for men and women at S Touch Bridal Makeover Studio &amp; Unisex Salon in Nagercoil.
 </p>
 
           <Link

@@ -47,7 +47,7 @@ const bridalImages = [
 ];
 
 const paragraphText =
-  "Discover professional bridal makeup, groom makeover styling, unisex salon services, wedding rental collections and creative nail art at Touch Bridal Makeover Studio & Unisex Salon. Your destination for beauty, grooming and wedding styling.";
+  "Discover professional bridal makeup, groom makeover styling, unisex salon services, wedding rental collections and creative nail art at S Touch Bridal Makeover Studio & Unisex Salon. Your destination for beauty, grooming and wedding styling.";
 
 // TODO: replace these placeholder details with your real information.
 const happyCount = "500+";
@@ -385,7 +385,7 @@ return (
             <p
   className={`${interTight.className} hero-eyebrow mb-4 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#9675ba] opacity-0 sm:text-xs`}
 >
-  Touch Bridal Makeover Studio & Unisex Salon
+  S Touch Bridal Makeover Studio & Unisex Salon
 </p>
 
         <h1

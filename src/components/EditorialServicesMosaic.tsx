@@ -57,7 +57,7 @@ const serviceCategories: ServiceCategory[] = [
       "Complete bridal and groom beauty experiences, HD makeup, and styling in Nagercoil.",
     image: "/images/studio.jpg",
     imageAlt:
-      "Touch Bridal Makeover Studio in Nagercoil - Professional bridal makeup, groom makeover, and wedding styling",
+      "S Touch Bridal Makeover Studio & Unisex Salon in Nagercoil - Professional bridal makeup, groom makeover, and wedding styling",
     ctaText: "EXPLORE",
     ctaHref: "/services?section=bridal-makeup#bridal-makeup",
     ctaAriaLabel:
@@ -112,7 +112,7 @@ const serviceCategories: ServiceCategory[] = [
 const servicesSchema = {
   "@context": "https://schema.org",
   "@type": ["BeautySalon", "HairSalon"],
-  name: "Touch Bridal Makeover Studio & Unisex Salon",
+  name: "S Touch Bridal Makeover Studio & Unisex Salon",
   image: "https://touchbridal.com/images/studio.jpg",
   description:
     "Bespoke bridal and groom makeover transformations, luxury unisex salon hair & skin care, exclusive wedding jewelry rentals, and statement nail artistry in Nagercoil, Tamil Nadu.",

@@ -44,8 +44,8 @@ export const BRIDAL_SUB_SERVICES: BridalSubService[] = [
     title: "Reception Makeup",
     description:
       "Step into the spotlight with a beautifully refined look that captures the magic of your celebration and leaves a lasting impression.",
-    image: "/images/reception.jpg",
-    alt: "Reception Makeup by Touch Salon",
+    image: "/org party.jpeg",
+    alt: "Reception Makeup by S Touch Bridal Makeover Studio",
   },
   {
     id: "party-makeup",
@@ -53,8 +53,8 @@ export const BRIDAL_SUB_SERVICES: BridalSubService[] = [
     title: "Party Makeup",
     description:
       "Turn every occasion into a moment to shine with a flawless, glamorous look that reflects your unique style.",
-    image: "/images/party%20makeup.jpg",
-    alt: "Party Makeup by Touch Salon",
+    image: "/org recep.jpg",
+    alt: "Party Makeup by S Touch Bridal Makeover Studio",
   },
   {
     id: "baby-shower-makeup",
@@ -98,8 +98,8 @@ export const BRIDAL_SUB_SERVICES: BridalSubService[] = [
     title: "SFX Makeup",
     description:
       "Transform your look with creative special-effects makeup featuring realistic wounds, scars, and fantasy designs for a dramatic appearance.",
-    image: "/images/haloween copy.jpg",
-    alt: "SFX Makeup by Touch Salon",
+    image: "/org sfx.jpeg",
+    alt: "SFX Makeup by S Touch Bridal Makeover Studio",
   },
 ];
 
