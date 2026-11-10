@@ -28,7 +28,7 @@ const aboutImages = [
     alt: "The S Touch Signature Bridal Makeup",
   },
   {
-    src: "/about 2.jpg",
+    src: "/images/about/about6.webp",
     alt: "The S Touch Signature Groom Styling",
   },
   {
