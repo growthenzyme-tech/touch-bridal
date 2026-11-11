@@ -467,17 +467,17 @@ return (
 
         
 {/* RIGHT: ANIMATED IMAGE FLOW */}
-<div className="hero-visual relative mx-auto h-[430px] w-full max-w-[560px] opacity-0 sm:h-[540px] lg:h-[630px] lg:max-w-none">
+<div className="hero-visual relative mx-auto h-[480px] w-full max-w-[560px] opacity-0 sm:h-[540px] lg:h-[630px] lg:max-w-none">
 
   {/* Soft backdrop shape */}
-  <div className="absolute inset-x-[8%] bottom-0 top-[14%] rounded-[44px] bg-[#E4D9ED]" />
+  <div className="absolute inset-x-[4%] bottom-0 top-[10%] rounded-[32px] bg-[#E4D9ED] sm:inset-x-[8%] sm:top-[14%] sm:rounded-[44px]" />
 
    
 {/* MAIN ARCH IMAGE */}
 <div
-  className="absolute right-[6%] top-[2%] h-[88%] w-[65%]"
+  className="absolute right-[3%] top-[2%] h-[92%] w-[78%] sm:right-[6%] sm:h-[88%] sm:w-[65%]"
 >
-  <div className="relative h-full w-full overflow-hidden rounded-b-[32px] rounded-t-[999px] bg-[#D8C8E4] shadow-[0_30px_60px_-30px_rgba(37,35,42,0.35)]">
+  <div className="relative h-full w-full overflow-hidden rounded-b-[24px] rounded-t-[36px] bg-[#D8C8E4] shadow-[0_30px_60px_-30px_rgba(37,35,42,0.35)] sm:rounded-b-[32px] sm:rounded-t-[999px]">
 
     <img
       key={mainImage.src}
@@ -485,7 +485,7 @@ return (
       alt={mainImage.alt}
       loading="eager"
       draggable={false}
-      className="absolute inset-0 h-full w-full object-cover"
+      className="absolute inset-0 h-full w-full object-cover object-top sm:object-center"
     />
 
     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#25232A]/35 via-transparent to-transparent" />
@@ -495,11 +495,9 @@ return (
 
 
     {/* SMALL OVERLAPPING PHOTO */}
-   
-{/* SMALL OVERLAPPING PHOTO */}
-<div className="float-card absolute bottom-[3%] left-[1%] w-[30%] max-w-[170px]">
+<div className="float-card absolute bottom-[2%] left-0 w-[28%] max-w-[130px] sm:bottom-[3%] sm:left-[1%] sm:w-[30%] sm:max-w-[170px]">
 
-  <div className="aspect-[3/4] overflow-hidden rounded-2xl border-[5px] border-[#F1EDF7] shadow-[0_18px_36px_-18px_rgba(37,35,42,0.35)]">
+  <div className="aspect-[3/4] overflow-hidden rounded-xl border-[4px] border-[#F1EDF7] shadow-[0_18px_36px_-18px_rgba(37,35,42,0.35)] sm:rounded-2xl sm:border-[5px]">
 
     <img
       key={smallImage.src}
@@ -507,7 +505,7 @@ return (
       alt={smallImage.alt}
       loading="eager"
       draggable={false}
-      className="h-full w-full object-cover"
+      className="h-full w-full object-cover object-top sm:object-center"
     />
 
   </div>
@@ -515,9 +513,9 @@ return (
 
 
     {/* FEATURED LOOK CARD */}
-    <div className="float-card absolute right-0 top-[5%] w-[46%] max-w-[215px]">
+    <div className="float-card absolute bottom-[2%] right-0 w-[44%] max-w-[175px] sm:bottom-auto sm:top-[5%] sm:w-[46%] sm:max-w-[215px]">
 
-      <div className="border border-[#8D6CA3]/10 bg-white/95 p-3 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur">
+      <div className="border border-[#8D6CA3]/10 bg-white/95 p-2.5 shadow-[0_18px_40px_-20px_rgba(37,35,42,0.25)] backdrop-blur sm:p-3">
 
         <div className="flex items-center gap-2.5">
 
@@ -528,7 +526,7 @@ return (
   alt={featuredImage.alt}
   loading="eager"
   draggable={false}
-  className="h-11 w-11 shrink-0 object-cover sm:h-12 sm:w-12"
+  className="h-10 w-10 shrink-0 object-cover sm:h-12 sm:w-12"
 />
 
 
@@ -538,7 +536,7 @@ return (
               Featured Look
             </p>
 
-            <p className="truncate text-[11px] font-semibold text-[#25232A] sm:text-xs">
+            <p className="truncate text-[10px] font-semibold text-[#25232A] sm:text-xs">
               {featuredImage.label}
             </p>
 
@@ -550,24 +548,24 @@ return (
         </div>
 
         {/* NAVIGATION ARROWS */}
-        <div className="mt-3 flex items-center justify-end gap-2">
+        <div className="mt-2.5 flex items-center justify-end gap-1.5 sm:mt-3 sm:gap-2">
 
           <button
             type="button"
             aria-label="Previous look"
             onClick={goLeft}
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#8D6CA3]/25 text-[#25232A] transition-colors hover:bg-[#8D6CA3] hover:text-white"
+            className="flex h-6 w-6 items-center justify-center rounded-full border border-[#8D6CA3]/25 text-[#25232A] transition-colors hover:bg-[#8D6CA3] hover:text-white sm:h-7 sm:w-7"
           >
-            <ArrowIcon direction="left" className="h-3 w-3" />
+            <ArrowIcon direction="left" className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
           </button>
 
           <button
             type="button"
             aria-label="Next look"
             onClick={goRight}
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#8D6CA3]/25 text-[#25232A] transition-colors hover:bg-[#8D6CA3] hover:text-white"
+            className="flex h-6 w-6 items-center justify-center rounded-full border border-[#8D6CA3]/25 text-[#25232A] transition-colors hover:bg-[#8D6CA3] hover:text-white sm:h-7 sm:w-7"
           >
-            <ArrowIcon className="h-3 w-3" />
+            <ArrowIcon className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
           </button>
 
         </div>

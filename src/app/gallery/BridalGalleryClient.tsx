@@ -38,11 +38,11 @@ export default function BridalGalleryPage() {
               className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(241,237,247,0.85),transparent_75%)]"
             />
 
-            {/* LEFT FLOATING BRIDAL VISUAL */}
+            {/* LEFT FLOATING BRIDAL VISUAL (Desktop only, untouched) */}
             <div className="pointer-events-none absolute left-[2%] top-1/2 hidden w-[220px] -translate-y-1/2 lg:block xl:left-[5%]">
 
               {/* Photo Card */}
-              <div className="relative h-[150px] w-[125px] rotate-[-8deg] overflow-hidden  border-[5px] border-white bg-[#E4D9ED] shadow-[0_15px_35px_-15px_rgba(37,35,42,0.25)]">
+              <div className="relative h-[150px] w-[125px] rotate-[-8deg] overflow-hidden border-[5px] border-white bg-[#E4D9ED] shadow-[0_15px_35px_-15px_rgba(37,35,42,0.25)]">
 
                 <Image
                   src="/11.jpeg"
@@ -79,7 +79,7 @@ export default function BridalGalleryPage() {
 
             </div>
 
-            {/* RIGHT FLOATING BRIDAL VISUAL */}
+            {/* RIGHT FLOATING BRIDAL VISUAL (Desktop only, untouched) */}
             <div className="pointer-events-none absolute right-[2%] top-1/2 hidden w-[220px] -translate-y-1/2 lg:block xl:right-[5%]">
 
               {/* Photo Card */}
@@ -177,6 +177,55 @@ export default function BridalGalleryPage() {
                   Explore Looks
                 </Link>
 
+              </div>
+
+              {/* MOBILE HERO BRIDAL SHOWCASE (Visible on Mobile & Tablet, Hidden on Large Screens) */}
+              <div className="mt-8 grid w-full max-w-[480px] grid-cols-2 gap-3.5 sm:gap-4 lg:hidden">
+                {/* Traditional Bridal (11.jpeg) */}
+                <div className="group relative overflow-hidden rounded-2xl border-2 border-white bg-white shadow-[0_14px_30px_-10px_rgba(37,35,42,0.22)]">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#E4D9ED]">
+                    <Image
+                      src="/11.jpeg"
+                      alt="Traditional Indian bridal makeup and wedding styling in Nagercoil"
+                      fill
+                      sizes="(max-width: 1023px) 50vw, 240px"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#25232A]/75 via-transparent to-transparent" />
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left text-white">
+                      <span className="inline-block rounded-full bg-white/25 px-2 py-0.5 text-[8px] font-semibold uppercase tracking-wider backdrop-blur-md">
+                        Traditional
+                      </span>
+                      <p className="mt-0.5 text-[11px] font-bold leading-tight drop-shadow sm:text-xs">
+                        Bridal Makeover
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Reception Glam (22.jpeg) */}
+                <div className="group relative overflow-hidden rounded-2xl border-2 border-white bg-white shadow-[0_14px_30px_-10px_rgba(37,35,42,0.22)]">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#E4D9ED]">
+                    <Image
+                      src="/22.jpeg"
+                      alt="Reception glam makeup and styling in Nagercoil"
+                      fill
+                      sizes="(max-width: 1023px) 50vw, 240px"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      priority
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#25232A]/75 via-transparent to-transparent" />
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left text-white">
+                      <span className="inline-block rounded-full bg-white/25 px-2 py-0.5 text-[8px] font-semibold uppercase tracking-wider backdrop-blur-md">
+                        Reception
+                      </span>
+                      <p className="mt-0.5 text-[11px] font-bold leading-tight drop-shadow sm:text-xs">
+                        Glam Styling
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
             </div>
