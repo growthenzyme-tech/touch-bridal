@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     "Discover your perfect bridal look with S Touch Bridal Makeover Studio & Unisex Salon.",
   icons: {
     icon: [
-      { url: "/icon.png?v=5", sizes: "512x512", type: "image/png" },
-      { url: "/favicon.ico?v=5" },
+      { url: "/icon.png?v=6", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico?v=6" },
     ],
     apple: [
-      { url: "/apple-icon.png?v=5", sizes: "180x180", type: "image/png" },
+      { url: "/apple-icon.png?v=6", sizes: "180x180", type: "image/png" },
     ],
   },
 };
