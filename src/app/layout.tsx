@@ -12,9 +12,9 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "S Touch Bridal Makeover Studio & Unisex Salon",
+  title: "Best Bridal Makeover & Unisex Salon in Nagercoil | S TOUCH",
   description:
-    "Discover your perfect bridal look with S Touch Bridal Makeover Studio & Unisex Salon.",
+    "S TOUCH in Nagercoil offers premium HD bridal makeup, expert hair styling, and comprehensive grooming for men and women. Book your makeover or salon visit today!",
   icons: {
     icon: [
       { url: "/icon.png?v=8", sizes: "512x512", type: "image/png" },

@@ -10,10 +10,9 @@ import ContactCTA from "@/components/ContactCTA";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Touch Bridal | Unisex Salon, Bridal & Groom Makeover, Wedding Rentals & Nail Art in Nagercoil",
+  title: "Best Bridal Makeover & Unisex Salon in Nagercoil | S TOUCH",
   description:
-    "Experience bespoke bridal and groom makeover transformations, luxury unisex salon care, exclusive wedding rentals, and statement nail artistry at Touch Bridal Studio in Ramavarmapuram, Nagercoil, Tamil Nadu.",
+    "S TOUCH in Nagercoil offers premium HD bridal makeup, expert hair styling, and comprehensive grooming for men and women. Book your makeover or salon visit today!",
   keywords: [
     "bridal makeup Nagercoil",
     "groom makeover Nagercoil",
@@ -32,9 +31,9 @@ export const metadata: Metadata = {
     "Top Unisex salon"
   ],
   openGraph: {
-    title: "S Touch Bridal Makeover Studio & Unisex Salon | Nagercoil",
+    title: "Best Bridal Makeover & Unisex Salon in Nagercoil | S TOUCH",
     description:
-      "Bespoke bridal and groom makeover transformations, luxury unisex salon care, exclusive wedding rentals, and statement nail artistry in Nagercoil, Tamil Nadu.",
+      "S TOUCH in Nagercoil offers premium HD bridal makeup, expert hair styling, and comprehensive grooming for men and women. Book your makeover or salon visit today!",
     url: "https://touchbridal.com",
     siteName: "S Touch Bridal Makeover Studio & Unisex Salon",
     locale: "en_IN",
